@@ -14,7 +14,7 @@ $ npm install i18n-tag-schema --save-dev
 ```js
 import i18nTagSchema from 'i18n-tag-schema'
 
-i18nTagSchema('.\src', '\\.jsx?', './translation.schema.json', (output) => {
+i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
     // log(output)
 })
 ```
