@@ -1,7 +1,7 @@
 {
   "name": "i18n-tag-schema",
   "description": "Generates a json schema for all i18n tagged template literals in your project",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Steffen Kolmer <steffen@kolmer.net>",
   "icon": "images/vscode-18n-tag-schema-icon.png",
   "license": "MIT",
@@ -9,10 +9,10 @@
     "type": "git",
     "url": "git://github.com/skolmer/i18n-tag-schema.git"
   },
-  "bugs" : "http://github.com/skolmer/i18n-tag-schema/issues",
-  "engines" : {
-    "node" : ">= 4.0.0"
-  },  
+  "bugs": "http://github.com/skolmer/i18n-tag-schema/issues",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
   "dependencies": {
     "acorn-jsx": "^3.0.1",
     "acorn-jsx-walk": "^1.0.1",
