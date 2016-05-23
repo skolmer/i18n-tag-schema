@@ -36,5 +36,6 @@
     "build": "babel lib -d dist/lib",
     "lint": "eslint lib"
   },
+  "typings": "i18n-tag-schema.d.ts",
   "main": "./dist/lib"
 }
