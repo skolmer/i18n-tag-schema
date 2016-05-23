@@ -18,3 +18,11 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
     // log(output)
 })
 ```
+
+### Reference schema in translation.json file
+```json
+{
+    "$schema": "./translation.schema.json",
+    "key": "value"
+}
+```
