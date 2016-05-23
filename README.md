@@ -19,6 +19,18 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
 })
 ```
 
+### Gulp Task
+```js
+var gulp = require('gulp')
+var i18nTagSchema = require('i18n-tag-schema')
+gulp.task('generate-translation-schema', function (cb) {
+  i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
+      console.log(output)
+      cb(); // finished task
+  })
+})
+```
+
 ### Reference schema in translation.json file
 ```json
 {
