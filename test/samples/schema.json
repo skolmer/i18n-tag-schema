@@ -1,0 +1,9 @@
+{
+	"type": "object",
+	"properties": {
+		"Hello ${0}, you have ${1} in your bank account.": {
+			"type": "string"
+		}
+	},
+	"additionalProperties": false
+}
