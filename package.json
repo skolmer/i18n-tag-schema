@@ -32,10 +32,10 @@
   "scripts": {
     "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register",
-    "clean": "rimraf dist/lib",
+    "clean": "rimraf dist/lib/**/*.js",
     "build": "babel lib -d dist/lib",
     "lint": "eslint lib"
   },
-  "typings": "i18n-tag-schema.d.ts",
+  "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib"
 }
