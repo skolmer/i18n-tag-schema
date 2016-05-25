@@ -1,7 +1,7 @@
 {
   "name": "i18n-tag-schema",
   "description": "Generates a json schema for all i18n tagged template literals in your project",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Steffen Kolmer <steffen@kolmer.net>",
   "icon": "images/vscode-18n-tag-schema-icon.png",
   "license": "MIT",
