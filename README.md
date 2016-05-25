@@ -1,5 +1,5 @@
 # i18n-tag-schema
-![](images/vscode-18n-tag-schema-icon-big.jpg)
+[![](images/vscode-18n-tag-schema-icon-big.jpg)](https://github.com/skolmer/es2015-i18n-tag)
 
 Generates a json schema for all i18n tagged template literals in your project
 
