@@ -3,6 +3,12 @@
 	"properties": {
 		"Hello ${0}, you have ${1} in your bank account.": {
 			"type": "string"
+		},
+		"\r\n        <user name=\"${0}\">${1}</user>\r\n    ": {
+			"type": "string"
+		},
+		"\r\n    <users>\r\n    ${0}\r\n    </users>\r\n": {
+			"type": "string"
 		}
 	},
 	"additionalProperties": false
