@@ -10,10 +10,10 @@ import i18nTagSchema from '../lib';
         "Hello ${0}, you have ${1} in your bank account.": {
             "type": "string"
         },
-        "\r\n        <user name=\"${0}\">${1}</user>\r\n    ": {
+        "\n        <user name=\"${0}\">${1}</user>\n    ": {
             "type": "string"
         },
-        "\r\n    <users>\r\n    ${0}\r\n    </users>\r\n": {
+        "\n    <users>\n    ${0}\n    </users>\n": {
             "type": "string"
         }
     },
