@@ -14,7 +14,7 @@ $ npm install i18n-tag-schema --save-dev
 ```js
 import i18nTagSchema from 'i18n-tag-schema'
 
-i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
+i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output) => {
     // log(output)
 })
 ```
@@ -24,7 +24,7 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
 var gulp = require('gulp')
 var i18nTagSchema = require('i18n-tag-schema').default
 gulp.task('generate-translation-schema', function (cb) {
-  i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', (output) => {
+  i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output) => {
       console.log(output)
       cb(); // finished task
   })

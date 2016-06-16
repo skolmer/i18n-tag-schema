@@ -1,13 +1,13 @@
 {
 	"type": "object",
 	"properties": {
-		"Hello ${0}, you have ${1} in your bank account.": {
-			"type": "string"
-		},
 		"\n        <user name=\"${0}\">${1}</user>\n    ": {
 			"type": "string"
 		},
 		"\n    <users>\n    ${0}\n    </users>\n": {
+			"type": "string"
+		},
+		"Hello ${0}, you have ${1} in your bank account.": {
 			"type": "string"
 		}
 	},
