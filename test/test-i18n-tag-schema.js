@@ -24,9 +24,17 @@ describe('i18n-tag-schema', () => {
     it(`should match json string`, (done) => {
         const filter = '\\.jsx?'
         const srcPath = path.resolve(__dirname, './samples')
-        i18nTagSchema(srcPath, filter, null, (log) => {
-            assert.equal(JSON.stringify(log), JSON.stringify(expected));
-            done();
+        i18nTagSchema(srcPath, filter, null, (message, type) => {
+            
+            switch(type) {
+                case 'success':
+                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected));            
+                    done();
+                    break
+                case 'trace':
+                    console.log(message)
+                    break
+            }
         })
     })
 
@@ -34,10 +42,18 @@ describe('i18n-tag-schema', () => {
         const filter = '\\.jsx?'
         const srcPath = path.resolve(__dirname, './samples')
         const schema = path.resolve(__dirname, './samples/schema.json')
-        i18nTagSchema(srcPath, filter, schema, () => {
-            let prevJson = fs.readFileSync(schema, 'utf-8')
-            assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected));
-            done();
+        i18nTagSchema(srcPath, filter, schema, (message, type) => {
+            
+            switch(type) {
+                case 'success':
+                    let prevJson = fs.readFileSync(schema, 'utf-8')
+                    assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected));
+                    done();
+                    break
+                case 'trace':
+                    console.log(message)
+                    break
+            }
         })
     })
 })
