@@ -31,8 +31,8 @@ describe('i18n-tag-schema', () => {
                     assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected));            
                     done();
                     break
-                case 'trace':
-                    console.log(message)
+                case 'info':
+                    console.info('    '+message)
                     break
             }
         })
@@ -50,8 +50,8 @@ describe('i18n-tag-schema', () => {
                     assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected));
                     done();
                     break
-                case 'trace':
-                    console.log(message)
+                case 'info':
+                    console.info('    '+message)
                     break
             }
         })
