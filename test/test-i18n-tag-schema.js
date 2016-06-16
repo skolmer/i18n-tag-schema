@@ -24,17 +24,23 @@ import i18nTagSchema from '../lib';
     "type": "object",
     "properties": {
         "multiline.js": {
-            "\n        <user name=\"${0}\">${1}</user>\n    ": {
-                "type": "string"
-            },
-            "\n    <users>\n    ${0}\n    </users>\n": {
-                "type": "string"
+            "type": "object",
+            "properties": {
+                "\n        <user name=\"${0}\">${1}</user>\n    ": {
+                    "type": "string"
+                },
+                "\n    <users>\n    ${0}\n    </users>\n": {
+                    "type": "string"
+                }
             }
         },
         "simple.js": {
-            "Hello ${0}, you have ${1} in your bank account.": {
-                "type": "string"
-            }            
+            "type": "object",
+            "properties": {
+                "Hello ${0}, you have ${1} in your bank account.": {
+                    "type": "string"
+                }   
+            }         
         }        
     },
     "additionalProperties": false
