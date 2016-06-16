@@ -9,4 +9,4 @@
  * @param schema Path to the generated .json file.
  * @param callback A callback function.
  */
-export default function func(path: string, filter: string, schema: string, callback: (output: string) => void) 
+export default function func(path: string, filter: string, schema: string, callback: (output: string, type: 'info' | 'warn' | 'error') => void) 
