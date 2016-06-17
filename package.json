@@ -32,8 +32,8 @@
   "scripts": {
     "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register",
-    "clean": "rimraf dist/lib/**/*.js",
-    "build": "babel lib -d dist/lib",
+    "clean": "rimraf dist/lib/**/*",
+    "build": "babel lib -d dist/lib --source-maps --copy-files",
     "lint": "eslint lib"
   },
   "typings": "./dist/lib/index.d.ts",
