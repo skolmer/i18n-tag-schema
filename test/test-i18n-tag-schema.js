@@ -5,24 +5,53 @@ import assert from 'assert';
 import i18nTagSchema from '../lib';
 
  const expected = {
-    "type": "object",
-    "properties": {        
-        "\n        <user name=\"${0}\">${1}</user>\n    ": {
-            "type": "string"
-        },
-        "\n    <users>\n    ${0}\n    </users>\n": {
-            "type": "string"
-        },
-        "Hello ${0}, you have ${1} in your bank account.": {
-            "type": "string"
-        }
-    },
-    "additionalProperties": false
+	"definitions": {
+		"translations": {
+			"type": "object",
+			"properties": {
+				"$schema": {
+					"type": "string"
+				},
+				"\n        <user name=\"${0}\">${1}</user>\n    ": {
+					"type": "string"
+				},
+				"\n    <users>\n    ${0}\n    </users>\n": {
+					"type": "string"
+				},
+				"Hello ${0}, you have ${1} in your bank account.": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false			
+		},
+		"group": {
+			"type": "object",
+			"properties": {
+				"$schema": {
+					"type": "string"
+				}
+			},
+			"patternProperties": {
+				"^([^/]+(/|\\.jsx?))+$": {
+					"$ref": "#/definitions/translations"
+				}
+			},
+			"additionalProperties": false	
+		}
+	},
+	"type": "object",
+	"oneOf": [
+		{ "$ref": "#/definitions/translations" },
+		{ "$ref": "#/definitions/group"	}				
+	]	
 }
 
  const expectedGrouped = {
     "type": "object",
     "properties": {
+        "$schema": {
+            "type": "string"
+        },
         "multiline.js": {
             "type": "object",
             "properties": {
