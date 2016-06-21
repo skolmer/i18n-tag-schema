@@ -14,6 +14,12 @@
 				},
 				"Hello ${0}, you have ${1} in your bank account.": {
 					"type": "string"
+				},
+				"Hello!": {
+					"type": "string"
+				},
+				"Welcome!": {
+					"type": "string"
 				}
 			},
 			"additionalProperties": false

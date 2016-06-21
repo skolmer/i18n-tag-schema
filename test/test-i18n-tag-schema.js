@@ -20,7 +20,13 @@ const expected = {
                 },
                 "Hello ${0}, you have ${1} in your bank account.": {
                     "type": "string"
-                }
+                },
+                "Hello!": {
+					"type": "string"
+				},
+                "Welcome!": {
+					"type": "string"
+				}
             },
             "additionalProperties": false
         },
@@ -68,7 +74,13 @@ const expectedGrouped = {
             "properties": {
                 "Hello ${0}, you have ${1} in your bank account.": {
                     "type": "string"
-                }
+                },
+                "Hello!": {
+					"type": "string"
+				},
+                "Welcome!": {
+					"type": "string"
+				}
             }
         }
     },
@@ -86,6 +98,7 @@ describe('i18n-tag-schema', () => {
                     assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected))
                     done()
                     break
+                case 'error':
                 case 'info':
                     console.info('    ' + message)
                     break
@@ -101,10 +114,11 @@ describe('i18n-tag-schema', () => {
 
             switch (type) {
                 case 'success':
-                    let prevJson = fs.readFileSync(schema, 'utf-8')
+                    const prevJson = fs.readFileSync(schema, 'utf-8')
                     assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected))
                     done()
                     break
+                case 'error':
                 case 'info':
                     console.info('    ' + message)
                     break
@@ -122,6 +136,7 @@ describe('i18n-tag-schema', () => {
                     assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expectedGrouped))
                     done()
                     break
+                case 'error':
                 case 'info':
                     console.info('    ' + message)
                     break
