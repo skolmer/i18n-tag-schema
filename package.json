@@ -1,7 +1,7 @@
 {
   "name": "i18n-tag-schema",
   "description": "Generates a json schema for all i18n tagged template literals in your project",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "author": {
     "email": "steffen@kolmer.net",
     "name": "Steffen Kolmer",
