@@ -1,52 +1,52 @@
 
-import path from 'path';
-import fs from 'fs';
-import assert from 'assert';
-import i18nTagSchema from '../lib';
+import path from 'path'
+import fs from 'fs'
+import assert from 'assert'
+import i18nTagSchema from '../lib'
 
- const expected = {
-	"definitions": {
-		"translations": {
-			"type": "object",
-			"properties": {
-				"$schema": {
-					"type": "string"
-				},
-				"\n        <user name=\"${0}\">${1}</user>\n    ": {
-					"type": "string"
-				},
-				"\n    <users>\n    ${0}\n    </users>\n": {
-					"type": "string"
-				},
-				"Hello ${0}, you have ${1} in your bank account.": {
-					"type": "string"
-				}
-			},
-			"additionalProperties": false			
-		},
-		"group": {
-			"type": "object",
-			"properties": {
-				"$schema": {
-					"type": "string"
-				}
-			},
-			"patternProperties": {
-				"^([^/]+(/|\\.jsx?))+$": {
-					"$ref": "#/definitions/translations"
-				}
-			},
-			"additionalProperties": false	
-		}
-	},
-	"type": "object",
-	"oneOf": [
-		{ "$ref": "#/definitions/translations" },
-		{ "$ref": "#/definitions/group"	}				
-	]	
+const expected = {
+    "definitions": {
+        "translations": {
+            "type": "object",
+            "properties": {
+                "$schema": {
+                    "type": "string"
+                },
+                "\n        <user name=\"${0}\">${1}</user>\n    ": {
+                    "type": "string"
+                },
+                "\n    <users>\n    ${0}\n    </users>\n": {
+                    "type": "string"
+                },
+                "Hello ${0}, you have ${1} in your bank account.": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "group": {
+            "type": "object",
+            "properties": {
+                "$schema": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^([^/]+(/|\\.jsx?))+$": {
+                    "$ref": "#/definitions/translations"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "type": "object",
+    "oneOf": [
+        { "$ref": "#/definitions/translations" },
+        { "$ref": "#/definitions/group" }
+    ]
 }
 
- const expectedGrouped = {
+const expectedGrouped = {
     "type": "object",
     "properties": {
         "$schema": {
@@ -68,9 +68,9 @@ import i18nTagSchema from '../lib';
             "properties": {
                 "Hello ${0}, you have ${1} in your bank account.": {
                     "type": "string"
-                }   
-            }         
-        }        
+                }
+            }
+        }
     },
     "additionalProperties": false
 }
@@ -80,14 +80,14 @@ describe('i18n-tag-schema', () => {
         const filter = '\\.jsx?'
         const srcPath = path.resolve(__dirname, './samples')
         i18nTagSchema(srcPath, filter, null, false, (message, type) => {
-            
-            switch(type) {
+
+            switch (type) {
                 case 'success':
-                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected));            
-                    done();
+                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected))
+                    done()
                     break
                 case 'info':
-                    console.info('    '+message)
+                    console.info('    ' + message)
                     break
             }
         })
@@ -98,15 +98,15 @@ describe('i18n-tag-schema', () => {
         const srcPath = path.resolve(__dirname, './samples')
         const schema = path.resolve(__dirname, './samples/schema.json')
         i18nTagSchema(srcPath, filter, schema, false, (message, type) => {
-            
-            switch(type) {
+
+            switch (type) {
                 case 'success':
                     let prevJson = fs.readFileSync(schema, 'utf-8')
-                    assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected));
-                    done();
+                    assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected))
+                    done()
                     break
                 case 'info':
-                    console.info('    '+message)
+                    console.info('    ' + message)
                     break
             }
         })
@@ -116,14 +116,14 @@ describe('i18n-tag-schema', () => {
         const filter = '\\.jsx?'
         const srcPath = path.resolve(__dirname, './samples')
         i18nTagSchema(srcPath, filter, null, true, (message, type) => {
-            
-            switch(type) {
+
+            switch (type) {
                 case 'success':
-                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expectedGrouped));            
-                    done();
+                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expectedGrouped))
+                    done()
                     break
                 case 'info':
-                    console.info('    '+message)
+                    console.info('    ' + message)
                     break
             }
         })

@@ -13,7 +13,14 @@
         "mocha": true
     },
     "rules": {
-        "no-console": 0
+        "no-console": 0,
+        "semi": [
+            2,
+            "never"
+        ],
+        "no-var": 2,
+        "prefer-const": 2,
+        "no-const-assign": 2
     },
     "plugins": [
         "babel"
