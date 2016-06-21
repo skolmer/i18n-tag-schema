@@ -57,7 +57,7 @@
     "rimraf": "^2.5.2"
   },
   "scripts": {
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register",
     "clean": "rimraf dist/lib/**/*",
     "build": "babel lib -d dist/lib --source-maps --copy-files",
