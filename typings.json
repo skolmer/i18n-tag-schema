@@ -1,5 +1,7 @@
 {
   "globalDependencies": {
+    "babel-traverse": "registry:dt/babel-traverse#6.7.0+20160423062108",
+    "babylon": "registry:dt/babylon#6.7.0+20160423062108",
     "escape-string-regexp": "registry:dt/escape-string-regexp#0.0.0+20160316155526"
   },
   "globalDevDependencies": {
