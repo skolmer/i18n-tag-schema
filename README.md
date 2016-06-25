@@ -3,7 +3,7 @@
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
-Generates a json schema for all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in your project
+Generates a json schema for all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in your project.
 
 
 ## Installation
@@ -43,10 +43,10 @@ gulp.task('generate-translation-schema', function (cb) {
 ## Tools
 
 ### Run time translation and localization
-* [es2015-i18n-tag](https://github.com/skolmer/es2015-i18n-tag): ES2015 template literal tag for i18n and l10n translation and localization using Intl
+* [es2015-i18n-tag](https://github.com/skolmer/es2015-i18n-tag): ES2015 template literal tag for i18n and l10n (translation and internationalization) using Intl
 
 ### Build time translation
-* [babel-plugin-i18n-tag-translate](https://github.com/skolmer/babel-plugin-i18n-tag-translate): Translate your template literals at build time.
+* [babel-plugin-i18n-tag-translate](https://github.com/skolmer/babel-plugin-i18n-tag-translate): Translate your template literals at build time
 
 ### Schema based translations
-* [vscode-18n-tag-schema](https://github.com/skolmer/vscode-i18n-tag-schema): Visual Studio Code Extension to generate a JSON schema.
+* [vscode-18n-tag-schema](https://github.com/skolmer/vscode-i18n-tag-schema): Visual Studio Code Extension to generate a JSON schema
