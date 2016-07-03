@@ -27,7 +27,7 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, t
 ```json
 {
   "scripts": {
-    "schema": "i18n-tag-schema ./src -g"
+    "schema": "i18n-tag-schema ./src"
   }
 }
 ```
