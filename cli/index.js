@@ -7,7 +7,7 @@ program
     .version('0.0.1')
     .usage('<path> [options]')
     .option('-s, --schema <path>', 'set schema path. defaults to ./translation.schema.json')
-    .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\\\.jsx?')
+    .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?')
     .option('-g, --groups', 'group translations by module filenames')
     .action(function (path) {
         i18nTagSchema(path, program.filter || '\\.jsx?', program.schema || './translation.schema.json', program.groups, (output, type) => {
