@@ -21,7 +21,39 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, t
 })
 ```
 
-### Commandline
+### Via npm
+
+#### package.json
+```json
+{
+  "scripts": {
+    "schema": "i18n-tag-schema ./src -g"
+  }
+}
+```
+```sh
+$ npm run schema
+```
+
+### Via Gulp
+```js
+var gulp = require('gulp')
+var i18nTagSchema = require('i18n-tag-schema').default
+gulp.task('generate-translation-schema', function (cb) {
+  i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, type) => {
+      console.log(output)
+      if(type === 'error' || type === 'success') cb(); // finished task
+  })
+})
+```
+
+### Via Command-line
+
+Install i18n-tag-schema as global package to use it as command-line tool
+
+```sh
+$ npm install i18n-tag-schema -g
+```
 
 ```
 Usage: i18n-tag-schema <path> [options]
@@ -33,18 +65,6 @@ Options:
     -s, --schema <path>   set schema path. defaults to ./translation.schema.json
     -f, --filter <regex>  a regular expression to filter source files. defaults to \\.jsx?
     -g, --groups          group translations by module filenames
-```
-
-### Gulp Task
-```js
-var gulp = require('gulp')
-var i18nTagSchema = require('i18n-tag-schema').default
-gulp.task('generate-translation-schema', function (cb) {
-  i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, type) => {
-      console.log(output)
-      if(type === 'error' || type === 'success') cb(); // finished task
-  })
-})
 ```
 
 ### Reference schema in translation.json file
