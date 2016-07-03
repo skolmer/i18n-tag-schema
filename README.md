@@ -63,7 +63,7 @@ Options:
     -h, --help            output usage information
     -V, --version         output the version number
     -s, --schema <path>   set schema path. defaults to ./translation.schema.json
-    -f, --filter <regex>  a regular expression to filter source files. defaults to \\.jsx?
+    -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?
     -g, --groups          group translations by module filenames
 ```
 
