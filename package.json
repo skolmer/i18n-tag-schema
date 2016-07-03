@@ -68,6 +68,6 @@
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",
   "bin": {
-    "i18n-tag-schema": "cli/index.js"
+    "i18n-tag-schema": "./cli/index.js"
   }
 }

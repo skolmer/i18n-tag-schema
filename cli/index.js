@@ -15,7 +15,7 @@ program
                 case 'info':
                     console.log(output);
                     break;
-                case 'warning':
+                case 'warn':
                     console.log(colors.yellow(output));
                     break;
                 case 'error':
