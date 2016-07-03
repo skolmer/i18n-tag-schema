@@ -18,14 +18,32 @@ const expected = {
                 '\n    <users>\n    ${0}\n    </users>\n': {
                     'type': 'string'
                 },
-                'Hello ${0}, you have ${1} in your bank account.': {
-                    'type': 'string'
+                'custom group': {
+                    'type': 'object',
+                    'properties': {
+                        'Hello ${0}, you have ${1} in your bank account.': {
+                            'type': 'string'
+                        }
+                    }
                 },
-                'Hello!': {
-                    'type': 'string'
+                'custom group 2': {
+                    'type': 'object',
+                    'properties': {
+                        'Hello ${0}, you have ${1} in your bank account.': {
+                            'type': 'string'
+                        }
+                    }
                 },
-                'Welcome!': {
-                    'type': 'string'
+                'custom inline group': {
+                    'type': 'object',
+                    'properties': {
+                        'Hello!': {
+                            'type': 'string'
+                        },
+                        'Welcome!': {
+                            'type': 'string'
+                        }
+                    }
                 }
             },
             'additionalProperties': false
@@ -58,6 +76,33 @@ const expectedGrouped = {
         '$schema': {
             'type': 'string'
         },
+        'custom group': {
+            'type': 'object',
+            'properties': {
+                'Hello ${0}, you have ${1} in your bank account.': {
+                    'type': 'string'
+                }
+            }
+        },
+        'custom group 2': {
+            'type': 'object',
+            'properties': {
+                'Hello ${0}, you have ${1} in your bank account.': {
+                    'type': 'string'
+                }
+            }
+        },
+        'custom inline group': {
+            'type': 'object',
+            'properties': {
+                'Hello!': {
+                    'type': 'string'
+                },
+                'Welcome!': {
+                    'type': 'string'
+                }
+            }
+        },
         'multiline.js': {
             'type': 'object',
             'properties': {
@@ -65,20 +110,6 @@ const expectedGrouped = {
                     'type': 'string'
                 },
                 '\n    <users>\n    ${0}\n    </users>\n': {
-                    'type': 'string'
-                }
-            }
-        },
-        'simple.js': {
-            'type': 'object',
-            'properties': {
-                'Hello ${0}, you have ${1} in your bank account.': {
-                    'type': 'string'
-                },
-                'Hello!': {
-                    'type': 'string'
-                },
-                'Welcome!': {
                     'type': 'string'
                 }
             }
