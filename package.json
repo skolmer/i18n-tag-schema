@@ -43,6 +43,8 @@
   "dependencies": {
     "babel-traverse": "^6.9.0",
     "babylon": "^6.8.1",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
     "escape-string-regexp": "^1.0.5"
   },
   "devDependencies": {
@@ -64,5 +66,8 @@
     "lint": "eslint lib"
   },
   "typings": "./dist/lib/index.d.ts",
-  "main": "./dist/lib"
+  "main": "./dist/lib",
+  "bin": {
+    "i18n-tag-schema": "cli/index.js"
+  }
 }
