@@ -2,7 +2,7 @@
 import path from 'path'
 import fs from 'fs'
 import assert from 'assert'
-import i18nTagSchema from '../lib'
+import i18nTagSchema, { templatesFromFile } from '../lib'
 
 const expected = {
     'definitions': {
@@ -172,6 +172,54 @@ describe('i18n-tag-schema', () => {
                     break
             }
         })
+    })
+
+    it('should export templates as array', (done) => {
+        const srcPath = path.resolve(__dirname, './samples')
+        const filePath = path.resolve(__dirname, './samples/grouped.js')
+        const filePath2 = path.resolve(__dirname, './samples/multiline.js')
+        templatesFromFile(srcPath, filePath, true,
+            (log) => {
+                console.info(`    ${log}`)
+            },
+            (templates) => {
+                assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
+                    [
+                        {
+                            'group': 'custom group',
+                            'items': [
+                                'Hello ${0}, you have ${1} in your bank account.'
+                            ]
+                        },
+                        {
+                            'group': 'custom group 2',
+                            'items': [
+                                'Hello ${0}, you have ${1} in your bank account.'
+                            ]
+                        },
+                        {
+                            'group': 'custom inline group',
+                            'items': [
+                                'Hello!',
+                                'Welcome!'
+                            ]
+                        }
+                    ]
+                ))
+                templatesFromFile(srcPath, filePath2, false,
+                    (log) => {
+                        console.info(`    ${log}`)
+                    },
+                    (templates) => {
+                        assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
+                            [
+                                '\n        <user name="${0}">${1}</user>\n    ',
+                                '\n    <users>\n    ${0}\n    </users>\n'
+                            ]
+                        ))
+                        done()
+                    })
+            })
     })
 })
 
