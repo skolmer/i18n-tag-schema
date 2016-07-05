@@ -85,6 +85,36 @@ Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more detail
 
 For Visual Studio Code you can install the i18n-tag-schema extension from [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema)
 
+## Additional Features
+
+Read all i18n tagged template literals from a JavaScript file
+
+```js
+import { templatesFromFile } from 'i18n-tag-schema'
+
+const srcPath = path.resolve(__dirname, './samples')
+const filePath = path.resolve(__dirname, './samples/multiline.js')
+
+templatesFromFile(srcPath, filePath, false,
+    (message, type) => {
+        const cons = console[type]
+        if(cons) {
+            cons(message)
+        } else {
+            console.log(message)
+        }        
+    },
+    (templates) => {
+        /**
+        * templates: [
+        *     '\n        <user name="${0}">${1}</user>\n    ',
+        *     '\n    <users>\n    ${0}\n    </users>\n'
+        * ]
+        */ 
+    }
+)
+```
+
 ## Tools
 
 ### Run time translation and localization

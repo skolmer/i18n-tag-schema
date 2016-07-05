@@ -179,8 +179,13 @@ describe('i18n-tag-schema', () => {
         const filePath = path.resolve(__dirname, './samples/grouped.js')
         const filePath2 = path.resolve(__dirname, './samples/multiline.js')
         templatesFromFile(srcPath, filePath, true,
-            (log) => {
-                console.info(`    ${log}`)
+            (message, type) => {
+                const cons = console[type]
+                if (cons) {
+                    cons(`    ${message}`)
+                } else {
+                    console.log(`    ${message}`)
+                }
             },
             (templates) => {
                 assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
@@ -207,8 +212,13 @@ describe('i18n-tag-schema', () => {
                     ]
                 ))
                 templatesFromFile(srcPath, filePath2, false,
-                    (log) => {
-                        console.info(`    ${log}`)
+                    (message, type) => {
+                        const cons = console[type]
+                        if (cons) {
+                            cons(`    ${message}`)
+                        } else {
+                            console.log(`    ${message}`)
+                        }
                     },
                     (templates) => {
                         assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
@@ -218,8 +228,10 @@ describe('i18n-tag-schema', () => {
                             ]
                         ))
                         done()
-                    })
-            })
+                    }
+                )
+            }
+        )
     })
 })
 
