@@ -74,6 +74,17 @@ Options:
     "key": "value"
 }
 ```
+
+## IDE Integration
+
+### Webstorm / PhpStorm
+
+Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more details please see:  [Add JSON Schema Mapping Dialog](https://www.jetbrains.com/help/webstorm/2016.1/add-json-schema-mapping-dialog.html)
+
+### Visual Studio Code
+
+For Visual Studio Code you can install the i18n-tag-schema extension from [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema)
+
 ## Tools
 
 ### Run time translation and localization
