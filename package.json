@@ -66,7 +66,7 @@
     "build": "babel lib -d dist/lib --source-maps --copy-files",
     "lint": "eslint lib",
     "pushdocs": "git add docs && git commit -m \"Updated docs\" && git subtree push --prefix docs origin gh-pages",
-    "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file"
+    "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images"
   },
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",
