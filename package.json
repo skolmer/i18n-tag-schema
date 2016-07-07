@@ -52,18 +52,21 @@
     "babel-eslint": "^6.0.5",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^2.13.1",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^1.9.2",
-    "eslint": "^2.13.1",
     "mocha": "^2.2.5",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "typedoc": "^0.4.4"
   },
   "scripts": {
     "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register",
     "clean": "rimraf dist/lib/**/*",
     "build": "babel lib -d dist/lib --source-maps --copy-files",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "pushdocs": "git add docs && git commit -m \"Updated docs\" && git subtree push --prefix docs origin gh-pages",
+    "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file"
   },
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",

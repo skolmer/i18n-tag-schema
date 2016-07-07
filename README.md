@@ -21,6 +21,8 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, t
 })
 ```
 
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#default)
+
 ### Via npm
 
 #### package.json
@@ -114,6 +116,8 @@ templatesFromFile(srcPath, filePath, false,
     }
 )
 ```
+
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#templatesfromfile)
 
 ## Tools
 

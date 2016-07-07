@@ -10,7 +10,7 @@
  * @param grouped Optional. If true, translations will be grouped by filename
  * @param callback Optional. A callback function.
  */
-export default function func(path: string, filter: string, schema?: string, grouped?: boolean, callback?: (output: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void) 
+export default function (path: string, filter: string, schema?: string, grouped?: boolean, callback?: (output: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void) 
 
 /**
  * Generates an array of all i18n tagged template literals in a file
