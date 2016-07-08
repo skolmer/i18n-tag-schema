@@ -117,19 +117,19 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> schema: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. Path to the generated .json file. If no target schema is provided the json will be returned via callback output param</p>
+										<p>Path to the generated .json file. If no target schema is provided the json will be returned via callback output param</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> grouped: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. If true, translations will be grouped by filename</p>
+										<p>If true, translations will be grouped by filename</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. A callback function.</p>
+										<p>A callback function.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -162,7 +162,7 @@
 					<a name="templatesfromfile" class="tsd-anchor"></a>
 					<h3>templates<wbr>From<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">templates<wbr>From<wbr>File<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, grouped<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, logger<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">templates<wbr>From<wbr>File<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, grouped<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, logger<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -182,25 +182,25 @@
 								<li>
 									<h5>rootPath: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Root path of the source directory.</p>
+										<p>Root path.</p>
 									</div>
 								</li>
 								<li>
-									<h5>filePath: <span class="tsd-signature-type">string</span></h5>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Absolute path of the source file.</p>
+										<p>Path of the JavaScript source file or directory.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> grouped: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. If true, translations will be grouped by filename relative to the root path</p>
+										<p>If true, translations will be grouped by filename relative to the root path</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> logger: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. A logger function that accepts logging message and type &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;, &#39;success&#39;, &#39;debug&#39; or &#39;trace&#39;.</p>
+										<p>A logger function that accepts logging message and type &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;, &#39;success&#39;, &#39;debug&#39; or &#39;trace&#39;.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -227,7 +227,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. A callback function.</p>
+										<p>A callback function.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -276,19 +276,19 @@
 								<li>
 									<h5>filePath: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Absolute path of the translation file.</p>
+										<p>Path of the translation file.</p>
 									</div>
 								</li>
 								<li>
 									<h5>schemaPath: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Absolute path of the translation schema.</p>
+										<p>Path of the translation schema.</p>
 									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Optional. A callback function that accepts logging message and type &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;, &#39;success&#39;, &#39;debug&#39; or &#39;trace&#39;.</p>
+										<p>A callback function that accepts logging message and type &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;, &#39;success&#39;, &#39;debug&#39; or &#39;trace&#39;.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
