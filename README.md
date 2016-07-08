@@ -85,6 +85,15 @@ Options:
 }
 ```
 
+## Validation Rules
+
+The generated Schema checks
+* if your translation file is missing some of your project's translation keys.
+* if a translation key or group is unknown.
+* if a translation contains all parameters defined in the translation key (e.g. ${0}, ${1}).
+
+Some IDE's can also provide auto completion for translation keys and groups
+
 ## IDE Integration
 
 ### Webstorm / PhpStorm
