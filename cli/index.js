@@ -15,46 +15,42 @@ program
     .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?')
     .option('-g, --groups', 'group translations by module filenames')
     .option('-v, --validate', 'use to validate a translation file. path has to be a JSON file. requires --schema <path>')
-    .option('-e, --export <path>', 'export all translation keys from this JavaScript file. requires --target <path> and --schema <path>')
-    .option('-t, --target <path>', 'export all translation keys to this JSON file. requires --export <path> --schema <path>')
+    .option('-e, --export <path>', 'export all translation keys FROM this JavaScript file.')
+    .option('-t, --target <path>', 'export all translation keys TO this JSON file. requires --export <path>')
     .action(function (path) {
         if(program.validate) {
             if(!program.schema) {
-                console.log(colors.red('--schema <path> option is missing'));
+                console.log('  error: option `--schema <path>` missing');
                 process.exit(1);
             }
             if(pathLib.extname(path) !== '.json') {
-                console.log(colors.red(path + ' is not a json file.'));
+                console.log('  error: ' + path + ' is not a json file.');
                 process.exit(1);
             }
             vaidateSchema(path, program.schema, (output, type) => {
                 switch (type) {
                     case 'info':
-                        console.log('INFO: ' + output);
+                        console.log('  info: ' + output);
                         break;
                     case 'warn':
-                        console.log(colors.yellow('WARN: ' + output));
+                        console.log(colors.yellow('  warn: ' + output));
                         break;
                     case 'error':
-                        console.log(colors.red('ERROR: ' + output));
+                        console.log(colors.red('  error: ' + output));
                         process.exit(1);
                         break;
                     case 'success':
-                        console.log(colors.green('SUCCESS: ' + output));
+                        console.log(colors.green('  success: ' + output));
                         break;
                 }
             });
         } else if(program.export || program.filter) {
-            if(!program.schema) {
-                console.log(colors.red('--schema <path> option is missing'));
-                process.exit(1);
-            }
             if(program.export && !pathLib.extname(program.export).match(program.filter || '\\.jsx?')) {
-                console.log(colors.red(program.export + ' is not a JavaScript file.'));
+                console.log('  error: ' + program.export + ' is not a JavaScript file.');
                 process.exit(1);
             }
             if(program.target && pathLib.extname(program.target) !== '.json') {
-                console.log(colors.red(program.target + ' is not a json file.'));
+                console.log('  error: ' + program.target + ' is not a json file.');
                 process.exit(1);
             }
             templatesFromFile(path, program.export, program.groups,
@@ -62,17 +58,17 @@ program
                 if(program.target) {
                     switch (type) {
                         case 'info':
-                            console.log('INFO: ' + output);
+                            console.log('  info: ' + output);
                             break;
                         case 'warn':
-                            console.log(colors.yellow('WARN: ' + output));
+                            console.log(colors.yellow('  warn: ' + output));
                             break;
                         case 'error':
-                            console.log(colors.red('ERROR: ' + output));
+                            console.log(colors.red('  error: ' + output));
                             process.exit(1);
                             break;
                         case 'success':
-                            console.log(colors.green('SUCCESS: ' + output));
+                            console.log(colors.green('  success: ' + output));
                             break;
                     }
                 }
@@ -81,11 +77,11 @@ program
                 if(program.target) {
                     fs.writeFile(program.target, JSON.stringify(JSON.parse(templates), null, 2), 'utf-8', function (err) {
                         if (err) {
-                            console.log(colors.red('ERROR: ' + err.message));
+                            console.log(colors.red('  error: ' + err.message));
                             process.exit(1);
                             return;
                         }
-                        console.log(colors.green('SUCCESS: Exported translation keys to ' + program.export));
+                        console.log(colors.green('  success: Exported translation keys to ' + program.export));
                     });
                 } else {
                     console.log(JSON.stringify(JSON.parse(templates), null, 2));
