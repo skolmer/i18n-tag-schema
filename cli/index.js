@@ -20,6 +20,18 @@ function formatResult(message) {
             message = message.replace(percentage[0], colors.bgGreen(colors.black(percentage[0]))); 
         }     
     }
+    var keys = message.match(/(\d+)\s*keys/);
+    if(keys) {
+        message = message.replace(keys[0], colors.bgWhite(colors.black(keys[0])));
+    }
+    var added = message.match(/(\d+)\s*added/);
+    if(added) {
+        message = message.replace(added[0], colors.bgGreen(colors.black(added[0])));
+    }
+    var removed = message.match(/(\d+)\s*removed/);
+    if(removed) {
+        message = message.replace(removed[0], colors.bgRed(colors.white(removed[0])));
+    }
     var missing = message.match(/(\d+)\s*missing/);
     if(missing) {
         var val = Number.parseInt(missing[1]);
@@ -109,7 +121,7 @@ program
                             process.exit(1);
                             return;
                         }
-                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' Exported translation keys to ' + program.export);
+                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' Exported translation keys to ' + program.target);
                     });
                 } else {
                     console.log(JSON.stringify(JSON.parse(templates), null, 2));
@@ -129,7 +141,7 @@ program
                         process.exit(1);
                         break;
                     case 'success':
-                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' ' + output);
+                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' ' + formatResult(output));
                         break;
                 }
             })
