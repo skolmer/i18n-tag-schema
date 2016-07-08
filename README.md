@@ -14,7 +14,7 @@ The following repository provides examples for use with npm scripts or gulp: htt
 
 i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Feature requests are welcome!)
 
-This module does also include a JSON validator that helps you to keep track of missing or invalid keys and shows you the current translation coverage. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema.
+This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.
 
 ## Installation
 
