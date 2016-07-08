@@ -92,7 +92,7 @@ The generated Schema checks
 * if a translation key or group is unknown.
 * if a translation contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
-Some IDE's can also provide auto completion for translation keys and groups
+Some IDEs can also provide auto completion for translation keys and groups
 
 ## IDE Integration
 
