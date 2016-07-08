@@ -68,7 +68,13 @@
 				<h1 id="i18n-tagged-template-literals-schema-generator-build-status-https-img-shields-io-travis-skolmer-i18n-tag-schema-master-svg-style-flat-https-travis-ci-org-skolmer-i18n-tag-schema-npm-version-https-img-shields-io-npm-v-i18n-tag-schema-svg-style-flat-https-www-npmjs-com-package-i18n-tag-schema-">i18n Tagged Template Literals - Schema Generator <a href="https://travis-ci.org/skolmer/i18n-tag-schema"><img src="https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat" alt="Build Status"></a> <a href="https://www.npmjs.com/package/i18n-tag-schema"><img src="https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat" alt="npm version"></a></h1>
 				<p><a href="https://nodei.co/npm/i18n-tag-schema/"><img src="https://nodei.co/npm/i18n-tag-schema.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM"></a></p>
 				<p><a href="http://i18n-tag.kolmer.net/"><img src="images/vscode-18n-tag-schema-icon-big.jpg" alt="i18n Tagged Template Literals"></a></p>
-				<p>Generates a json schema for all <a href="https://github.com/skolmer/es2015-i18n-tag">i18n tagged</a> template literals in your project.</p>
+				<h2 id="overview">Overview</h2>
+				<p>This node module generates a <a href="http://json-schema.org/">JSON Schema</a> of all <a href="https://github.com/skolmer/es2015-i18n-tag">i18n tagged</a> template literals in a JavaScript project.
+					A JSON schema can add key validation and autocompletion to your JSON based translation files (See <a href="#ide-integration">IDE Integration</a>).
+					The tool will only detect template literals that are tagged with i18n (See <a href="http://i18n-tag.kolmer.net/">es2015-i18n-tag</a>).
+				It has support for <a href="https://github.com/skolmer/es2015-i18n-tag#appjs">Custom Translation Groups</a> and generated <a href="https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups">File Module Groups</a>. If you want to use generated File Module Groups you have to set <code>groups</code> to <code>true</code>.</p>
+				<p>The following repository provides examples for use with npm scripts or gulp: <a href="https://github.com/skolmer/i18n-tag-examples">https://github.com/skolmer/i18n-tag-examples</a></p>
+				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Feature requests are welcome!)</p>
 				<h2 id="installation">Installation</h2>
 				<pre><code class="lang-sh">$ npm install i18n-tag-schema --save-dev
 </code></pre>
@@ -79,7 +85,7 @@ i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string
     <span class="hljs-comment">// log(output)</span>
 })
 </code></pre>
-				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#func">See docs</a></p>
+				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#default">See docs</a></p>
 				<h3 id="via-npm">Via npm</h3>
 				<h4 id="package-json">package.json</h4>
 				<pre><code class="lang-json">{
@@ -119,6 +125,14 @@ Option<span class="hljs-variable">s:</span>
     <span class="hljs-attr">"key"</span>: <span class="hljs-string">"value"</span>
 }
 </code></pre>
+				<h2 id="validation-rules">Validation Rules</h2>
+				<p>The generated Schema checks</p>
+				<ul>
+					<li>if your translation file is missing some of your project&#39;s translation keys.</li>
+					<li>if a translation key or group is unknown.</li>
+					<li>if a translation contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
+				</ul>
+				<p>Some IDE&#39;s can also provide auto completion for translation keys and groups</p>
 				<h2 id="ide-integration">IDE Integration</h2>
 				<h3 id="webstorm-phpstorm">Webstorm / PhpStorm</h3>
 				<p>Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more details please see:  <a href="https://www.jetbrains.com/help/webstorm/2016.1/add-json-schema-mapping-dialog.html">Add JSON Schema Mapping Dialog</a></p>
@@ -181,6 +195,9 @@ templatesFromFile(srcPath, filePath, <span class="hljs-literal">false</span>,
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#templatesfromfile" class="tsd-kind-icon">templates<wbr>From<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#vaidateschema" class="tsd-kind-icon">vaidate<wbr>Schema</a>
 					</li>
 				</ul>
 			</nav>
