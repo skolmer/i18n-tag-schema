@@ -1,10 +1,11 @@
 {
     "$schema": "./validationSchema.json",
+    "<user name=\"${0}\">${1}</user>": "<user name=\"${01}\">${1}</user>",
     "custom group": {
-        "Hello ${0}, you have ${1} in your bank account.": ""
+        "Hello ${0}, you have ${1} in your bank account.": "hello${0}, you have ${1} §{0}"
     },
-    "cussdtom group 2": {
-        
+    "custom group 2": {
+        "Hello ${0}, you have ${1} in your bank account.": "sad"
     },
     "custom inline group": {
         "Hello!": "Hallo!"

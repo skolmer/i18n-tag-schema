@@ -6,18 +6,21 @@
 		},
 		"\n        <user name=\"${0}\">${1}</user>\n    ": {
 			"type": "string",
-			"minLength": 1
+			"minLength": 1,
+			"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
 		},
 		"\n    <users>\n    ${0}\n    </users>\n": {
 			"type": "string",
-			"minLength": 1
+			"minLength": 1,
+			"pattern": "(?=.*?\\$\\{0\\})"
 		},
 		"custom group": {
 			"type": "object",
 			"properties": {
 				"Hello ${0}, you have ${1} in your bank account.": {
 					"type": "string",
-					"minLength": 1
+					"minLength": 1,
+					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
 				}
 			},
 			"required": [
@@ -29,7 +32,8 @@
 			"properties": {
 				"Hello ${0}, you have ${1} in your bank account.": {
 					"type": "string",
-					"minLength": 1
+					"minLength": 1,
+					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
 				}
 			},
 			"required": [

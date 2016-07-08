@@ -12,18 +12,21 @@ const expected = {
         },
         '\n        <user name="${0}">${1}</user>\n    ': {
             'type': 'string',
-            'minLength': 1
+            'minLength': 1,
+            'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
         },
         '\n    <users>\n    ${0}\n    </users>\n': {
             'type': 'string',
-            'minLength': 1
+            'minLength': 1,
+            'pattern': '(?=.*?\\$\\{0\\})'
         },
         'custom group': {
             'type': 'object',
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
                 }
             },
             'required': [
@@ -35,7 +38,8 @@ const expected = {
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
                 }
             },
             'required': [
@@ -81,7 +85,8 @@ const expectedGrouped = {
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
                 }
             },
             'required': [
@@ -93,7 +98,8 @@ const expectedGrouped = {
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
                 }
             },
             'required': [
@@ -122,11 +128,13 @@ const expectedGrouped = {
             'properties': {
                 '\n        <user name="${0}">${1}</user>\n    ': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
                 },
                 '\n    <users>\n    ${0}\n    </users>\n': {
                     'type': 'string',
-                    'minLength': 1
+                    'minLength': 1,
+                    'pattern': '(?=.*?\\$\\{0\\})'
                 }
             },
             'required': [
@@ -271,7 +279,7 @@ describe('i18n-tag-schema', () => {
                 console.log(`    ${message}`)
             }
             if (type === 'success' || type === 'error') {
-                assert.equal(message, 'translation.json has 5 missing translations and 1 invalid key; 17% translated.')
+                assert.equal(message, 'translation.json has 1 missing translation; 80% translated.')
                 done()
             }
         })
