@@ -2,72 +2,72 @@
 import path from 'path'
 import fs from 'fs'
 import assert from 'assert'
-import i18nTagSchema, { templatesFromFile } from '../lib'
+import i18nTagSchema, { templatesFromFile, vaidateSchema } from '../lib'
 
 const expected = {
-    'definitions': {
-        'translations': {
-            'type': 'object',
-            'properties': {
-                '$schema': {
-                    'type': 'string'
-                },
-                '\n        <user name="${0}">${1}</user>\n    ': {
-                    'type': 'string'
-                },
-                '\n    <users>\n    ${0}\n    </users>\n': {
-                    'type': 'string'
-                },
-                'custom group': {
-                    'type': 'object',
-                    'properties': {
-                        'Hello ${0}, you have ${1} in your bank account.': {
-                            'type': 'string'
-                        }
-                    }
-                },
-                'custom group 2': {
-                    'type': 'object',
-                    'properties': {
-                        'Hello ${0}, you have ${1} in your bank account.': {
-                            'type': 'string'
-                        }
-                    }
-                },
-                'custom inline group': {
-                    'type': 'object',
-                    'properties': {
-                        'Hello!': {
-                            'type': 'string'
-                        },
-                        'Welcome!': {
-                            'type': 'string'
-                        }
-                    }
-                }
-            },
-            'additionalProperties': false
+    'type': 'object',
+    'properties': {
+        '$schema': {
+            'type': 'string'
         },
-        'group': {
+        '\n        <user name="${0}">${1}</user>\n    ': {
+            'type': 'string',
+            'minLength': 1
+        },
+        '\n    <users>\n    ${0}\n    </users>\n': {
+            'type': 'string',
+            'minLength': 1
+        },
+        'custom group': {
             'type': 'object',
             'properties': {
-                '$schema': {
-                    'type': 'string'
+                'Hello ${0}, you have ${1} in your bank account.': {
+                    'type': 'string',
+                    'minLength': 1
                 }
             },
-            'patternProperties': {
-                '^([^/]+(/|\\.jsx?))+$': {
-                    '$ref': '#/definitions/translations'
+            'required': [
+                'Hello ${0}, you have ${1} in your bank account.'
+            ]
+        },
+        'custom group 2': {
+            'type': 'object',
+            'properties': {
+                'Hello ${0}, you have ${1} in your bank account.': {
+                    'type': 'string',
+                    'minLength': 1
                 }
             },
-            'additionalProperties': false
+            'required': [
+                'Hello ${0}, you have ${1} in your bank account.'
+            ]
+        },
+        'custom inline group': {
+            'type': 'object',
+            'properties': {
+                'Hello!': {
+                    'type': 'string',
+                    'minLength': 1
+                },
+                'Welcome!': {
+                    'type': 'string',
+                    'minLength': 1
+                }
+            },
+            'required': [
+                'Hello!',
+                'Welcome!'
+            ]
         }
     },
-    'type': 'object',
-    'oneOf': [
-        { '$ref': '#/definitions/translations' },
-        { '$ref': '#/definitions/group' }
-    ]
+    'required': [
+        '\n        <user name="${0}">${1}</user>\n    ',
+        '\n    <users>\n    ${0}\n    </users>\n',
+        'custom group',
+        'custom group 2',
+        'custom inline group'
+    ],
+    'additionalProperties': false
 }
 
 const expectedGrouped = {
@@ -80,41 +80,67 @@ const expectedGrouped = {
             'type': 'object',
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 }
-            }
+            },
+            'required': [
+                'Hello ${0}, you have ${1} in your bank account.'
+            ]
         },
         'custom group 2': {
             'type': 'object',
             'properties': {
                 'Hello ${0}, you have ${1} in your bank account.': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 }
-            }
+            },
+            'required': [
+                'Hello ${0}, you have ${1} in your bank account.'
+            ]
         },
         'custom inline group': {
             'type': 'object',
             'properties': {
                 'Hello!': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 },
                 'Welcome!': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 }
-            }
+            },
+            'required': [
+                'Hello!',
+                'Welcome!'
+            ]
         },
         'multiline.js': {
             'type': 'object',
             'properties': {
                 '\n        <user name="${0}">${1}</user>\n    ': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 },
                 '\n    <users>\n    ${0}\n    </users>\n': {
-                    'type': 'string'
+                    'type': 'string',
+                    'minLength': 1
                 }
-            }
+            },
+            'required': [
+                '\n        <user name="${0}">${1}</user>\n    ',
+                '\n    <users>\n    ${0}\n    </users>\n'
+            ]
         }
     },
+    'required': [
+        'custom group',
+        'custom group 2',
+        'custom inline group',
+        'multiline.js'
+    ],
     'additionalProperties': false
 }
 
@@ -232,6 +258,23 @@ describe('i18n-tag-schema', () => {
                 )
             }
         )
+    })
+
+    it('should validate translations', (done) => {
+        const schemaPath = path.resolve(__dirname, './samples/validationSchema.json')
+        const translationPath = path.resolve(__dirname, './samples/translation.json')
+        vaidateSchema(translationPath, schemaPath, (message, type) => {
+            const cons = console[type]
+            if (cons) {
+                cons(`    ${message}`)
+            } else {
+                console.log(`    ${message}`)
+            }
+            if (type === 'success' || type === 'error') {
+                assert.equal(message, 'translation.json has 5 missing translation(s) and 1 invalid key(s); 17% translated.')
+                done()
+            }
+        })
     })
 })
 

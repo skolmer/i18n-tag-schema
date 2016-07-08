@@ -1,0 +1,12 @@
+{
+    "$schema": "./validationSchema.json",
+    "custom group": {
+        "Hello ${0}, you have ${1} in your bank account.": ""
+    },
+    "cussdtom group 2": {
+        
+    },
+    "custom inline group": {
+        "Hello!": "Hallo!"
+    }
+}

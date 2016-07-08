@@ -4,11 +4,11 @@
 		"$schema": {
 			"type": "string"
 		},
-		"\n        <user name=\"${0}\">${1}</user>\n    ": {
+		"\\n        <user name=\"${0}\">${1}</user>\\n    ": {
 			"type": "string",
 			"minLength": 1
 		},
-		"\n    <users>\n    ${0}\n    </users>\n": {
+		"\\n    <users>\\n    ${0}\\n    </users>\\n": {
 			"type": "string",
 			"minLength": 1
 		},
@@ -55,8 +55,8 @@
 		}
 	},
 	"required": [
-		"\n        <user name=\"${0}\">${1}</user>\n    ",
-		"\n    <users>\n    ${0}\n    </users>\n",
+        "\\n        <user name=\"${0}\">${1}</user>\\n    ",
+		"\\n    <users>\\n    ${0}\\n    </users>\\n",
 		"custom group",
 		"custom group 2",
 		"custom inline group"
