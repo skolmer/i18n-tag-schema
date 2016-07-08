@@ -75,6 +75,8 @@ Options:
     -s, --schema <path>   set schema path. defaults to ./translation.schema.json
     -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?
     -g, --groups          group translations by module filenames
+    -e, --export <path>   export all translation keys FROM this JavaScript file.
+    -t, --target <path>   export all translation keys TO this JSON file. requires --export <path>
 ```
 
 ### Reference schema in translation.json file
