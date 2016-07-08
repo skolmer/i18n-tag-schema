@@ -17,21 +17,21 @@ function formatResult(message) {
         } else if(val < 100) {
             message = message.replace(percentage[0], colors.bgYellow(colors.black(percentage[0])));  
         }  else {
-            message = message.replace(percentage[0], colors.bgGreen(colors.white(percentage[0]))); 
+            message = message.replace(percentage[0], colors.bgGreen(colors.black(percentage[0]))); 
         }     
     }
     var missing = message.match(/(\d+)\s*missing/);
     if(missing) {
         var val = Number.parseInt(missing[1]);
         if(val === 0) {
-            message = message.replace(missing[0], colors.bgGreen(colors.white(missing[0])));
+            message = message.replace(missing[0], colors.bgGreen(colors.black(missing[0])));
         } else {
             message = message.replace(missing[0], colors.bgRed(colors.white(missing[0])));
         }
     }
     var invalid = message.match(/(\d+)\s*invalid/);
     if(invalid) {
-        message = message.replace(invalid[0], colors.bgYellow(colors.black(percentage[0])));
+        message = message.replace(invalid[0], colors.bgYellow(colors.black(invalid[0])));
     }
     return message;
 }
@@ -64,11 +64,11 @@ program
                         console.log('  ' + colors.bgYellow(colors.black('warn:')) + ' ' + output);
                         break;
                     case 'error':                        
-                        console.log('  ' + colors.bgRed('X invalid:') + ' ' + formatResult(output));
+                        console.log('  ' + colors.red('X') + ' invalid: ' + formatResult(output));
                         process.exit(1);
                         break;
                     case 'success':
-                        console.log('  ' + colors.bgGreen(colors.white('√ valid:')) + ' ' + formatResult(output));
+                        console.log('  ' + colors.green('√') + ' valid: ' + formatResult(output));
                         break;
                 }
             });
@@ -96,7 +96,7 @@ program
                             process.exit(1);
                             break;
                         case 'success':
-                            console.log('  ' + colors.bgGreen(colors.white('success:')) + ' ' + output);
+                            console.log('  ' + colors.bgGreen(colors.black('success:')) + ' ' + output);
                             break;
                     }
                 }
@@ -109,7 +109,7 @@ program
                             process.exit(1);
                             return;
                         }
-                        console.log('  ' + colors.bgGreen(colors.white('success:')) + ' Exported translation keys to ' + program.export);
+                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' Exported translation keys to ' + program.export);
                     });
                 } else {
                     console.log(JSON.stringify(JSON.parse(templates), null, 2));
@@ -129,7 +129,7 @@ program
                         process.exit(1);
                         break;
                     case 'success':
-                        console.log('  ' + colors.bgGreen(colors.white('success:')) + ' ' + output);
+                        console.log('  ' + colors.bgGreen(colors.black('success:')) + ' ' + output);
                         break;
                 }
             })
