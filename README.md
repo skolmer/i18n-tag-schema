@@ -88,7 +88,7 @@ Options:
     -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?
     -g, --groups          group translations by module filenames
     -v, --validate        use to validate a translation file. path has to be a JSON file. requires --schema <path>
-    -e, --export <path>   export all translation keys FROM a JavaScript file.
+    -e, --export <path>   export all translation keys FROM a JavaScript file or directory.
     -t, --target <path>   export all translation keys TO a JSON file. requires --export <path>.
                           If --target is not set, JSON will be printed to the output.
 ```
@@ -129,10 +129,7 @@ Read all i18n tagged template literals from a JavaScript file
 ```js
 import { templatesFromFile } from 'i18n-tag-schema'
 
-const srcPath = path.resolve(__dirname, './samples')
-const filePath = path.resolve(__dirname, './samples/multiline.js')
-
-templatesFromFile(srcPath, filePath, false,
+templatesFromFile('./samples', '.', false,
     (message, type) => {
         const cons = console[type]
         if(cons) {
@@ -162,10 +159,7 @@ The validation function checks
 ```js
 import { vaidateSchema } from 'i18n-tag-schema'
 
-const translationPath = path.resolve(__dirname, './translations/translation.de.json')
-const schemaPath = path.resolve(__dirname, './translation.schema.json')
-
-vaidateSchema(translationPath, schemaPath, (output, type) => {
+vaidateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
     switch (type) {
         const cons = console[type]
         if(cons) {

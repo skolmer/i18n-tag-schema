@@ -55,7 +55,7 @@ program
     .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?')
     .option('-g, --groups', 'group translations by module filenames')
     .option('-v, --validate', 'use to validate a translation file. path has to be a JSON file. requires --schema <path>')
-    .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file.')
+    .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
     .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
     .action(function (path) {
         if(program.validate) {
@@ -85,7 +85,7 @@ program
                 }
             });
         } else if(program.export || program.filter) {
-            if(program.export && !pathLib.extname(program.export).match(program.filter || '\\.jsx?')) {
+            if(program.export && (pathLib.extname(program.export) && !pathLib.extname(program.export).match(program.filter || '\\.jsx?'))) {
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +program.export + ' is not a JavaScript file.');
                 process.exit(1);
             }
