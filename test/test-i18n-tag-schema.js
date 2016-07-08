@@ -271,7 +271,7 @@ describe('i18n-tag-schema', () => {
                 console.log(`    ${message}`)
             }
             if (type === 'success' || type === 'error') {
-                assert.equal(message, 'translation.json has 5 missing translation(s) and 1 invalid key(s); 17% translated.')
+                assert.equal(message, 'translation.json has 5 missing translations and 1 invalid key; 17% translated.')
                 done()
             }
         })
