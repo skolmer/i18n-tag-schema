@@ -14,6 +14,8 @@ The following repository provides examples for use with npm scripts or gulp: htt
 
 i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Feature requests are welcome!)
 
+This module does also include a JSON validator that helps you to keep track of missing or invalid keys and shows you the current translation coverage. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema.
+
 ## Installation
 
 ```sh
@@ -50,9 +52,16 @@ $ npm run validate-german-translation
 ### Via Gulp
 ```js
 var gulp = require('gulp')
-var i18nTagSchema = require('i18n-tag-schema').default
+var i18nTagSchema, { vaidateSchema } = require('i18n-tag-schema').default
 gulp.task('generate-translation-schema', function (cb) {
   i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, type) => {
+      console.log(output)
+      if(type === 'error' || type === 'success') cb(); // finished task
+  })
+})
+
+gulp.task('validate-german-translation', function (cb) {
+  vaidateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
       console.log(output)
       if(type === 'error' || type === 'success') cb(); // finished task
   })
