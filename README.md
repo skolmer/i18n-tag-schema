@@ -3,8 +3,16 @@
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
-Generates a json schema for all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in your project.
+## Overview
 
+This node module generates a [JSON Schema](http://json-schema.org/) of all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in a JavaScript project.
+A JSON schema can add key validation and autocompletion to your JSON based translation files (See [IDE Integration](#ide-integration)).
+The tool will only detect template literals that are tagged with i18n (See [es2015-i18n-tag](http://i18n-tag.kolmer.net/)).
+It has support for [Custom Translation Groups](https://github.com/skolmer/es2015-i18n-tag#translation-groups) and generated [File Module Groups](https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups). If you want to use generated File Module Groups you have to set `groups` to `true`.
+
+The following repository provides examples for use with npm scripts or gulp: https://github.com/skolmer/i18n-tag-examples
+
+i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Feature requests are welcome!)
 
 ## Installation
 
