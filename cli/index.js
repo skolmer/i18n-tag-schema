@@ -55,8 +55,8 @@ program
     .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?')
     .option('-g, --groups', 'group translations by module filenames')
     .option('-v, --validate', 'use to validate a translation file. path has to be a JSON file. requires --schema <path>')
-    .option('-e, --export <path>', 'export all translation keys FROM this JavaScript file.')
-    .option('-t, --target <path>', 'export all translation keys TO this JSON file. requires --export <path>')
+    .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file.')
+    .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
     .action(function (path) {
         if(program.validate) {
             if(!program.schema) {

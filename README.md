@@ -37,12 +37,14 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, t
 ```json
 {
   "scripts": {
-    "schema": "i18n-tag-schema ./src"
+    "generate-schema": "i18n-tag-schema ./src",
+    "validate-german-translation": "i18n-tag-schema ./translations/translation.de.json --validate --schema ./translation.schema.json"
   }
 }
 ```
 ```sh
-$ npm run schema
+$ npm run generate-schema
+$ npm run validate-german-translation
 ```
 
 ### Via Gulp
@@ -75,8 +77,10 @@ Options:
     -s, --schema <path>   set schema path. defaults to ./translation.schema.json
     -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?
     -g, --groups          group translations by module filenames
-    -e, --export <path>   export all translation keys FROM this JavaScript file.
-    -t, --target <path>   export all translation keys TO this JSON file. requires --export <path>
+    -v, --validate        use to validate a translation file. path has to be a JSON file. requires --schema <path>
+    -e, --export <path>   export all translation keys FROM a JavaScript file.
+    -t, --target <path>   export all translation keys TO a JSON file. requires --export <path>.
+                          If --target is not set, JSON will be printed to the output.
 ```
 
 ### Reference schema in translation.json file
@@ -92,7 +96,7 @@ Options:
 The generated Schema checks
 * if your translation file is missing some of your project's translation keys.
 * if a translation key or group is unknown.
-* if a translation contains all parameters defined in the translation key (e.g. ${0}, ${1}).
+* if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
 Some IDEs can also provide auto completion for translation keys and groups
 
@@ -107,6 +111,8 @@ Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more detail
 For Visual Studio Code you can install the i18n-tag-schema extension from [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema)
 
 ## Additional Features
+
+### Export translation keys
 
 Read all i18n tagged template literals from a JavaScript file
 
@@ -134,6 +140,34 @@ templatesFromFile(srcPath, filePath, false,
         */ 
     }
 )
+```
+
+### Validate translation file
+
+The validation function checks
+* if your translation file is missing some of your project's translation keys.
+* if a translation key or group is unknown.
+* if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
+
+```js
+import { vaidateSchema } from 'i18n-tag-schema'
+
+const translationPath = path.resolve(__dirname, './translations/translation.de.json')
+const schemaPath = path.resolve(__dirname, './translation.schema.json')
+
+vaidateSchema(translationPath, schemaPath, (output, type) => {
+    switch (type) {
+        const cons = console[type]
+        if(cons) {
+            cons(message)
+        } else {
+            console.log(message)
+        } 
+        if(type === 'error' || type === 'success') {
+            // isValid(type === 'success')
+        }
+    }
+})
 ```
 
 [See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#templatesfromfile)
