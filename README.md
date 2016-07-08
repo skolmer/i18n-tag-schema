@@ -52,7 +52,8 @@ $ npm run validate-german-translation
 ### Via Gulp
 ```js
 var gulp = require('gulp')
-var i18nTagSchema, { vaidateSchema } = require('i18n-tag-schema').default
+var i18nTagSchema = require('i18n-tag-schema').default
+var vaidateSchema = require('i18n-tag-schema').vaidateSchema
 gulp.task('generate-translation-schema', function (cb) {
   i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, type) => {
       console.log(output)
