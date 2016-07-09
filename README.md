@@ -40,13 +40,15 @@ i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, t
 {
   "scripts": {
     "generate-schema": "i18n-tag-schema ./src",
-    "validate-german-translation": "i18n-tag-schema ./translations/translation.de.json --validate --schema ./translation.schema.json"
+    "validate-german-translation": "i18n-tag-schema ./translations/translation.de.json --validate --schema ./translation.schema.json",
+    "validate-translations": "i18n-tag-schema ./translations --validate --schema ./translation.schema.json"
   }
 }
 ```
 ```sh
 $ npm run generate-schema
 $ npm run validate-german-translation
+$ npm run validate-translations
 ```
 
 ### Via Gulp
@@ -63,6 +65,13 @@ gulp.task('generate-translation-schema', function (cb) {
 
 gulp.task('validate-german-translation', function (cb) {
   vaidateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
+      console.log(output)
+      if(type === 'error' || type === 'success') cb(); // finished task
+  })
+})
+
+gulp.task('validate-translations', function (cb) {
+  vaidateSchema('./translations', './translation.schema.json', (output, type) => {
       console.log(output)
       if(type === 'error' || type === 'success') cb(); // finished task
   })
