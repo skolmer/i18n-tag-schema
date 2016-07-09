@@ -159,7 +159,7 @@ The validation function checks
 ```js
 import { vaidateSchema } from 'i18n-tag-schema'
 
-vaidateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
+vaidateSchema('./translations', './translation.schema.json', (output, type) => {
     switch (type) {
         const cons = console[type]
         if(cons) {

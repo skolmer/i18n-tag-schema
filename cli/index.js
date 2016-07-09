@@ -9,42 +9,39 @@ var pathLib = require('path');
 var fs = require('fs');
 
 function formatResult(message) {
-    var percentage = message.match(/(\d+)\s*%\s*translated/);
-    if(percentage) {
-        var val = Number.parseInt(percentage[1]);
+    message = message.replace(/(\d+)\s*%\s*translated/g, (str, value) => {
+        var val = Number.parseInt(value);
         if(val < 50) {
-            message = message.replace(percentage[0], colors.bgRed(colors.white(percentage[0])));            
+            return colors.bgRed(colors.white(str));            
         } else if(val < 100) {
-            message = message.replace(percentage[0], colors.bgYellow(colors.black(percentage[0])));  
+            return colors.bgYellow(colors.black(str));  
         }  else {
-            message = message.replace(percentage[0], colors.bgGreen(colors.black(percentage[0]))); 
-        }     
-    }
-    var keys = message.match(/(\d+)\s*keys/);
-    if(keys) {
-        message = message.replace(keys[0], colors.bgWhite(colors.black(keys[0])));
-    }
-    var added = message.match(/(\d+)\s*added/);
-    if(added) {
-        message = message.replace(added[0], colors.bgGreen(colors.black(added[0])));
-    }
-    var removed = message.match(/(\d+)\s*removed/);
-    if(removed) {
-        message = message.replace(removed[0], colors.bgRed(colors.white(removed[0])));
-    }
-    var missing = message.match(/(\d+)\s*missing/);
-    if(missing) {
-        var val = Number.parseInt(missing[1]);
-        if(val === 0) {
-            message = message.replace(missing[0], colors.bgGreen(colors.black(missing[0])));
-        } else {
-            message = message.replace(missing[0], colors.bgRed(colors.white(missing[0])));
+            return colors.bgGreen(colors.black(str)); 
         }
-    }
-    var invalid = message.match(/(\d+)\s*invalid/);
-    if(invalid) {
-        message = message.replace(invalid[0], colors.bgYellow(colors.black(invalid[0])));
-    }
+    });
+    message = message.replace(/(\d+)\s*keys/g, (str) => {
+        return colors.bgWhite(colors.black(str));
+    });
+    message = message.replace(/(\d+)\s*added/g, (str) => {
+        return colors.bgGreen(colors.black(str));
+    });
+    message = message.replace(/(\d+)\s*removed/g, (str) => {
+        return colors.bgRed(colors.white(str));
+    });
+    message = message.replace(/(\d+)\s*missing/g, (str, value) => {
+        var val = Number.parseInt(value);
+        if(val === 0) {
+            return colors.bgGreen(colors.black(str));
+        } else {
+            return colors.bgRed(colors.white(str));
+        }
+    });
+    message = message.replace(/(\d+)\s*invalid/g, (str) => {
+        return colors.bgYellow(colors.black(str));
+    });
+    message = message.replace(/\n/g, () => {
+        return '\n    ';
+    });
     return message;
 }
 
@@ -61,10 +58,6 @@ program
         if(program.validate) {
             if(!program.schema) {
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +'option `--schema <path>` missing');
-                process.exit(1);
-            }
-            if(pathLib.extname(path) !== '.json') {
-                console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' + path + ' is not a json file.');
                 process.exit(1);
             }
             vaidateSchema(path, program.schema, (output, type) => {

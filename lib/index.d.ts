@@ -25,10 +25,10 @@ export default function (path: string, filter: string, schema?: string, grouped?
 export function templatesFromFile(rootPath: string, path: string, grouped?: boolean, logger?: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void, callback?: (output: string) => void)
 
 /**
- * Validates a translation file and calculates translation coverage
+ * Validates a translation file or folder and calculates translation coverage
  *
- * @param filePath Path of the translation file.
+ * @param rootPath Path of the translation file or directory.
  * @param schemaPath Path of the translation schema.
  * @param callback A callback function that accepts logging message and type 'info', 'warn', 'error', 'success', 'debug' or 'trace'.
  */
-export function vaidateSchema(filePath: string, schemaPath: string, callback: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void)
+export function vaidateSchema(rootPath: string, schemaPath: string, callback: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void)
