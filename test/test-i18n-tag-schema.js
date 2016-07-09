@@ -2,7 +2,7 @@
 import path from 'path'
 import fs from 'fs'
 import assert from 'assert'
-import i18nTagSchema, { templatesFromFile, vaidateSchema } from '../lib'
+import i18nTagSchema, { exportTranslationKeys, vaidateSchema } from '../lib'
 
 const expected = {
     'type': 'object',
@@ -212,7 +212,7 @@ describe('i18n-tag-schema', () => {
         const srcPath = path.resolve(__dirname, './samples')
         const filePath = path.resolve(__dirname, './samples/grouped.js')
         const filePath2 = path.resolve(__dirname, './samples/multiline.js')
-        templatesFromFile(srcPath, filePath, true,
+        exportTranslationKeys(srcPath, filePath, true,
             (message, type) => {
                 const cons = console[type]
                 if (cons) {
@@ -245,7 +245,7 @@ describe('i18n-tag-schema', () => {
                         }
                     ]
                 ))
-                templatesFromFile(srcPath, filePath2, false,
+                exportTranslationKeys(srcPath, filePath2, false,
                     (message, type) => {
                         const cons = console[type]
                         if (cons) {

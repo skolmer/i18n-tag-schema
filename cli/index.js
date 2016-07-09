@@ -3,7 +3,7 @@ var program = require('commander');
 var i18nTagSchemaModule = require('../dist/lib');
 var i18nTagSchema = i18nTagSchemaModule.default;
 var vaidateSchema = i18nTagSchemaModule.vaidateSchema;
-var templatesFromFile = i18nTagSchemaModule.templatesFromFile;
+var exportTranslationKeys = i18nTagSchemaModule.exportTranslationKeys;
 var colors = require('colors');
 var pathLib = require('path');
 var fs = require('fs');
@@ -88,7 +88,7 @@ program
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +program.target + ' is not a json file.');
                 process.exit(1);
             }
-            templatesFromFile(path, program.export, program.groups,
+            exportTranslationKeys(path, program.export, program.groups,
             (output, type) => {
                 if(program.target) {
                     switch (type) {

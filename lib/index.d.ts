@@ -22,7 +22,7 @@ export default function (path: string, filter: string, schema?: string, grouped?
  * @param logger A logger function that accepts logging message and type 'info', 'warn', 'error', 'success', 'debug' or 'trace'.
  * @param callback A callback function.
  */
-export function templatesFromFile(rootPath: string, path: string, grouped?: boolean, logger?: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void, callback?: (output: string) => void)
+export function exportTranslationKeys(rootPath: string, path: string, grouped?: boolean, logger?: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void, callback?: (output: string) => void)
 
 /**
  * Validates a translation file or folder and calculates translation coverage

@@ -127,9 +127,9 @@ For Visual Studio Code you can install the i18n-tag-schema extension from [Visua
 Read all i18n tagged template literals from a JavaScript file or directory
 
 ```js
-import { templatesFromFile } from 'i18n-tag-schema'
+import { exportTranslationKeys } from 'i18n-tag-schema'
 
-templatesFromFile('./samples', '.', false,
+exportTranslationKeys('./samples', '.', false,
     (message, type) => {
         const cons = console[type]
         if(cons) {
@@ -174,7 +174,7 @@ vaidateSchema('./translations', './translation.schema.json', (output, type) => {
 })
 ```
 
-[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#templatesfromfile)
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#exportTranslationKeys)
 
 ## Tools
 
