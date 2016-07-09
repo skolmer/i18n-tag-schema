@@ -156,9 +156,9 @@ Option<span class="hljs-variable">s:</span>
 				<h2 id="additional-features">Additional Features</h2>
 				<h3 id="export-translation-keys">Export translation keys</h3>
 				<p>Read all i18n tagged template literals from a JavaScript file or directory</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { templatesFromFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { exportTranslationKeys } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-templatesFromFile(<span class="hljs-string">'./samples'</span>, <span class="hljs-string">'.'</span>, <span class="hljs-literal">false</span>,
+exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class="hljs-string">'.'</span>, <span class="hljs-literal">false</span>,
     (message, type) =&gt; {
         <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
         <span class="hljs-keyword">if</span>(cons) {
@@ -200,7 +200,7 @@ vaidateSchema(<span class="hljs-string">'./translations'</span>, <span class="hl
     }
 })
 </code></pre>
-				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#templatesfromfile">See docs</a></p>
+				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#exportTranslationKeys">See docs</a></p>
 				<h2 id="tools">Tools</h2>
 				<h3 id="run-time-translation-and-localization">Run time translation and localization</h3>
 				<ul>
@@ -230,7 +230,7 @@ vaidateSchema(<span class="hljs-string">'./translations'</span>, <span class="hl
 						<a href="globals.html#default" class="tsd-kind-icon">default</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#templatesfromfile" class="tsd-kind-icon">templates<wbr>From<wbr>File</a>
+						<a href="globals.html#exporttranslationkeys" class="tsd-kind-icon">export<wbr>Translation<wbr>Keys</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#vaidateschema" class="tsd-kind-icon">vaidate<wbr>Schema</a>
