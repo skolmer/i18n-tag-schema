@@ -68,11 +68,13 @@ program
                     case 'warn':
                         console.log('  ' + colors.bgYellow(colors.black('warn:')) + ' ' + output);
                         break;
-                    case 'error':                        
+                    case 'error':     
+                        console.log('');               
                         console.log('  ' + colors.red('X') + ' invalid: ' + formatResult(output));
                         process.exit(1);
                         break;
                     case 'success':
+                        console.log('');
                         console.log('  ' + colors.green('√') + ' valid: ' + formatResult(output));
                         break;
                 }
