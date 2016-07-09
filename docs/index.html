@@ -130,7 +130,7 @@ Option<span class="hljs-variable">s:</span>
     -s, --schema <span class="hljs-symbol">&lt;path&gt;</span>   <span class="hljs-keyword">set</span> schema path. defaults <span class="hljs-keyword">to</span> ./translation.schema.json
     -<span class="hljs-keyword">f</span>, --<span class="hljs-built_in">filter</span> <span class="hljs-symbol">&lt;regex&gt;</span>  <span class="hljs-keyword">a</span> regular expression <span class="hljs-keyword">to</span> <span class="hljs-built_in">filter</span> <span class="hljs-keyword">source</span> <span class="hljs-keyword">files</span>. defaults <span class="hljs-keyword">to</span> \.jsx?
     -g, --groups          group translations by module filenames
-    -v, --validate        use <span class="hljs-keyword">to</span> validate <span class="hljs-keyword">a</span> translation <span class="hljs-keyword">file</span>. path <span class="hljs-built_in">has</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --schema <span class="hljs-symbol">&lt;path&gt;</span>
+    -v, --validate        use <span class="hljs-keyword">to</span> validate translation <span class="hljs-keyword">file</span>(s). path <span class="hljs-built_in">has</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory. requires --schema <span class="hljs-symbol">&lt;path&gt;</span>
     -<span class="hljs-keyword">e</span>, --export <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> FROM <span class="hljs-keyword">a</span> JavaScript <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory.
     -t, --target <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> TO <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --export <span class="hljs-symbol">&lt;path&gt;</span>.
                           If --target <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
@@ -180,13 +180,13 @@ templatesFromFile(<span class="hljs-string">'./samples'</span>, <span class="hlj
 				<h3 id="validate-translation-file">Validate translation file</h3>
 				<p>The validation function checks</p>
 				<ul>
-					<li>if your translation file is missing some of your project&#39;s translation keys.</li>
+					<li>if your translation files are missing some of your project&#39;s translation keys.</li>
 					<li>if a translation key or group is unknown.</li>
 					<li>if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
 				</ul>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { vaidateSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-vaidateSchema(<span class="hljs-string">'./translations/translation.de.json'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
+vaidateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
     <span class="hljs-keyword">switch</span> (type) {
         <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
         <span class="hljs-keyword">if</span>(cons) {
