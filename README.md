@@ -55,7 +55,7 @@ $ npm run validate-translations
 ```js
 var gulp = require('gulp')
 var i18nTagSchema = require('i18n-tag-schema').default
-var vaidateSchema = require('i18n-tag-schema').vaidateSchema
+var validateSchema = require('i18n-tag-schema').validateSchema
 gulp.task('generate-translation-schema', function (cb) {
   i18nTagSchema('./src', '\\.jsx?', './translation.schema.json', false, (output, type) => {
       console.log(output)
@@ -64,14 +64,14 @@ gulp.task('generate-translation-schema', function (cb) {
 })
 
 gulp.task('validate-german-translation', function (cb) {
-  vaidateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
+  validateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
       console.log(output)
       if(type === 'error' || type === 'success') cb(); // finished task
   })
 })
 
 gulp.task('validate-translations', function (cb) {
-  vaidateSchema('./translations', './translation.schema.json', (output, type) => {
+  validateSchema('./translations', './translation.schema.json', (output, type) => {
       console.log(output)
       if(type === 'error' || type === 'success') cb(); // finished task
   })
@@ -166,9 +166,9 @@ The validation function checks
 * if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
 ```js
-import { vaidateSchema } from 'i18n-tag-schema'
+import { validateSchema } from 'i18n-tag-schema'
 
-vaidateSchema('./translations', './translation.schema.json', (output, type) => {
+validateSchema('./translations', './translation.schema.json', (output, type) => {
     switch (type) {
         const cons = console[type]
         if(cons) {

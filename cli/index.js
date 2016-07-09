@@ -2,7 +2,7 @@
 var program = require('commander');
 var i18nTagSchemaModule = require('../dist/lib');
 var i18nTagSchema = i18nTagSchemaModule.default;
-var vaidateSchema = i18nTagSchemaModule.vaidateSchema;
+var validateSchema = i18nTagSchemaModule.validateSchema;
 var exportTranslationKeys = i18nTagSchemaModule.exportTranslationKeys;
 var colors = require('colors');
 var pathLib = require('path');
@@ -60,7 +60,7 @@ program
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +'option `--schema <path>` missing');
                 process.exit(1);
             }
-            vaidateSchema(path, program.schema, (output, type) => {
+            validateSchema(path, program.schema, (output, type) => {
                 switch (type) {
                     case 'info':
                         console.log('  ' + colors.bgWhite(colors.black('info:')) + ' ' + output);

@@ -102,7 +102,7 @@ $ npm run validate-german-translation
 				<h3 id="via-gulp">Via Gulp</h3>
 				<pre><code class="lang-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>)
 <span class="hljs-keyword">var</span> i18nTagSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).default
-<span class="hljs-keyword">var</span> vaidateSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).vaidateSchema
+<span class="hljs-keyword">var</span> validateSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).validateSchema
 gulp.task(<span class="hljs-string">'generate-translation-schema'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
   i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?'</span>, <span class="hljs-string">'./translation.schema.json'</span>, <span class="hljs-literal">false</span>, (output, type) =&gt; {
       <span class="hljs-built_in">console</span>.log(output)
@@ -111,7 +111,7 @@ gulp.task(<span class="hljs-string">'generate-translation-schema'</span>, <span 
 })
 
 gulp.task(<span class="hljs-string">'validate-german-translation'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
-  vaidateSchema(<span class="hljs-string">'./translations/translation.de.json'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
+  validateSchema(<span class="hljs-string">'./translations/translation.de.json'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
       <span class="hljs-built_in">console</span>.log(output)
       <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) cb(); <span class="hljs-comment">// finished task</span>
   })
@@ -184,9 +184,9 @@ exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class=
 					<li>if a translation key or group is unknown.</li>
 					<li>if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
 				</ul>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { vaidateSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { validateSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-vaidateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
+validateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
     <span class="hljs-keyword">switch</span> (type) {
         <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
         <span class="hljs-keyword">if</span>(cons) {
@@ -233,7 +233,7 @@ vaidateSchema(<span class="hljs-string">'./translations'</span>, <span class="hl
 						<a href="globals.html#exporttranslationkeys" class="tsd-kind-icon">export<wbr>Translation<wbr>Keys</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#vaidateschema" class="tsd-kind-icon">vaidate<wbr>Schema</a>
+						<a href="globals.html#validateSchema" class="tsd-kind-icon">vaidate<wbr>Schema</a>
 					</li>
 				</ul>
 			</nav>

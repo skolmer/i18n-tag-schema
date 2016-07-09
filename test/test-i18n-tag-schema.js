@@ -2,7 +2,7 @@
 import path from 'path'
 import fs from 'fs'
 import assert from 'assert'
-import i18nTagSchema, { exportTranslationKeys, vaidateSchema } from '../lib'
+import i18nTagSchema, { exportTranslationKeys, validateSchema } from '../lib'
 
 const expected = {
     'type': 'object',
@@ -271,7 +271,7 @@ describe('i18n-tag-schema', () => {
     it('should validate translations', (done) => {
         const schemaPath = path.resolve(__dirname, './samples/validationSchema.json')
         const translationPath = path.resolve(__dirname, './samples/translation.json')
-        vaidateSchema(translationPath, schemaPath, (message, type) => {
+        validateSchema(translationPath, schemaPath, (message, type) => {
             const cons = console[type]
             if (cons) {
                 cons(`    ${message}`)

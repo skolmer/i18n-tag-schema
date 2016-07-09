@@ -31,4 +31,4 @@ export function exportTranslationKeys(rootPath: string, path: string, grouped?: 
  * @param schemaPath Path of the translation schema.
  * @param callback A callback function that accepts logging message and type 'info', 'warn', 'error', 'success', 'debug' or 'trace'.
  */
-export function vaidateSchema(rootPath: string, schemaPath: string, callback: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void)
+export function validateSchema(rootPath: string, schemaPath: string, callback: (message: string, type: 'info' | 'warn' | 'error' | 'success' | 'debug' | 'trace') => void)
