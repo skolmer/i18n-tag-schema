@@ -87,7 +87,7 @@ Options:
     -s, --schema <path>   set schema path. defaults to ./translation.schema.json
     -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?
     -g, --groups          group translations by module filenames
-    -v, --validate        use to validate a translation file. path has to be a JSON file. requires --schema <path>
+    -v, --validate        use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>
     -e, --export <path>   export all translation keys FROM a JavaScript file or directory.
     -t, --target <path>   export all translation keys TO a JSON file. requires --export <path>.
                           If --target is not set, JSON will be printed to the output.
@@ -152,7 +152,7 @@ templatesFromFile('./samples', '.', false,
 ### Validate translation file
 
 The validation function checks
-* if your translation file is missing some of your project's translation keys.
+* if your translation files are missing some of your project's translation keys.
 * if a translation key or group is unknown.
 * if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
