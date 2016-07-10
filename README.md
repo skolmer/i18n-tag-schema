@@ -158,6 +158,8 @@ exportTranslationKeys('./samples', '.', false,
 )
 ```
 
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#exporttranslationkeys)
+
 ### Validate translation file
 
 The validation function checks
@@ -183,7 +185,7 @@ validateSchema('./translations', './translation.schema.json', (output, type) => 
 })
 ```
 
-[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#exportTranslationKeys)
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#validateschema)
 
 ## Tools
 
