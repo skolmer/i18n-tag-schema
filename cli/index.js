@@ -49,7 +49,7 @@ program
     .version('0.0.1')
     .usage('<path> [options]')
     .option('-s, --schema <path>', 'set schema path. defaults to ./translation.schema.json')
-    .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?')
+    .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?$')
     .option('-g, --groups', 'group translations by module filenames')
     .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>')
     .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
@@ -80,7 +80,7 @@ program
                 }
             });
         } else if(program.export || program.filter) {
-            if(program.export && (pathLib.extname(program.export) && !pathLib.extname(program.export).match(program.filter || '\\.jsx?'))) {
+            if(program.export && (pathLib.extname(program.export) && !pathLib.extname(program.export).match(program.filter || '\\.jsx?$'))) {
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +program.export + ' is not a JavaScript file.');
                 process.exit(1);
             }
@@ -123,7 +123,7 @@ program
                 }
             });
         } else {
-            i18nTagSchema(path, program.filter || '\\.jsx?', program.schema || './translation.schema.json', program.groups, (output, type) => {
+            i18nTagSchema(path, program.filter || '\\.jsx?$', program.schema || './translation.schema.json', program.groups, (output, type) => {
                 switch (type) {
                     case 'info':
                         console.log('  ' + colors.bgWhite(colors.black('info:')) + ' ' + output);
