@@ -154,7 +154,7 @@ const expectedGrouped = {
 
 describe('i18n-tag-schema', () => {
     it('should match json string', (done) => {
-        const filter = '\\.jsx?'
+        const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
         i18nTagSchema(srcPath, filter, null, false, (message, type) => {
 
@@ -172,7 +172,7 @@ describe('i18n-tag-schema', () => {
     })
 
     it('should match json file', (done) => {
-        const filter = '\\.jsx?'
+        const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
         const schema = path.resolve(__dirname, './samples/schema.json')
         i18nTagSchema(srcPath, filter, schema, false, (message, type) => {
@@ -191,7 +191,7 @@ describe('i18n-tag-schema', () => {
     })
 
     it('should support file grouping', (done) => {
-        const filter = '\\.jsx?'
+        const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
         i18nTagSchema(srcPath, filter, null, true, (message, type) => {
 
