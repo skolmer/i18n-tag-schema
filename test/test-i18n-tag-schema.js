@@ -269,7 +269,7 @@ describe('i18n-tag-schema', () => {
     })
 
     it('should validate translations', (done) => {
-        const schemaPath = path.resolve(__dirname, './samples/validationSchema.json')
+        const schemaPath = path.resolve(__dirname, './samples/schema.json')
         const translationPath = path.resolve(__dirname, './samples/translation.json')
         validateSchema(translationPath, schemaPath, (message, type) => {
             const cons = console[type]
@@ -279,7 +279,7 @@ describe('i18n-tag-schema', () => {
                 console.log(`    ${message}`)
             }
             if (type === 'success' || type === 'error') {
-                assert.equal(message, 'translation.json has 1 missing translation; 80% translated.')
+                assert.equal(message, 'translation.json has 2 missing translations; 67% translated.')
                 done()
             }
         })
