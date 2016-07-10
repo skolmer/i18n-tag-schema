@@ -171,16 +171,14 @@ The validation function checks
 import { validateSchema } from 'i18n-tag-schema'
 
 validateSchema('./translations', './translation.schema.json', (output, type) => {
-    switch (type) {
-        const cons = console[type]
-        if(cons) {
-            cons(message)
-        } else {
+    const cons = console[type]
+    if(cons) {
+        cons(message)
+    } else {
             console.log(message)
-        } 
-        if(type === 'error' || type === 'success') {
-            // isValid(type === 'success')
-        }
+    } 
+    if(type === 'error' || type === 'success') {
+        // isValid(type === 'success')
     }
 })
 ```
