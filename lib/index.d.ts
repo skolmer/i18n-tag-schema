@@ -5,7 +5,7 @@
  * If no target schema is provided the json will be returned via callback output param.
  *
  * @param path Base path of the source directory.
- * @param filter File extension filter as regex string. e.g. \.jsx?$
+ * @param filter File extension filter as regex string. e.g. \\.jsx?$
  * @param schema Path to the generated .json file. If no target schema is provided the json will be returned via callback output param
  * @param grouped If true, translations will be grouped by filename
  * @param callback A callback function.
