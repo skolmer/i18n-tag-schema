@@ -82,7 +82,7 @@
 				<h2 id="usage">Usage</h2>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> i18nTagSchema <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, <span class="hljs-literal">false</span>, (output, type) =&gt; {
+i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
     <span class="hljs-comment">// log(output)</span>
 })
 </code></pre>
@@ -106,7 +106,7 @@ $ npm run validate-translations
 <span class="hljs-keyword">var</span> i18nTagSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).default
 <span class="hljs-keyword">var</span> validateSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).validateSchema
 gulp.task(<span class="hljs-string">'generate-translation-schema'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
-  i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, <span class="hljs-literal">false</span>, (output, type) =&gt; {
+  i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
       <span class="hljs-built_in">console</span>.log(output)
       <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) cb(); <span class="hljs-comment">// finished task</span>
   })
@@ -138,7 +138,6 @@ Option<span class="hljs-variable">s:</span>
     -V, --<span class="hljs-keyword">version</span>         output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span>
     -s, --schema <span class="hljs-symbol">&lt;path&gt;</span>   <span class="hljs-keyword">set</span> schema path. defaults <span class="hljs-keyword">to</span> ./translation.schema.json
     -<span class="hljs-keyword">f</span>, --<span class="hljs-built_in">filter</span> <span class="hljs-symbol">&lt;regex&gt;</span>  <span class="hljs-keyword">a</span> regular expression <span class="hljs-keyword">to</span> <span class="hljs-built_in">filter</span> <span class="hljs-keyword">source</span> <span class="hljs-keyword">files</span>. defaults <span class="hljs-keyword">to</span> \.jsx?
-    -g, --groups          group translations by module filenames
     -v, --validate        use <span class="hljs-keyword">to</span> validate translation <span class="hljs-keyword">file</span>(s). path <span class="hljs-built_in">has</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory. requires --schema <span class="hljs-symbol">&lt;path&gt;</span>
     -<span class="hljs-keyword">e</span>, --export <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> FROM <span class="hljs-keyword">a</span> JavaScript <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory.
     -t, --target <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> TO <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --export <span class="hljs-symbol">&lt;path&gt;</span>.
@@ -167,7 +166,7 @@ Option<span class="hljs-variable">s:</span>
 				<p>Read all i18n tagged template literals from a JavaScript file or directory</p>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { exportTranslationKeys } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class="hljs-string">'.'</span>, <span class="hljs-literal">false</span>,
+exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class="hljs-string">'.'</span>,
     (message, type) =&gt; {
         <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
         <span class="hljs-keyword">if</span>(cons) {
@@ -197,16 +196,14 @@ exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class=
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { validateSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
 validateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-    <span class="hljs-keyword">switch</span> (type) {
-        <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
-        <span class="hljs-keyword">if</span>(cons) {
-            cons(message)
-        } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
+    <span class="hljs-keyword">if</span>(cons) {
+        cons(message)
+    } <span class="hljs-keyword">else</span> {
             <span class="hljs-built_in">console</span>.log(message)
-        } 
-        <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) {
-            <span class="hljs-comment">// isValid(type === 'success')</span>
-        }
+    } 
+    <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) {
+        <span class="hljs-comment">// isValid(type === 'success')</span>
     }
 })
 </code></pre>

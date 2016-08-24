@@ -85,7 +85,7 @@
 					<a name="default" class="tsd-anchor"></a>
 					<h3>default</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, grouped<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -111,19 +111,13 @@
 								<li>
 									<h5>filter: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>File extension filter as regex string. e.g. .jsx?$</p>
+										<p>File extension filter as regex string. e.g. \.jsx?$</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> schema: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Path to the generated .json file. If no target schema is provided the json will be returned via callback output param</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> grouped: <span class="tsd-signature-type">boolean</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>If true, translations will be grouped by filename</p>
 									</div>
 								</li>
 								<li>
@@ -162,13 +156,13 @@
 					<a name="exporttranslationkeys" class="tsd-anchor"></a>
 					<h3>export<wbr>Translation<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">export<wbr>Translation<wbr>Keys<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, grouped<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, logger<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">export<wbr>Translation<wbr>Keys<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, logger<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:25</li>
+									<li>Defined in index.d.ts:23</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,12 +183,6 @@
 									<h5>path: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Path of the JavaScript source file or directory.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> grouped: <span class="tsd-signature-type">boolean</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>If true, translations will be grouped by filename relative to the root path</p>
 									</div>
 								</li>
 								<li>
@@ -263,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:34</li>
+									<li>Defined in index.d.ts:32</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
