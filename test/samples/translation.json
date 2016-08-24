@@ -7,6 +7,9 @@
     "custom group 2": {
         "Hello ${0}, you have ${1} in your bank account.": "sad"
     },
+    "grouped.js": {
+        "Hello ${0}, you have ${1} in your bank account.": "sad"
+    },
     "custom inline group": {
         "Hello!": "Hallo!"
     }

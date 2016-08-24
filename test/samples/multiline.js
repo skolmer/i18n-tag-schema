@@ -5,3 +5,5 @@ console.log(i18n`
     `).join('')}
     </users>
 `)
+
+console.log(i18n('custom inline group') `Hello!`)

@@ -50,7 +50,6 @@ program
     .usage('<path> [options]')
     .option('-s, --schema <path>', 'set schema path. defaults to ./translation.schema.json')
     .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?$')
-    .option('-g, --groups', 'group translations by module filenames')
     .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>')
     .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
     .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
@@ -88,7 +87,7 @@ program
                 console.log('  ' + colors.bgRed(colors.white('error:')) + ' ' +program.target + ' is not a json file.');
                 process.exit(1);
             }
-            exportTranslationKeys(path, program.export, program.groups,
+            exportTranslationKeys(path, program.export,
             (output, type) => {
                 if(program.target) {
                     switch (type) {
@@ -123,7 +122,7 @@ program
                 }
             });
         } else {
-            i18nTagSchema(path, program.filter || '\\.jsx?$', program.schema || './translation.schema.json', program.groups, (output, type) => {
+            i18nTagSchema(path, program.filter || '\\.jsx?$', program.schema || './translation.schema.json', (output, type) => {
                 switch (type) {
                     case 'info':
                         console.log('  ' + colors.bgWhite(colors.black('info:')) + ' ' + output);
