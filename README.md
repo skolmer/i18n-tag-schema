@@ -26,7 +26,7 @@ $ npm install i18n-tag-schema --save-dev
 ```js
 import i18nTagSchema from 'i18n-tag-schema'
 
-i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', false, (output, type) => {
+i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', (output, type) => {
     // log(output)
 })
 ```
@@ -57,7 +57,7 @@ var gulp = require('gulp')
 var i18nTagSchema = require('i18n-tag-schema').default
 var validateSchema = require('i18n-tag-schema').validateSchema
 gulp.task('generate-translation-schema', function (cb) {
-  i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', false, (output, type) => {
+  i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', (output, type) => {
       console.log(output)
       if(type === 'error' || type === 'success') cb(); // finished task
   })
@@ -137,7 +137,7 @@ Read all i18n tagged template literals from a JavaScript file or directory
 ```js
 import { exportTranslationKeys } from 'i18n-tag-schema'
 
-exportTranslationKeys('./samples', '.', false,
+exportTranslationKeys('./samples', '.',
     (message, type) => {
         const cons = console[type]
         if(cons) {
