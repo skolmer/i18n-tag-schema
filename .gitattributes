@@ -1,1 +1,2 @@
 test/samples/**/*.js eol=crlf
+cli/**/*.js eol=lf
