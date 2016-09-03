@@ -22,6 +22,11 @@ This module does include a JSON validator that helps you keep track of missing o
 $ npm install i18n-tag-schema --save-dev
 ```
 
+## Examples
+
+* [npm scripts](https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS)
+* [gulp](https://github.com/skolmer/i18n-tag-examples/tree/master/Simple)
+
 ## Usage
 ```js
 import i18nTagSchema from 'i18n-tag-schema'
