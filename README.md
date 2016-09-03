@@ -132,6 +132,8 @@ For Visual Studio Code you can install the i18n-tag-schema extension from [Visua
 
 ### Export translation keys
 
+![export translation keys](https://raw.githubusercontent.com/skolmer/i18n-tag-schema/master/images/export.jpg)
+
 Read all i18n tagged template literals from a JavaScript file or directory
 
 ```js
