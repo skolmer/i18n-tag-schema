@@ -161,6 +161,8 @@ exportTranslationKeys('./samples', '.',
 
 ### Validate translation file
 
+![validate translation cli](https://raw.githubusercontent.com/skolmer/i18n-tag-schema/master/images/validate.jpg)
+
 The validation function checks
 * if your translation files are missing some of your project's translation keys.
 * if a translation key or group is unknown.
