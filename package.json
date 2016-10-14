@@ -63,7 +63,7 @@
     "typedoc": "^0.4.4"
   },
   "scripts": {
-    "prepublish": "yarn run lint && yarn run clean && yarn run build",
+    "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "jest && npm run report-coverage",
     "report-coverage": "shx cat ./coverage/lcov.info | coveralls",
     "clean": "rimraf dist/lib/**/*",
@@ -91,7 +91,7 @@
     "coverageThreshold": {
       "global": {
         "branches": 50,
-        "functions": 50,
+        "functions": 80,
         "lines": 50,
         "statements": 50
       }
