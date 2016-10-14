@@ -1,7 +1,5 @@
-
 import path from 'path'
 import fs from 'fs'
-import assert from 'assert'
 import i18nTagSchema, { exportTranslationKeys, validateSchema } from '../lib'
 
 const expected = {
@@ -93,15 +91,10 @@ describe('i18n-tag-schema', () => {
         const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
         i18nTagSchema(srcPath, filter, null, (message, type) => {
-
             switch (type) {
                 case 'success':
-                    assert.equal(JSON.stringify(JSON.parse(message)), JSON.stringify(expected))
+                    expect(JSON.stringify(JSON.parse(message))).toEqual(JSON.stringify(expected))
                     done()
-                    break
-                case 'error':
-                case 'info':
-                    console.info(`    ${message}`)
                     break
             }
         })
@@ -115,12 +108,8 @@ describe('i18n-tag-schema', () => {
             const prevJson = fs.readFileSync(schema, 'utf-8')
             switch (type) {
                 case 'success':
-                    assert.equal(JSON.stringify(JSON.parse(prevJson)), JSON.stringify(expected))
+                    expect(JSON.stringify(JSON.parse(prevJson))).toEqual(JSON.stringify(expected))
                     done()
-                    break
-                case 'error':
-                case 'info':
-                    console.info(`    ${message}`)
                     break
             }
         })
@@ -130,17 +119,9 @@ describe('i18n-tag-schema', () => {
         const srcPath = path.resolve(__dirname, './samples')
         const filePath = path.resolve(__dirname, './samples/grouped.js')
         const filePath2 = path.resolve(__dirname, './samples/multiline.js')
-        exportTranslationKeys(srcPath, filePath,
-            (message, type) => {
-                const cons = console[type]
-                if (cons) {
-                    cons(`    ${message}`)
-                } else {
-                    console.log(`    ${message}`)
-                }
-            },
+        exportTranslationKeys(srcPath, filePath, undefined,
             (templates) => {
-                assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
+                expect(JSON.stringify(JSON.parse(templates))).toEqual(JSON.stringify(
                     [
                         '\n        <user name="${0}">${1}</user>\n    ',
                         '\n    <users>\n    ${0}\n    </users>\n',
@@ -171,17 +152,9 @@ describe('i18n-tag-schema', () => {
                         }
                     ]
                 ))
-                exportTranslationKeys(srcPath, filePath2,
-                    (message, type) => {
-                        const cons = console[type]
-                        if (cons) {
-                            cons(`    ${message}`)
-                        } else {
-                            console.log(`    ${message}`)
-                        }
-                    },
+                exportTranslationKeys(srcPath, filePath2, undefined,
                     (templates) => {
-                        assert.equal(JSON.stringify(JSON.parse(templates)), JSON.stringify(
+                        expect(JSON.stringify(JSON.parse(templates))).toEqual(JSON.stringify(
                             [
                                 '\n        <user name="${0}">${1}</user>\n    ',
                                 '\n    <users>\n    ${0}\n    </users>\n',
@@ -202,14 +175,8 @@ describe('i18n-tag-schema', () => {
         const schemaPath = path.resolve(__dirname, './samples/schema.json')
         const translationPath = path.resolve(__dirname, './samples/translation.json')
         validateSchema(translationPath, schemaPath, (message, type) => {
-            const cons = console[type]
-            if (cons) {
-                cons(`    ${message}`)
-            } else {
-                console.log(`    ${message}`)
-            }
             if (type === 'success' || type === 'error') {
-                assert.equal(message, 'translation.json has 2 missing translations; 71% translated.')
+                expect(message).toEqual('translation.json has 2 missing translations; 71% translated.')
                 done()
             }
         })

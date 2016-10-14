@@ -53,16 +53,19 @@
     "babel-eslint": "^6.1.2",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
+    "coveralls": "^2.11.14",
     "eslint": "^3.0.1",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^1.10.2",
-    "mocha": "^2.5.3",
+    "jest": "^16.0.1",
     "rimraf": "^2.5.3",
+    "shx": "^0.1.4",
     "typedoc": "^0.4.4"
   },
   "scripts": {
-    "prepublish": "npm run lint && npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-register",
+    "prepublish": "yarn run lint && yarn run clean && yarn run build",
+    "test": "jest && npm run report-coverage",
+    "report-coverage": "shx cat ./coverage/lcov.info | coveralls",
     "clean": "rimraf dist/lib/**/*",
     "build": "babel lib -d dist/lib --source-maps --copy-files",
     "lint": "eslint lib",
@@ -73,5 +76,32 @@
   "main": "./dist/lib",
   "bin": {
     "i18n-tag-schema": "./cli/index.js"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "lib/*"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary",
+      "text"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/__tests__/samples/"
+    ]
   }
 }
