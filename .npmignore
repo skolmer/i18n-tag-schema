@@ -32,6 +32,12 @@ coverage
 lib-cov
 html-report
 xunit.xml
+docs
+images
+lib
+__tests__
+.vscode
+typings
 
 .project
 .idea
