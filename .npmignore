@@ -45,6 +45,15 @@ typings
 .iml
 *.sublime-workspace
 *.sublime-project
+.babelrc
+.eslintignore
+.gitattributes
+.npmignore
+.travis.yml
+jsconfig.json
+yarn.lock
+typings.json
+.coveralls.yml
 
 ehthumbs.db
 Icon?
