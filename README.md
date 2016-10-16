@@ -1,5 +1,7 @@
-# i18n Tagged Template Literals - Schema Generator [![Build Status](https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat)](https://travis-ci.org/skolmer/i18n-tag-schema) [![Coverage Status](https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master)](https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master) [![npm version](https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat)](https://www.npmjs.com/package/i18n-tag-schema)
-[![NPM](https://nodei.co/npm/i18n-tag-schema.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/i18n-tag-schema/)
+# i18n Tagged Template Literals - Schema Generator 
+[![Build Status](https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat)](https://travis-ci.org/skolmer/i18n-tag-schema) [![Coverage Status](https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master)](https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master) [![npm version](https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat)](https://www.npmjs.com/package/i18n-tag-schema) [![Dependencies](https://david-dm.org/skolmer/i18n-tag-schema.svg)](https://david-dm.org/skolmer/i18n-tag-schema)
+
+[![NPM](https://nodei.co/npm/i18n-tag-schema.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/i18n-tag-schema/) 
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
