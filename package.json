@@ -1,7 +1,6 @@
 {
   "name": "i18n-tag-schema",
   "description": "Generates a json schema for all i18n tagged template literals in your project",
-  "version": "1.5.2",
   "author": {
     "email": "steffen@kolmer.net",
     "name": "Steffen Kolmer",
@@ -31,7 +30,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/skolmer/i18n-tag-schema.git"
+    "url": "https://github.com/skolmer/i18n-tag-schema.git"
   },
   "bugs": {
     "url": "https://github.com/skolmer/i18n-tag-schema/issues",
@@ -62,7 +61,8 @@
     "jest": "^16.0.1",
     "rimraf": "^2.5.3",
     "shx": "^0.1.4",
-    "typedoc": "^0.5.0"
+    "typedoc": "^0.5.0",
+    "semantic-release": "^4.3.5"
   },
   "scripts": {
     "prepublish": "npm run lint && npm run clean && npm run build",
@@ -74,7 +74,8 @@
     "lint": "eslint lib",
     "pushdocs": "git add docs && git commit -m \"docs(pages): Updated pages\" && git subtree push --prefix docs origin gh-pages",
     "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images",
-    "commit": "git add . && git cz"
+    "commit": "git add . && git cz",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",
