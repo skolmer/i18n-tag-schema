@@ -54,6 +54,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "coveralls": "^2.11.14",
+    "cz-conventional-changelog": "^1.2.0",
     "eslint": "^3.0.1",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^2.0.1",
@@ -70,7 +71,8 @@
     "build": "babel lib -d dist/lib --source-maps --copy-files",
     "lint": "eslint lib",
     "pushdocs": "git add docs && git commit -m \"Updated docs\" && git subtree push --prefix docs origin gh-pages",
-    "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images"
+    "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images",
+    "commit": "git add . && git cz"
   },
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",
@@ -103,5 +105,10 @@
       "<rootDir>/node_modules/",
       "<rootDir>/__tests__/samples/"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
