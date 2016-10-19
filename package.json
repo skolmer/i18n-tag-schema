@@ -40,7 +40,7 @@
     "node": ">= 4.0.0"
   },
   "dependencies": {
-    "ajv": "^4.1.6",
+    "ajv": "^4.8.2",
     "babel-traverse": "^6.10.4",
     "babylon": "^6.8.4",
     "colors": "^1.1.2",
