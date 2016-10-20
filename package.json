@@ -59,7 +59,7 @@
     "eslint": "^3.8.1",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^2.0.1",
-    "jest": "^16.0.1",
+    "jest": "^16.0.2",
     "rimraf": "^2.5.3",
     "semantic-release": "^4.3.5",
     "shx": "^0.1.4",
