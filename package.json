@@ -42,7 +42,7 @@
   "dependencies": {
     "ajv": "^4.8.2",
     "babel-traverse": "^6.10.4",
-    "babylon": "^6.8.4",
+    "babylon": "^6.13.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "escape-string-regexp": "^1.0.5",
