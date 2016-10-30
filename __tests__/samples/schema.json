@@ -64,10 +64,15 @@
 					"type": "string",
 					"minLength": 1,
 					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+				},
+				"Hello!": {
+					"type": "string",
+					"minLength": 1
 				}
 			},
 			"required": [
-				"Hello ${0}, you have ${1} in your bank account."
+				"Hello ${0}, you have ${1} in your bank account.",
+				"Hello!"
 			]
 		}
 	},

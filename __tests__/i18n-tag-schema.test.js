@@ -68,10 +68,15 @@ const expected = {
                     'type': 'string',
                     'minLength': 1,
                     'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
+                },
+                'Hello!': {
+                    'type': 'string',
+                    'minLength': 1
                 }
             },
-            'required': [
-                'Hello ${0}, you have ${1} in your bank account.'
+            'required': [                
+                'Hello ${0}, you have ${1} in your bank account.',
+                'Hello!'
             ]
         }
     },
@@ -93,7 +98,7 @@ describe('i18n-tag-schema', () => {
         i18nTagSchema(srcPath, filter, null, (message, type) => {
             switch (type) {
                 case 'success':
-                    expect(JSON.stringify(JSON.parse(message))).toEqual(JSON.stringify(expected))
+                    expect(JSON.parse(message)).toEqual(expected)
                     done()
                     break
             }
@@ -108,7 +113,7 @@ describe('i18n-tag-schema', () => {
             const prevJson = fs.readFileSync(schema, 'utf-8')
             switch (type) {
                 case 'success':
-                    expect(JSON.stringify(JSON.parse(prevJson))).toEqual(JSON.stringify(expected))
+                    expect(JSON.parse(prevJson)).toEqual(expected)
                     done()
                     break
             }
@@ -121,49 +126,46 @@ describe('i18n-tag-schema', () => {
         const filePath2 = path.resolve(__dirname, './samples/multiline.js')
         exportTranslationKeys(srcPath, filePath, undefined,
             (templates) => {
-                expect(JSON.stringify(JSON.parse(templates))).toEqual(JSON.stringify(
-                    [
-                        '\n        <user name="${0}">${1}</user>\n    ',
-                        '\n    <users>\n    ${0}\n    </users>\n',
-                        {
-                            'group': 'custom group',
-                            'items': [
-                                'Hello ${0}, you have ${1} in your bank account.'
-                            ]
-                        },
-                        {
-                            'group': 'custom group 2',
-                            'items': [
-                                'Hello ${0}, you have ${1} in your bank account.'
-                            ]
-                        },
-                        {
-                            'group': 'custom inline group',
-                            'items': [
-                                'Hello!',
-                                'Welcome!'
-                            ]
-                        },
-                        {
-                            'group': 'grouped.js',
-                            'items': [
-                                'Hello ${0}, you have ${1} in your bank account.'
-                            ]
-                        }
-                    ]
-                ))
+                expect(JSON.parse(templates)).toEqual([
+                    '\n        <user name="${0}">${1}</user>\n    ',
+                    '\n    <users>\n    ${0}\n    </users>\n',
+                    {
+                        'group': 'custom group',
+                        'items': [
+                            'Hello ${0}, you have ${1} in your bank account.'
+                        ]
+                    },
+                    {
+                        'group': 'custom group 2',
+                        'items': [
+                            'Hello ${0}, you have ${1} in your bank account.'
+                        ]
+                    },
+                    {
+                        'group': 'custom inline group',
+                        'items': [
+                            'Hello!',
+                            'Welcome!'
+                        ]
+                    },
+                    {
+                        'group': 'grouped.js',
+                        'items': [
+                            'Hello ${0}, you have ${1} in your bank account.',
+                            'Hello!'
+                        ]
+                    }
+                ])
                 exportTranslationKeys(srcPath, filePath2, undefined,
                     (templates) => {
-                        expect(JSON.stringify(JSON.parse(templates))).toEqual(JSON.stringify(
-                            [
-                                '\n        <user name="${0}">${1}</user>\n    ',
-                                '\n    <users>\n    ${0}\n    </users>\n',
-                                {
-                                    'group': 'custom inline group',
-                                    'items': ['Hello!']
-                                }
-                            ]
-                        ))
+                        expect(JSON.parse(templates)).toEqual([
+                            '\n        <user name="${0}">${1}</user>\n    ',
+                            '\n    <users>\n    ${0}\n    </users>\n',
+                            {
+                                'group': 'custom inline group',
+                                'items': ['Hello!']
+                            }
+                        ])
                         done()
                     }
                 )
@@ -176,7 +178,7 @@ describe('i18n-tag-schema', () => {
         const translationPath = path.resolve(__dirname, './samples/translation.json')
         validateSchema(translationPath, schemaPath, (message, type) => {
             if (type === 'success' || type === 'error') {
-                expect(message).toEqual('translation.json has 2 missing translations; 71% translated.')
+                expect(message).toEqual('translation.json has 3 missing translations; 63% translated.')
                 done()
             }
         })
