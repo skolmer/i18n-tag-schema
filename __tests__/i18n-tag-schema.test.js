@@ -95,38 +95,45 @@ describe('i18n-tag-schema', () => {
     it('should match json string', (done) => {
         const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
-        i18nTagSchema(srcPath, filter, null, (message, type) => {
-            switch (type) {
-                case 'success':
-                    expect(JSON.parse(message)).toEqual(expected)
-                    done()
-                    break
-            }
+        i18nTagSchema({
+          srcPath, 
+          filter, 
+          callback: (status, result) => {
+              expect(status).toEqual(0)
+              expect(result).toEqual(expected)
+              done()
+          }
         })
     })
 
     it('should match json file', (done) => {
         const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
-        const schema = path.resolve(__dirname, './samples/schema.json')
-        i18nTagSchema(srcPath, filter, schema, (message, type) => {
-            const prevJson = fs.readFileSync(schema, 'utf-8')
-            switch (type) {
-                case 'success':
-                    expect(JSON.parse(prevJson)).toEqual(expected)
-                    done()
-                    break
-            }
+        const schemaPath = path.resolve(__dirname, './samples/schema.json')
+        i18nTagSchema({
+          srcPath, 
+          schemaPath,
+          filter, 
+          callback: (status) => {
+              expect(status).toEqual(0)
+              const json = fs.readFileSync(schemaPath, 'utf-8')
+              expect(JSON.parse(json)).toEqual(expected)
+              done()
+          }
         })
     })
 
     it('should export templates as array', (done) => {
-        const srcPath = path.resolve(__dirname, './samples')
+        const rootPath = path.resolve(__dirname, './samples')
         const filePath = path.resolve(__dirname, './samples/grouped.js')
         const filePath2 = path.resolve(__dirname, './samples/multiline.js')
-        exportTranslationKeys(srcPath, filePath, undefined,
-            (templates) => {
-                expect(JSON.parse(templates)).toEqual([
+        exportTranslationKeys({
+          rootPath, 
+          filePath, 
+          logger: { toConsole: true },
+          callback: (status, templates) => {
+                expect(status).toEqual(0)
+                expect(templates).toEqual([
                     '\n        <user name="${0}">${1}</user>\n    ',
                     '\n    <users>\n    ${0}\n    </users>\n',
                     {
@@ -156,9 +163,12 @@ describe('i18n-tag-schema', () => {
                         ]
                     }
                 ])
-                exportTranslationKeys(srcPath, filePath2, undefined,
-                    (templates) => {
-                        expect(JSON.parse(templates)).toEqual([
+                exportTranslationKeys({
+                  rootPath, 
+                  filePath: filePath2,
+                  callback: (status, templates) => {
+                        expect(status).toEqual(0)
+                        expect(templates).toEqual([
                             '\n        <user name="${0}">${1}</user>\n    ',
                             '\n    <users>\n    ${0}\n    </users>\n',
                             {
@@ -168,19 +178,22 @@ describe('i18n-tag-schema', () => {
                         ])
                         done()
                     }
-                )
+                })
             }
-        )
+        })
     })
 
     it('should validate translations', (done) => {
         const schemaPath = path.resolve(__dirname, './samples/schema.json')
         const translationPath = path.resolve(__dirname, './samples/translation.json')
-        validateSchema(translationPath, schemaPath, (message, type) => {
-            if (type === 'success' || type === 'error') {
-                expect(message).toEqual('translation.json has 3 missing translations; 63% translated.')
-                done()
-            }
+        validateSchema({
+          rootPath: translationPath, 
+          schemaPath, 
+          callback: (status, result) => {
+            expect(status).toEqual(1)
+            expect(result).toEqual('translation.json has 3 missing translations; 63% translated.')
+            done()
+          }
         })
     })
 })
