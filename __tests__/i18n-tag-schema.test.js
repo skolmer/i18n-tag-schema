@@ -98,6 +98,7 @@ describe('i18n-tag-schema', () => {
         i18nTagSchema({
           srcPath, 
           filter, 
+          logger: { toConsole: true },
           callback: (status, result) => {
               expect(status).toEqual(0)
               expect(result).toEqual(expected)
@@ -114,6 +115,7 @@ describe('i18n-tag-schema', () => {
           srcPath, 
           schemaPath,
           filter, 
+          logger: { toConsole: true },
           callback: (status) => {
               expect(status).toEqual(0)
               const json = fs.readFileSync(schemaPath, 'utf-8')
@@ -189,6 +191,7 @@ describe('i18n-tag-schema', () => {
         validateSchema({
           rootPath: translationPath, 
           schemaPath, 
+          logger: { toConsole: true },
           callback: (status, result) => {
             expect(status).toEqual(1)
             expect(result).toEqual('translation.json has 3 missing translations; 63% translated.')

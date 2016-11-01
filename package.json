@@ -45,8 +45,8 @@
     "babylon": "^6.13.1",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "escape-string-regexp": "^1.0.5",
-    "ghooks": "^1.3.2"
+    "escape-string-regexp": "^1.0.5",    
+    "lodash": "^4.16.6"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -59,6 +59,7 @@
     "eslint": "^3.9.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^2.0.1",
+    "ghooks": "^1.3.2",
     "jest": "^16.0.2",
     "rimraf": "^2.5.4",
     "semantic-release": "^4.3.5",
@@ -76,7 +77,8 @@
     "lint": "eslint lib",
     "pushdocs": "git add docs && git commit -m \"docs(pages): Updated pages\" && git subtree push --prefix docs origin gh-pages",
     "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES5 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images",
-    "commit": "git add . && git cz",
+    "commit": "git cz",
+    "commit-all": "git add . && npm run commit",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "typings": "./dist/lib/index.d.ts",
