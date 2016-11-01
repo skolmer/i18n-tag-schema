@@ -1,5 +1,8 @@
 import path from 'path'
 import { validateTranslations } from '../lib'
+import silentLogger from './samples/silentLogger'
+
+global.console = silentLogger
 
 describe('validateTranslations', () => {
   it('should fail if rootPath param is missing', (done) => {
@@ -28,6 +31,20 @@ describe('validateTranslations', () => {
     })
   })
 
+  it('should fail if rootPath is invalid', (done) => {
+    const schemaPath = path.resolve(__dirname, './samples/schema.json')
+    validateTranslations({
+      rootPath: 'unknown',
+      schemaPath,
+      logger: { toConsole: true },
+      callback: (status, result) => {
+        expect(status).toEqual(1)
+        expect(result).toContain('ENOENT: no such file or directory')
+        done()
+      }
+    })
+  })
+
   it('should validate translations', (done) => {
     const schemaPath = path.resolve(__dirname, './samples/schema.json')
     const rootPath = path.resolve(__dirname, './samples')
@@ -37,7 +54,8 @@ describe('validateTranslations', () => {
       logger: { toConsole: true },
       callback: (status, result) => {
         expect(status).toEqual(1)
-        expect(result).toEqual('translation.json has 3 missing translations and 1 invalid key; 63% translated.')
+        expect(result).toContain('translation.json has 3 missing translations and 1 invalid key; 63% translated.')
+        expect(result).toContain('translation.valid.json is valid and 100% translated!')
         done()
       }
     })
@@ -53,6 +71,21 @@ describe('validateTranslations', () => {
       callback: (status, result) => {
         expect(status).toEqual(1)
         expect(result).toEqual('translation.json has 3 missing translations and 1 invalid key; 63% translated.')
+        done()
+      }
+    })
+  })
+
+  it('should successfully validate single translation file', (done) => {
+    const schemaPath = path.resolve(__dirname, './samples/schema.json')
+    const translationPath = path.resolve(__dirname, './samples/translation.valid.json')
+    validateTranslations({
+      rootPath: translationPath,
+      schemaPath,
+      logger: { toConsole: true },
+      callback: (status, result) => {
+        expect(status).toEqual(0)
+        expect(result).toEqual('translation.valid.json is valid and 100% translated!')
         done()
       }
     })

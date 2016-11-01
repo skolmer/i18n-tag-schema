@@ -1,0 +1,1 @@
+const x = `just a literal`
