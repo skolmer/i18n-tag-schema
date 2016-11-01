@@ -5,7 +5,8 @@
     "colors": "registry:dt/colors#0.6.0-1+20160501135139",
     "commander": "registry:dt/commander#2.3.0+20160317120654",
     "escape-string-regexp": "registry:dt/escape-string-regexp#0.0.0+20160316155526",
-    "lodash": "registry:dt/lodash#4.14.0+20161004174455"
+    "lodash": "registry:dt/lodash#4.14.0+20161004174455",
+    "typescript": "registry:dt/typescript#0.4.0+20160317120654"
   },
   "globalDevDependencies": {
     "jest": "registry:dt/jest#15.1.1+20160919141445",

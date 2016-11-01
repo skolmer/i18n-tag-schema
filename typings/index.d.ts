@@ -6,3 +6,4 @@
 /// <reference path="globals/jest/index.d.ts" />
 /// <reference path="globals/lodash/index.d.ts" />
 /// <reference path="globals/rimraf/index.d.ts" />
+/// <reference path="globals/typescript/index.d.ts" />

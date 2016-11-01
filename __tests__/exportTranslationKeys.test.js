@@ -2,7 +2,6 @@ import path from 'path'
 import { exportTranslationKeys } from '../lib'
 import silentLogger from './samples/silentLogger'
 
-global.console = silentLogger
 
 describe('exportTranslationKeys', () => {
   it('should fail if rootPath param is missing', (done) => {
@@ -134,6 +133,23 @@ describe('exportTranslationKeys', () => {
       callback: (status, templates) => {
         expect(status).toEqual(1)
         expect(templates).toEqual(`ENOENT: no such file or directory, lstat '${filePath}'`)
+        done()
+      }
+    })
+  })
+
+  it('should support typescript', (done) => {
+    const rootPath = path.resolve(__dirname, './samples')
+    const filePath = path.resolve(__dirname, './samples/typescript.ts')
+    exportTranslationKeys({
+      rootPath,
+      filePath,
+      filter: /\.tsx?$/,
+      typescript: true,
+      logger: { toConsole: true },
+      callback: (status, templates) => {
+        expect(status).toEqual(0)
+        expect(templates).toEqual(['Process exiting with code \'${0}\'.'])
         done()
       }
     })
