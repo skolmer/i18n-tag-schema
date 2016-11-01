@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import i18nTagSchema, { exportTranslationKeys, validateTranslations } from '../lib'
+import { generateTranslationSchema, exportTranslationKeys, validateTranslations } from '../lib'
 
 const expected = {
     'type': 'object',
@@ -95,7 +95,7 @@ describe('i18n-tag-schema', () => {
     it('should match json string', (done) => {
         const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
-        i18nTagSchema({
+        generateTranslationSchema({
           srcPath, 
           filter, 
           logger: { toConsole: true },
@@ -111,7 +111,7 @@ describe('i18n-tag-schema', () => {
         const filter = '\\.jsx?$'
         const srcPath = path.resolve(__dirname, './samples')
         const schemaPath = path.resolve(__dirname, './samples/schema.json')
-        i18nTagSchema({
+        generateTranslationSchema({
           srcPath, 
           schemaPath,
           filter, 
