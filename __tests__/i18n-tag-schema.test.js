@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import i18nTagSchema, { exportTranslationKeys, validateSchema } from '../lib'
+import i18nTagSchema, { exportTranslationKeys, validateTranslations } from '../lib'
 
 const expected = {
     'type': 'object',
@@ -188,7 +188,7 @@ describe('i18n-tag-schema', () => {
     it('should validate translations', (done) => {
         const schemaPath = path.resolve(__dirname, './samples/schema.json')
         const translationPath = path.resolve(__dirname, './samples/translation.json')
-        validateSchema({
+        validateTranslations({
           rootPath: translationPath, 
           schemaPath, 
           logger: { toConsole: true },
