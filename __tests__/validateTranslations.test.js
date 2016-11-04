@@ -45,6 +45,24 @@ describe('validateTranslations', () => {
     })
   })
 
+  it('should report validation progress', (done) => {
+    let last = 0
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    const rootPath = path.resolve(__dirname, './data')
+    validateTranslations({
+      rootPath,
+      schemaPath,
+      logger: { toConsole: true },
+      progress: (current, total, name) => {
+        expect(name).toBeDefined()
+        expect(current).toBeGreaterThan(last)
+        last = current
+        expect(total).toEqual(2)
+        if(current === 2) done()
+      }
+    })
+  })
+
   it('should validate translations', (done) => {
     const schemaPath = path.resolve(__dirname, './data/schema.json')
     const rootPath = path.resolve(__dirname, './data')

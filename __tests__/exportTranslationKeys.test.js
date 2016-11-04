@@ -2,6 +2,7 @@ import path from 'path'
 import { exportTranslationKeys } from '../lib'
 import silentLogger from './data/silentLogger'
 
+global.console = silentLogger
 
 describe('exportTranslationKeys', () => {
   it('should fail if rootPath param is missing', (done) => {
@@ -55,6 +56,22 @@ describe('exportTranslationKeys', () => {
           }
         ])
         done()
+      }
+    })
+  })
+
+  it('should report export progress', (done) => {
+    const rootPath = path.resolve(__dirname, './data')
+    let last = 0
+    exportTranslationKeys({
+      rootPath,
+      logger: { toConsole: true },
+      progress: (current, total, name) => {
+        expect(name).toBeDefined()
+        expect(current).toBeGreaterThan(last)
+        last = current
+        expect(total).toEqual(4)
+        if(current === 4) done()
       }
     })
   })

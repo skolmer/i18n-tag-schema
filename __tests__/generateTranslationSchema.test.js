@@ -121,6 +121,24 @@ describe('i18n-tag-schema', () => {
     })
   })
 
+  it('should report schema progress', (done) => {
+    let last = 0
+    const filter = '\\.jsx?$'
+    const srcPath = path.resolve(__dirname, './data')
+    generateTranslationSchema({
+      srcPath,
+      filter,
+      logger: { toConsole: true },
+      progress: (current, total, name) => {
+        expect(name).toBeDefined()
+        expect(current).toBeGreaterThan(last)
+        last = current
+        expect(total).toEqual(4)
+        if(current === 4) done()
+      }
+    })
+  })
+
   it('should match json string', (done) => {
     const filter = '\\.jsx?$'
     const srcPath = path.resolve(__dirname, './data')
