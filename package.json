@@ -111,7 +111,7 @@
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
-      "<rootDir>/__tests__/samples/"
+      "<rootDir>/__tests__/data/"
     ]
   },
   "config": {

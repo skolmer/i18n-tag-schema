@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { generateTranslationSchema } from '../lib'
-import silentLogger from './samples/silentLogger'
+import silentLogger from './data/silentLogger'
 
 global.console = silentLogger
 
@@ -123,7 +123,7 @@ describe('i18n-tag-schema', () => {
 
   it('should match json string', (done) => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './samples')
+    const srcPath = path.resolve(__dirname, './data')
     generateTranslationSchema({
       srcPath,
       filter,
@@ -138,8 +138,8 @@ describe('i18n-tag-schema', () => {
 
   it('should match json file', (done) => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './samples')
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
+    const srcPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
     generateTranslationSchema({
       srcPath,
       schemaPath,
@@ -156,8 +156,8 @@ describe('i18n-tag-schema', () => {
 
   it('should create schema if not exists', (done) => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './samples')
-    const schemaPath = path.resolve(__dirname, './samples/schematest.json')
+    const srcPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schematest.json')
     generateTranslationSchema({
       srcPath,
       schemaPath,
@@ -175,7 +175,7 @@ describe('i18n-tag-schema', () => {
 
   it('should generate empty schema', (done) => {
     const filter = 'empty\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './samples')
+    const srcPath = path.resolve(__dirname, './data')
     generateTranslationSchema({
       srcPath,
       filter,
@@ -190,8 +190,8 @@ describe('i18n-tag-schema', () => {
 
   it('should generate empty schema file', (done) => {
     const filter = 'empty\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './samples')
-    const schemaPath = path.resolve(__dirname, './samples/schematest.json')
+    const srcPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schematest.json')
     generateTranslationSchema({
       srcPath,
       schemaPath,

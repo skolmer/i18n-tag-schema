@@ -1,2 +1,2 @@
-test/samples/**/*.js eol=crlf
+test/data/**/*.js eol=crlf
 cli/**/*.js eol=lf

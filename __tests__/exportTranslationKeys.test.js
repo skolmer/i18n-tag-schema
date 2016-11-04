@@ -1,11 +1,11 @@
 import path from 'path'
 import { exportTranslationKeys } from '../lib'
-import silentLogger from './samples/silentLogger'
+import silentLogger from './data/silentLogger'
 
 
 describe('exportTranslationKeys', () => {
   it('should fail if rootPath param is missing', (done) => {
-    const filePath = './samples/grouped.js'
+    const filePath = './data/grouped.js'
     exportTranslationKeys({
       filePath,
       logger: { toConsole: true },
@@ -18,7 +18,7 @@ describe('exportTranslationKeys', () => {
   })
 
   it('should export all templates from a directory', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
+    const rootPath = path.resolve(__dirname, './data')
     exportTranslationKeys({
       rootPath,
       logger: { toConsole: true },
@@ -60,8 +60,8 @@ describe('exportTranslationKeys', () => {
   })
 
   it('should export grouped templates as array', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
-    const filePath = path.resolve(__dirname, './samples/grouped.js')
+    const rootPath = path.resolve(__dirname, './data')
+    const filePath = path.resolve(__dirname, './data/grouped.js')
     exportTranslationKeys({
       rootPath,
       filePath,
@@ -104,8 +104,8 @@ describe('exportTranslationKeys', () => {
   })
 
   it('should export multiline templates as array', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
-    const filePath = path.resolve(__dirname, './samples/multiline.js')
+    const rootPath = path.resolve(__dirname, './data')
+    const filePath = path.resolve(__dirname, './data/multiline.js')
     exportTranslationKeys({
       rootPath,
       filePath,
@@ -125,8 +125,8 @@ describe('exportTranslationKeys', () => {
   })
 
   it('should fail if file does not exist', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
-    const filePath = path.resolve(__dirname, './samples/unknown.js')
+    const rootPath = path.resolve(__dirname, './data')
+    const filePath = path.resolve(__dirname, './data/unknown.js')
     exportTranslationKeys({
       rootPath,
       filePath,
@@ -139,8 +139,8 @@ describe('exportTranslationKeys', () => {
   })
 
   it('should support typescript', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
-    const filePath = path.resolve(__dirname, './samples/typescript.ts')
+    const rootPath = path.resolve(__dirname, './data')
+    const filePath = path.resolve(__dirname, './data/typescript.ts')
     exportTranslationKeys({
       rootPath,
       filePath,

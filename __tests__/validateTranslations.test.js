@@ -1,12 +1,12 @@
 import path from 'path'
 import { validateTranslations } from '../lib'
-import silentLogger from './samples/silentLogger'
+import silentLogger from './data/silentLogger'
 
 global.console = silentLogger
 
 describe('validateTranslations', () => {
   it('should fail if rootPath param is missing', (done) => {
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
     validateTranslations({
       schemaPath,
       logger: { toConsole: true },
@@ -19,7 +19,7 @@ describe('validateTranslations', () => {
   })
 
   it('should fail if schemaPath param is missing', (done) => {
-    const rootPath = path.resolve(__dirname, './samples')
+    const rootPath = path.resolve(__dirname, './data')
     validateTranslations({
       rootPath,
       logger: { toConsole: true },
@@ -32,7 +32,7 @@ describe('validateTranslations', () => {
   })
 
   it('should fail if rootPath is invalid', (done) => {
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
     validateTranslations({
       rootPath: 'unknown',
       schemaPath,
@@ -46,8 +46,8 @@ describe('validateTranslations', () => {
   })
 
   it('should validate translations', (done) => {
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
-    const rootPath = path.resolve(__dirname, './samples')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    const rootPath = path.resolve(__dirname, './data')
     validateTranslations({
       rootPath,
       schemaPath,
@@ -62,8 +62,8 @@ describe('validateTranslations', () => {
   })
 
   it('should validate single translation file', (done) => {
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
-    const translationPath = path.resolve(__dirname, './samples/translation.json')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    const translationPath = path.resolve(__dirname, './data/translation.json')
     validateTranslations({
       rootPath: translationPath,
       schemaPath,
@@ -77,8 +77,8 @@ describe('validateTranslations', () => {
   })
 
   it('should successfully validate single translation file', (done) => {
-    const schemaPath = path.resolve(__dirname, './samples/schema.json')
-    const translationPath = path.resolve(__dirname, './samples/translation.valid.json')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    const translationPath = path.resolve(__dirname, './data/translation.valid.json')
     validateTranslations({
       rootPath: translationPath,
       schemaPath,
