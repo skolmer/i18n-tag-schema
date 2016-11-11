@@ -19,9 +19,9 @@ let log = []
 
 const logger = {
   clear: () => log = [],
-  info: (message) => log.push('  ' + chalk.bgWhite(chalk.black('info:')) + ' ' + message),
-  warn: (message) => log.push('  ' + chalk.bgYellow(chalk.black('warn:')) + ' ' + message),
-  error: (message) => log.push('  ' + chalk.bgRed(chalk.white('error:')) + ' ' + message),
+  info: (message) => log.push('  ' + chalk.bgWhite(chalk.black(' INFO ')) + ' ' + message),
+  warn: (message) => log.push('  ' + chalk.bgYellow(chalk.black(' WARN ')) + ' ' + message),
+  error: (message) => log.push('  ' + chalk.bgRed(chalk.white(' ERROR ')) + ' ' + message),
   flush: () => console.log('') || log.forEach((message) => console.log(message))
 }
 
@@ -78,7 +78,8 @@ function formatResult(message) {
 program
   .version('2.0.0')
   .usage('<path> [options]')
-  .option('-s, --schema <path>', 'set schema path. defaults to ./translation.schema.json')
+  .option('-p, --preprocessor <name>', 'the name of a preprocessor node module. for typescript use \'./preprocessors/typescript\'')
+  .option('-s, --schema <path>', 'set path of the schema to create or validate against.\n                      If --schema is not set, JSON will be printed to the output.')
   .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?$')
   .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>')
   .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
@@ -87,7 +88,7 @@ program
     logger.clear();
     if (program.validate) {
       if (!program.schema) {
-        console.log('  ' + chalk.bgRed('error:') + ' ' + 'option `--schema <path>` missing');
+        console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'option `--schema <path>` missing');
         process.exit(1);
       }
       const result = validateTranslations({
@@ -122,6 +123,7 @@ program
         rootPath: path,
         filePath: program.export,
         filter: program.filter,
+        preprocessor: program.preprocessor,
         logger: (program.target)?logger:undefined,
         progress: (program.target)?progressBar():undefined
       }).then((result) => {
@@ -150,6 +152,7 @@ program
       generateTranslationSchema({
         rootPath: path,
         filter: program.filter,
+        preprocessor: program.preprocessor,
         logger: (program.schema)?logger:undefined,
         schemaPath: program.schema || './translation.schema.json',
         progress: (program.schema)?progressBar():undefined

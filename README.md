@@ -1,8 +1,8 @@
-# i18n Tagged Template Literals - Schema Generator 
+# i18n Tagged Template Literals - Schema Generator
 [![Build Status](https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat)](https://travis-ci.org/skolmer/i18n-tag-schema) [![Coverage Status](https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master)](https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master) [![npm version](https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat)](https://www.npmjs.com/package/i18n-tag-schema) [![Dependencies](https://david-dm.org/skolmer/i18n-tag-schema.svg)](https://david-dm.org/skolmer/i18n-tag-schema) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![MIT License](https://img.shields.io/npm/l/ghooks.svg)](http://opensource.org/licenses/MIT)
 
-[![NPM](https://nodei.co/npm/i18n-tag-schema.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/i18n-tag-schema/) 
+[![NPM](https://nodei.co/npm/i18n-tag-schema.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/i18n-tag-schema/)
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
@@ -97,16 +97,18 @@ $ npm install i18n-tag-schema -g
 ```
 Usage: i18n-tag-schema <path> [options]
 
-Options:
+  Options:
 
-    -h, --help            output usage information
-    -V, --version         output the version number
-    -s, --schema <path>   set schema path. defaults to ./translation.schema.json
-    -f, --filter <regex>  a regular expression to filter source files. defaults to \.jsx?$
-    -v, --validate        use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>
-    -e, --export <path>   export all translation keys FROM a JavaScript file or directory.
-    -t, --target <path>   export all translation keys TO a JSON file. requires --export <path>.
-                          If --target is not set, JSON will be printed to the output.
+    -h, --help                 output usage information
+    -V, --version              output the version number
+    -p, --preprocessor <name>  the name of a preprocessor node module. for typescript use './preprocessors/typescript'
+    -s, --schema <path>        set path of the schema to create or validate against.
+                               If --schema is not set, JSON will be printed to the output.
+    -f, --filter <regex>       a regular expression to filter source files. defaults to \.jsx?$
+    -v, --validate             use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>
+    -e, --export <path>        export all translation keys FROM a JavaScript file or directory.
+    -t, --target <path>        export all translation keys TO a JSON file. requires --export <path>.
+                               If --target is not set, JSON will be printed to the output.
 ```
 
 ### Reference schema in translation.json file
@@ -125,6 +127,24 @@ The generated Schema checks
 * if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
 Some IDEs can also provide auto completion for translation keys and groups
+
+## Preprocessors
+
+This libaray has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure 'typescript' npm package is installed if you want to parse typescript code.
+
+```
+$ i18n-tag-schema ./src -e ./typescript.ts -p ./preprocessors/typescript -f \.ts
+```
+
+Custom preprocessors can be added as npm packages
+
+```
+$ npm install my-preprocessor --save-dev
+$ i18n-tag-schema ./src -e ./file.myext -p my-preprocessor -f \.myext
+```
+
+A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
+An example can be found at [`./lib/preprocessors/typescript.js`](https://github.com/skolmer/i18n-tag-schema/blob/next/lib/preprocessors/typescript.js)
 
 ## IDE Integration
 
@@ -154,7 +174,7 @@ exportTranslationKeys('./samples', '.',
             cons(message)
         } else {
             console.log(message)
-        }        
+        }
     },
     (templates) => {
         /**
@@ -162,7 +182,7 @@ exportTranslationKeys('./samples', '.',
         *     '\n        <user name="${0}">${1}</user>\n    ',
         *     '\n    <users>\n    ${0}\n    </users>\n'
         * ]
-        */ 
+        */
     }
 )
 ```
@@ -187,7 +207,7 @@ validateSchema('./translations', './translation.schema.json', (output, type) => 
         cons(message)
     } else {
             console.log(message)
-    } 
+    }
     if(type === 'error' || type === 'success') {
         // isValid(type === 'success')
     }
