@@ -85,10 +85,14 @@ program
   .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
   .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
   .action(function (path) {
+    if (!path) {
+      console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'missing `<path>` argument!');
+      process.exit(1);
+    }
     logger.clear();
     if (program.validate) {
       if (!program.schema) {
-        console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'option `--schema <path>` missing');
+        console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'option `--schema <path>` missing!');
         process.exit(1);
       }
       const result = validateTranslations({
