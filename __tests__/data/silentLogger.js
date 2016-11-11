@@ -15,6 +15,8 @@ export default {
   error: (msg) => { logs.error.push(msg) },
   debug: (msg) => { logs.debug.push(msg) },
   clear: () => { Object.keys(logs).forEach((key) => logs[key] = []) },
-  get: (log) => logs[log]
+  get: (log) => logs[log],
+  group: () => {},
+  groupEnd: () => {}
 }
 

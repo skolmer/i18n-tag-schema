@@ -6,11 +6,12 @@ global.console = silentLogger
 
 describe('exportTranslationKeys', () => {
   it('should fail if rootPath param is missing', async () => {
+    silentLogger.clear()
     const filePath = './data/grouped.js'
     try {
       await exportTranslationKeys({
         filePath,
-        logger: { toConsole: true }
+        logger: silentLogger
       })
     } catch(err) {
       expect(err.message).toEqual('rootPath is not defined.')
@@ -67,7 +68,7 @@ describe('exportTranslationKeys', () => {
         expect(name).toBeDefined()
         expect(current).toBeGreaterThan(last)
         last = current
-        expect(total).toEqual(4)
+        expect(total).toEqual(5)
       }
     })
   })
@@ -133,7 +134,7 @@ describe('exportTranslationKeys', () => {
     const rootPath = path.resolve(__dirname, './data')
     const filePath = path.resolve(__dirname, './data/unknown.js')
     try {
-      exportTranslationKeys({
+      await exportTranslationKeys({
         rootPath,
         filePath
       })
