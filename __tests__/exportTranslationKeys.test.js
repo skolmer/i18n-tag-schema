@@ -66,7 +66,7 @@ describe('exportTranslationKeys', () => {
       logger: { toConsole: true },
       progress: (current, total, name) => {
         expect(name).toBeDefined()
-        expect(current).toBeGreaterThan(last)
+        expect(current > last || current === total).toBeTruthy()
         last = current
         expect(total).toEqual(5)
       }
@@ -150,7 +150,7 @@ describe('exportTranslationKeys', () => {
       rootPath,
       filePath,
       filter: /\.tsx?$/,
-      typescript: true,
+      preprocessor: './preprocessors/typescript',
       logger: { toConsole: true }
     })
     expect(templates).toEqual(['Process exiting with code \'${0}\'.'])

@@ -6,12 +6,12 @@
     "commander": "registry:dt/commander#2.3.0+20160317120654",
     "escape-string-regexp": "registry:dt/escape-string-regexp#0.0.0+20160316155526",
     "lodash": "registry:dt/lodash#4.14.0+20161004174455",
-    "progress": "registry:dt/progress#1.1.8+20160906145338",
-    "typescript": "registry:dt/typescript#0.4.0+20160317120654"
+    "progress": "registry:dt/progress#1.1.8+20160906145338"
   },
   "globalDevDependencies": {
     "jest": "registry:dt/jest#15.1.1+20160919141445",
     "mz": "registry:dt/mz#0.0.0+20160811111312",
-    "rimraf": "registry:dt/rimraf#0.0.0+20160317120654"
+    "rimraf": "registry:dt/rimraf#0.0.0+20160317120654",
+    "typescript": "registry:dt/typescript#0.4.0+20160317120654"
   }
 }

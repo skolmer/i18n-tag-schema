@@ -53,7 +53,7 @@ describe('validateTranslations', () => {
         logger: { toConsole: true },
         progress: (current, total, name) => {
           expect(name).toBeDefined()
-          expect(current).toBeGreaterThan(last)
+          expect(current > last || current === total).toBeTruthy()
           last = current
           expect(total).toEqual(2)
         }
