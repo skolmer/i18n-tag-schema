@@ -73,7 +73,7 @@ gulp.task('generate-translation-schema', function (cb) {
     cb(); // finished task
   }).catch((err) => {
     console.error(err.message)
-    cb(); // finished task
+    cb(err.message); // task failed
   })
 })
 
@@ -83,7 +83,7 @@ gulp.task('validate-german-translation', function (cb) {
     cb(); // finished task
   }).catch((err) => {
     console.error(err.message)
-    cb(); // finished task
+    cb(err.message); // task failed
   })
 })
 
@@ -93,7 +93,7 @@ gulp.task('validate-translations', function (cb) {
     cb(); // finished task
   }).catch((err) => {
     console.error(err.message)
-    cb(); // finished task
+    cb(err.message); // task failed
   })
 })
 ```
@@ -211,7 +211,7 @@ validateTranslations({ rootPath: './translations', schemaPath: './translation.sc
     // translations are valid
     console.log(result)
 }).catch((err) => {
-    // translation are invalid
+    // translations are invalid
     console.error(err.message)
 })
 ```
