@@ -72,7 +72,7 @@ describe('validateTranslations', () => {
       logger: { toConsole: true },
       callback: (status, result) => {
         expect(status).toEqual(1)
-        expect(result).toContain('translation.json has 3 missing translations and 1 invalid key; 63% translated.')
+        expect(result).toContain('translation.json has 3 missing translations and 1 invalid key; 67% translated.')
         expect(result).toContain('translation.valid.json is valid and 100% translated!')
         done()
       }
@@ -88,7 +88,7 @@ describe('validateTranslations', () => {
       logger: { toConsole: true },
       callback: (status, result) => {
         expect(status).toEqual(1)
-        expect(result).toEqual('translation.json has 3 missing translations and 1 invalid key; 63% translated.')
+        expect(result).toEqual('translation.json has 3 missing translations and 1 invalid key; 67% translated.')
         done()
       }
     })

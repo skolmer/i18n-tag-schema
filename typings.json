@@ -10,6 +10,7 @@
   },
   "globalDevDependencies": {
     "jest": "registry:dt/jest#15.1.1+20160919141445",
+    "mz": "registry:dt/mz#0.0.0+20160811111312",
     "rimraf": "registry:dt/rimraf#0.0.0+20160317120654"
   }
 }

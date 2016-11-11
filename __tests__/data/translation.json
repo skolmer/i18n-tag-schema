@@ -13,6 +13,7 @@
         "Hello ${0}, you have ${1} in your bank account.": "sad"
     },
     "custom inline group": {
+        "Hallo!": "Hello!",
         "Hello!": "Hallo!"
     }
 }

@@ -7,3 +7,4 @@ console.log(i18n`
 `)
 
 console.log(i18n('custom inline group') `Hello!`)
+console.log(i18n('custom inline group') `Hallo!`)

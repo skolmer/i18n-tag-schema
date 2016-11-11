@@ -5,65 +5,62 @@ import silentLogger from './data/silentLogger'
 global.console = silentLogger
 
 describe('exportTranslationKeys', () => {
-  it('should fail if rootPath param is missing', (done) => {
+  it('should fail if rootPath param is missing', async () => {
     const filePath = './data/grouped.js'
-    exportTranslationKeys({
-      filePath,
-      logger: { toConsole: true },
-      callback: (status, templates) => {
-        expect(status).toEqual(1)
-        expect(templates).toEqual('rootPath is not defined.')
-        done()
-      }
-    })
+    try {
+      await exportTranslationKeys({
+        filePath,
+        logger: { toConsole: true }
+      })
+    } catch(err) {
+      expect(err.message).toEqual('rootPath is not defined.')
+      expect(silentLogger.get('error')).toContain('rootPath is not defined.')
+    }
   })
 
-  it('should export all templates from a directory', (done) => {
+  it('should export all templates from a directory', async () => {
     const rootPath = path.resolve(__dirname, './data')
-    exportTranslationKeys({
+    const templates = await exportTranslationKeys({
       rootPath,
-      logger: { toConsole: true },
-      callback: (status, templates) => {
-        expect(status).toEqual(0)
-        expect(templates).toEqual([
-          '\n        <user name="${0}">${1}</user>\n    ',
-          '\n    <users>\n    ${0}\n    </users>\n',
-          {
-            'group': 'custom group',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.'
-            ]
-          },
-          {
-            'group': 'custom group 2',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.'
-            ]
-          },
-          {
-            'group': 'custom inline group',
-            'items': [
-              'Hello!',
-              'Welcome!'
-            ]
-          },
-          {
-            'group': 'grouped.js',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.',
-              'Hello!'
-            ]
-          }
-        ])
-        done()
-      }
+      logger: { toConsole: true }
     })
+    expect(templates).toEqual([
+      '\n        <user name="${0}">${1}</user>\n    ',
+      '\n    <users>\n    ${0}\n    </users>\n',
+      {
+        'group': 'custom group',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.'
+        ]
+      },
+      {
+        'group': 'custom group 2',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.'
+        ]
+      },
+      {
+        'group': 'custom inline group',
+        'items': [
+          'Hallo!',
+          'Hello!',
+          'Welcome!'
+        ]
+      },
+      {
+        'group': 'grouped.js',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.',
+          'Hello!'
+        ]
+      }
+    ])
   })
 
-  it('should report export progress', (done) => {
+  it('should report export progress', async () => {
     const rootPath = path.resolve(__dirname, './data')
     let last = 0
-    exportTranslationKeys({
+    await exportTranslationKeys({
       rootPath,
       logger: { toConsole: true },
       progress: (current, total, name) => {
@@ -71,105 +68,91 @@ describe('exportTranslationKeys', () => {
         expect(current).toBeGreaterThan(last)
         last = current
         expect(total).toEqual(4)
-        if(current === 4) done()
       }
     })
   })
 
-  it('should export grouped templates as array', (done) => {
+  it('should export grouped templates as array', async () => {
     const rootPath = path.resolve(__dirname, './data')
     const filePath = path.resolve(__dirname, './data/grouped.js')
-    exportTranslationKeys({
+    const templates = await exportTranslationKeys({
       rootPath,
       filePath,
-      logger: { toConsole: true },
-      callback: (status, templates) => {
-        expect(status).toEqual(0)
-        expect(templates).toEqual([
-          '\n        <user name="${0}">${1}</user>\n    ',
-          '\n    <users>\n    ${0}\n    </users>\n',
-          {
-            'group': 'custom group',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.'
-            ]
-          },
-          {
-            'group': 'custom group 2',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.'
-            ]
-          },
-          {
-            'group': 'custom inline group',
-            'items': [
-              'Hello!',
-              'Welcome!'
-            ]
-          },
-          {
-            'group': 'grouped.js',
-            'items': [
-              'Hello ${0}, you have ${1} in your bank account.',
-              'Hello!'
-            ]
-          }
-        ])
-        done()
-      }
+      logger: { toConsole: true }
     })
+    expect(templates).toEqual([
+      '\n        <user name="${0}">${1}</user>\n    ',
+      '\n    <users>\n    ${0}\n    </users>\n',
+      {
+        'group': 'custom group',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.'
+        ]
+      },
+      {
+        'group': 'custom group 2',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.'
+        ]
+      },
+      {
+        'group': 'custom inline group',
+        'items': [
+          'Hello!',
+          'Welcome!'
+        ]
+      },
+      {
+        'group': 'grouped.js',
+        'items': [
+          'Hello ${0}, you have ${1} in your bank account.',
+          'Hello!'
+        ]
+      }
+    ])
   })
 
-  it('should export multiline templates as array', (done) => {
+  it('should export multiline templates as array', async () => {
     const rootPath = path.resolve(__dirname, './data')
     const filePath = path.resolve(__dirname, './data/multiline.js')
-    exportTranslationKeys({
+    const templates = await exportTranslationKeys({
       rootPath,
-      filePath,
-      callback: (status, templates) => {
-        expect(status).toEqual(0)
-        expect(templates).toEqual([
-          '\n        <user name="${0}">${1}</user>\n    ',
-          '\n    <users>\n    ${0}\n    </users>\n',
-          {
-            'group': 'custom inline group',
-            'items': ['Hello!']
-          }
-        ])
-        done()
-      }
+      filePath
     })
+    expect(templates).toEqual([
+      '\n        <user name="${0}">${1}</user>\n    ',
+      '\n    <users>\n    ${0}\n    </users>\n',
+      {
+        'group': 'custom inline group',
+        'items': ['Hallo!', 'Hello!']
+      }
+    ])
   })
 
-  it('should fail if file does not exist', (done) => {
+  it('should fail if file does not exist', async () => {
     const rootPath = path.resolve(__dirname, './data')
     const filePath = path.resolve(__dirname, './data/unknown.js')
-    exportTranslationKeys({
-      rootPath,
-      filePath,
-      callback: (status, templates) => {
-        expect(status).toEqual(1)
-        expect(templates).toEqual(`ENOENT: no such file or directory, lstat '${filePath}'`)
-        done()
-      }
-    })
+    try {
+      exportTranslationKeys({
+        rootPath,
+        filePath
+      })
+    } catch(err) {
+      expect(err.message).toEqual(`ENOENT: no such file or directory, lstat '${filePath}'`)
+    }
   })
 
-  it('should support typescript', (done) => {
+  it('should support typescript', async () => {
     const rootPath = path.resolve(__dirname, './data')
     const filePath = path.resolve(__dirname, './data/typescript.ts')
-    exportTranslationKeys({
+    const templates = await exportTranslationKeys({
       rootPath,
       filePath,
       filter: /\.tsx?$/,
       typescript: true,
-      logger: { toConsole: true },
-      callback: (status, templates) => {
-        expect(status).toEqual(0)
-        expect(templates).toEqual(['Process exiting with code \'${0}\'.'])
-        done()
-      }
+      logger: { toConsole: true }
     })
+    expect(templates).toEqual(['Process exiting with code \'${0}\'.'])
   })
 
 })

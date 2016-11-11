@@ -50,6 +50,10 @@ const expected = {
     'custom inline group': {
       'type': 'object',
       'properties': {
+        'Hallo!': {
+          'type': 'string',
+          'minLength': 1
+        },
         'Hello!': {
           'type': 'string',
           'minLength': 1
@@ -60,6 +64,7 @@ const expected = {
         }
       },
       'required': [
+        'Hallo!',
         'Hello!',
         'Welcome!'
       ]
@@ -96,37 +101,35 @@ const expected = {
 
 describe('i18n-tag-schema', () => {
 
-  it('should fail if srcPath param is missing', (done) => {
+  it('should fail if rootPath param is missing', async () => {
     silentLogger.clear()
-    generateTranslationSchema({
-      logger: silentLogger,
-      callback: (status, result) => {
-        expect(status).toEqual(1)
-        expect(result).toEqual('srcPath is not defined.')
-        expect(silentLogger.get('error')).toContain('srcPath is not defined.')
-        done()
-      }
-    })
+    try {
+      await generateTranslationSchema({
+        logger: silentLogger
+      })
+    } catch(err) {
+      expect(err.message).toEqual('rootPath is not defined.')
+      expect(silentLogger.get('error')).toContain('rootPath is not defined.')
+    }
   })
 
-  it('should fail if srcPath is invalid', (done) => {
-    generateTranslationSchema({
-      logger: { toConsole: true },
-      srcPath: 'unknown',
-      callback: (status, result) => {
-        expect(status).toEqual(1)
-        expect(result).toContain('ENOENT: no such file or directory')
-        done()
-      }
-    })
+  it('should fail if rootPath is invalid', async () => {
+    try {
+      await generateTranslationSchema({
+        logger: { toConsole: true },
+        rootPath: 'unknown'
+      })
+    } catch(err) {
+      expect(err.message).toContain('ENOENT: no such file or directory')
+    }
   })
 
-  it('should report schema progress', (done) => {
+  it('should report schema progress', async () => {
     let last = 0
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
-    generateTranslationSchema({
-      srcPath,
+    const rootPath = path.resolve(__dirname, './data')
+    await generateTranslationSchema({
+      rootPath,
       filter,
       logger: { toConsole: true },
       progress: (current, total, name) => {
@@ -134,94 +137,72 @@ describe('i18n-tag-schema', () => {
         expect(current).toBeGreaterThan(last)
         last = current
         expect(total).toEqual(4)
-        if(current === 4) done()
       }
     })
   })
 
-  it('should match json string', (done) => {
+  it('should match json string', async () => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
-    generateTranslationSchema({
-      srcPath,
+    const rootPath = path.resolve(__dirname, './data')
+    const result = await generateTranslationSchema({
+      rootPath,
       filter,
-      logger: { toConsole: true },
-      callback: (status, result) => {
-        expect(status).toEqual(0)
-        expect(result).toEqual(expected)
-        done()
-      }
+      logger: { toConsole: true }
     })
+    expect(result).toEqual(expected)
   })
 
-  it('should match json file', (done) => {
+  it('should match json file', async () => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
+    const rootPath = path.resolve(__dirname, './data')
     const schemaPath = path.resolve(__dirname, './data/schema.json')
-    generateTranslationSchema({
-      srcPath,
+    await generateTranslationSchema({
+      rootPath,
       schemaPath,
       filter,
-      logger: { toConsole: true },
-      callback: (status) => {
-        expect(status).toEqual(0)
-        const json = fs.readFileSync(schemaPath, 'utf-8')
-        expect(JSON.parse(json)).toEqual(expected)
-        done()
-      }
+      logger: { toConsole: true }
     })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(JSON.parse(json)).toEqual(expected)
   })
 
-  it('should create schema if not exists', (done) => {
+  it('should create schema if not exists', async () => {
     const filter = '\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
+    const rootPath = path.resolve(__dirname, './data')
     const schemaPath = path.resolve(__dirname, './data/schematest.json')
-    generateTranslationSchema({
-      srcPath,
+    await generateTranslationSchema({
+      rootPath,
       schemaPath,
       filter,
-      logger: { toConsole: true },
-      callback: (status) => {
-        expect(status).toEqual(0)
-        const json = fs.readFileSync(schemaPath, 'utf-8')
-        expect(JSON.parse(json)).toEqual(expected)
-        fs.unlinkSync(schemaPath)
-        done()
-      }
+      logger: { toConsole: true }
     })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(JSON.parse(json)).toEqual(expected)
   })
 
-  it('should generate empty schema', (done) => {
+  it('should generate empty schema', async () => {
     const filter = 'empty\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
-    generateTranslationSchema({
-      srcPath,
+    const rootPath = path.resolve(__dirname, './data')
+    const result = await generateTranslationSchema({
+      rootPath,
       filter,
-      logger: { toConsole: true },
-      callback: (status, result) => {
-        expect(status).toEqual(0)
-        expect(result).toEqual({})
-        done()
-      }
+      logger: { toConsole: true }
     })
+    expect(result).toEqual({})
   })
 
-  it('should generate empty schema file', (done) => {
+  it('should generate empty schema file', async () => {
     const filter = 'empty\\.jsx?$'
-    const srcPath = path.resolve(__dirname, './data')
+    const rootPath = path.resolve(__dirname, './data')
     const schemaPath = path.resolve(__dirname, './data/schematest.json')
-    generateTranslationSchema({
-      srcPath,
+    await generateTranslationSchema({
+      rootPath,
       schemaPath,
       filter,
-      logger: { toConsole: true },
-      callback: (status) => {
-        expect(status).toEqual(0)
-        const json = fs.readFileSync(schemaPath, 'utf-8')
-        expect(JSON.parse(json)).toEqual({})
-        fs.unlinkSync(schemaPath)
-        done()
-      }
+      logger: { toConsole: true }
     })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(JSON.parse(json)).toEqual({})
+    fs.unlinkSync(schemaPath)
   })
 })

@@ -9,8 +9,9 @@
         "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have ${1} in your bank account."
     },
     "custom inline group": {
+      "Hallo!": "Hallo!",
       "Hello!": "Hello!",
-      "Welcome!": "Welcome!"  
+      "Welcome!": "Welcome!"
     },
     "grouped.js": {
         "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have ${1} in your bank account.",

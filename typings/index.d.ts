@@ -5,5 +5,6 @@
 /// <reference path="globals/escape-string-regexp/index.d.ts" />
 /// <reference path="globals/jest/index.d.ts" />
 /// <reference path="globals/lodash/index.d.ts" />
+/// <reference path="globals/mz/index.d.ts" />
 /// <reference path="globals/rimraf/index.d.ts" />
 /// <reference path="globals/typescript/index.d.ts" />
