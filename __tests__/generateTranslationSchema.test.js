@@ -125,7 +125,7 @@ describe('i18n-tag-schema', () => {
   })
 
   it('should report schema progress', async () => {
-    let last = 0
+    let last = -1
     const filter = '\\.jsx?$'
     const rootPath = path.resolve(__dirname, './data')
     await generateTranslationSchema({

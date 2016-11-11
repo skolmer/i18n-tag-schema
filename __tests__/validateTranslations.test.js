@@ -43,7 +43,7 @@ describe('validateTranslations', () => {
   })
 
   it('should report validation progress', async () => {
-    let last = 0
+    let last = -1
     const schemaPath = path.resolve(__dirname, './data/schema.json')
     const rootPath = path.resolve(__dirname, './data')
     try {

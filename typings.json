@@ -2,10 +2,11 @@
   "globalDependencies": {
     "babel-traverse": "registry:dt/babel-traverse#6.7.0+20160423062108",
     "babylon": "registry:dt/babylon#6.7.0+20160423062108",
-    "colors": "registry:dt/colors#0.6.0-1+20160501135139",
+    "chalk": "registry:dt/chalk#0.4.0+20160317120654",
     "commander": "registry:dt/commander#2.3.0+20160317120654",
     "escape-string-regexp": "registry:dt/escape-string-regexp#0.0.0+20160316155526",
     "lodash": "registry:dt/lodash#4.14.0+20161004174455",
+    "progress": "registry:dt/progress#1.1.8+20160906145338",
     "typescript": "registry:dt/typescript#0.4.0+20160317120654"
   },
   "globalDevDependencies": {

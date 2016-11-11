@@ -60,7 +60,7 @@ describe('exportTranslationKeys', () => {
 
   it('should report export progress', async () => {
     const rootPath = path.resolve(__dirname, './data')
-    let last = 0
+    let last = -1
     await exportTranslationKeys({
       rootPath,
       logger: { toConsole: true },
