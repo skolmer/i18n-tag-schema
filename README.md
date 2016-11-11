@@ -32,10 +32,12 @@ $ npm install i18n-tag-schema --save-dev
 
 ## Usage
 ```js
-import i18nTagSchema from 'i18n-tag-schema'
+import { generateTranslationSchema } from 'i18n-tag-schema'
 
-i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', (output, type) => {
-    // log(output)
+generateTranslationSchema({rootPath: './src', schemaPath: './translation.schema.json'}).then((result) => {
+    console.log(result)
+}).catch((err) => {
+    console.error(err.message)
 })
 ```
 
@@ -47,7 +49,7 @@ i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', (output, type) =
 ```json
 {
   "scripts": {
-    "generate-schema": "i18n-tag-schema ./src",
+    "generate-schema": "i18n-tag-schema ./src --schema ./translation.schema.json",
     "validate-german-translation": "i18n-tag-schema ./translations/translation.de.json --validate --schema ./translation.schema.json",
     "validate-translations": "i18n-tag-schema ./translations --validate --schema ./translation.schema.json"
   }
@@ -62,26 +64,36 @@ $ npm run validate-translations
 ### Via Gulp
 ```js
 var gulp = require('gulp')
-var i18nTagSchema = require('i18n-tag-schema').default
-var validateSchema = require('i18n-tag-schema').validateSchema
+var generateTranslationSchema = require('i18n-tag-schema').generateTranslationSchema
+var validateTranslations = require('i18n-tag-schema').validateTranslations
+
 gulp.task('generate-translation-schema', function (cb) {
-  i18nTagSchema('./src', '\\.jsx?$', './translation.schema.json', (output, type) => {
-      console.log(output)
-      if(type === 'error' || type === 'success') cb(); // finished task
+  generateTranslationSchema({ rootPath: './src', schemaPath: './translation.schema.json' }).then((result) => {
+    console.log(result)
+    cb(); // finished task
+  }).catch((err) => {
+    console.error(err.message)
+    cb(); // finished task
   })
 })
 
 gulp.task('validate-german-translation', function (cb) {
-  validateSchema('./translations/translation.de.json', './translation.schema.json', (output, type) => {
-      console.log(output)
-      if(type === 'error' || type === 'success') cb(); // finished task
+  validateTranslations({ rootPath: './translations/translation.de.json', schemaPath: './translation.schema.json' }).then((result) => {
+    console.log(result)
+    cb(); // finished task
+  }).catch((err) => {
+    console.error(err.message)
+    cb(); // finished task
   })
 })
 
 gulp.task('validate-translations', function (cb) {
-  validateSchema('./translations', './translation.schema.json', (output, type) => {
-      console.log(output)
-      if(type === 'error' || type === 'success') cb(); // finished task
+  validateTranslations({ rootPath: './translations', schemaPath: './translation.schema.json' }).then((result) => {
+    console.log(result)
+    cb(); // finished task
+  }).catch((err) => {
+    console.error(err.message)
+    cb(); // finished task
   })
 })
 ```
@@ -167,24 +179,18 @@ Read all i18n tagged template literals from a JavaScript file or directory
 ```js
 import { exportTranslationKeys } from 'i18n-tag-schema'
 
-exportTranslationKeys('./samples', '.',
-    (message, type) => {
-        const cons = console[type]
-        if(cons) {
-            cons(message)
-        } else {
-            console.log(message)
-        }
-    },
-    (templates) => {
-        /**
-        * templates: [
-        *     '\n        <user name="${0}">${1}</user>\n    ',
-        *     '\n    <users>\n    ${0}\n    </users>\n'
-        * ]
-        */
-    }
-)
+exportTranslationKeys({ rootPath: './samples' }).then((result) => {
+    console.log(result)
+    /**
+    * result: [
+    *     '\n        <user name="${0}">${1}</user>\n    ',
+    *     '\n    <users>\n    ${0}\n    </users>\n'
+    * ]
+    */
+}).catch((err) => {
+    console.error(err.message)
+    cb(); // finished task
+})
 ```
 
 [See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#exporttranslationkeys)
@@ -199,18 +205,14 @@ The validation function checks
 * if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).
 
 ```js
-import { validateSchema } from 'i18n-tag-schema'
+import { validateTranslations } from 'i18n-tag-schema'
 
-validateSchema('./translations', './translation.schema.json', (output, type) => {
-    const cons = console[type]
-    if(cons) {
-        cons(message)
-    } else {
-            console.log(message)
-    }
-    if(type === 'error' || type === 'success') {
-        // isValid(type === 'success')
-    }
+validateTranslations({ rootPath: './translations', schemaPath: './translation.schema.json' }).then((result) => {
+    // translations are valid
+    console.log(result)
+}).catch((err) => {
+    // translation are invalid
+    console.error(err.message)
 })
 ```
 
