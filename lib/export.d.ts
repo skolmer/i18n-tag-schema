@@ -1,5 +1,3 @@
-// index.d.ts
-
 type Logger = {
     /*
       A custom info logging function.
@@ -21,6 +19,43 @@ type Logger = {
       Log to default console.
     */
     toConsole?: boolean
+};
+
+type ReadOptions = {
+    /**
+     * The root directory of your source files.
+     */
+    rootPath: string ,
+    /**
+     * The full path of a source file.
+     */
+    filePath: string,
+    /**
+     * The content of the source file as string.
+     */
+    content: string,
+    /**
+     * The current list of templates to merge into.
+     */
+    templates: [],
+    /**
+     * The current map of template patterns to merge into.
+     */
+    templatePatterns: {
+      [template : string]: pattern: string
+    },
+    /**
+     * A custom logger.
+     */
+    logger?: Logger,
+    /**
+     * A custom preprocessor like `./preprocessors/typescript`.
+     */
+    preprocessor?: string,
+    /**
+     * A custom babylon configuration.
+     */
+    babylonConfig?: {}
 };
 
 type ExportOptions = {
@@ -54,73 +89,23 @@ type ExportOptions = {
     babylonConfig?: {}
 };
 
-type SchemaOptions = {
-    /**
-     * The root directory of your source files.
-     */
-    rootPath: string ,
-    /**
-     * The target path of the JSON schema.
-     */
-    schemaPath?: string,
-    /**
-     * A regex to filter source files by name or extension. Defaults to `\.jsx?$`.
-     */
-    filter?: string,
-    /**
-     * A custom logger.
-     */
-    logger?: Logger,
-    /**
-     * A progress callback.
-     */
-    progress?: (current: number, total: number, name: string) => void,
-    /**
-     * A custom preprocessor like `./preprocessors/typescript`.
-     */
-    preprocessor?: string,
-    /**
-     * A custom babylon configuration.
-     */
-    babylonConfig?: {}
-};
-
-type ValidateOptions = {
-    /**
-     * The root directory of your source files.
-     */
-    rootPath: string ,
-    /**
-     * The target path of the JSON schema.
-     */
-    schemaPath?: string,
-    /**
-     * A regex to filter source files by name or extension. Defaults to `\.jsx?$`.
-     */
-    logger?: Logger,
-    /**
-     * A progress callback.
-     */
-    progress?: (current: number, total: number, name: string) => void
-};
+type TemplateExport = {
+  templates: [string],
+  templatePatterns: {
+    [template : string]: pattern: string
+  }
+}
 
 /**
- * Generates a JSON schema based on i18n tagged template literals.
+ * Generates an array of all i18n tagged template literals in javascript ES2015 source code.
  *
- * @param options The schema options.
+ * @param options The read options.
  */
-export function generateTranslationSchema(options: SchemaOptions) : Promise<{}>
+export function readTemplatesFromFileContent(options: ReadOptions) : { templates: [string], templatePatterns: TemplateExport }
 
 /**
  * Generates an array of all i18n tagged template literals in a file.
  *
  * @param options The export options.
  */
-export function exportTranslationKeys(options: ExportOptions) : Promise<[]>
-
-/**
- * Validates a translation file or folder and calculates translation coverage
- *
- * @param options The validation options.
- */
-export function validateTranslations(options: ValidateOptions) : Promise<string>
+export function exportTranslationKeysFromFiles(options: ExportOptions) : Promise<{ templates: [string], templatePatterns: TemplateExport }>
