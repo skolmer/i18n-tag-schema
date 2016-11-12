@@ -37,11 +37,11 @@ type ReadOptions = {
     /**
      * The current list of templates to merge into.
      */
-    templates: [],
+    templates?: Array<string | {}>,
     /**
      * The current map of template patterns to merge into.
      */
-    templatePatterns: {
+    templatePatterns?: {
       [template : string]: pattern: string
     },
     /**
@@ -90,7 +90,7 @@ type ExportOptions = {
 };
 
 type TemplateExport = {
-  templates: [string],
+  templates: Array<string | {}>,
   templatePatterns: {
     [template : string]: pattern: string
   }
@@ -101,11 +101,11 @@ type TemplateExport = {
  *
  * @param options The read options.
  */
-export function readTemplatesFromFileContent(options: ReadOptions) : { templates: [string], templatePatterns: TemplateExport }
+export function readTemplatesFromFileContent(options: ReadOptions) : TemplateExport
 
 /**
  * Generates an array of all i18n tagged template literals in a file.
  *
  * @param options The export options.
  */
-export function exportTranslationKeysFromFiles(options: ExportOptions) : Promise<{ templates: [string], templatePatterns: TemplateExport }>
+export function exportTranslationKeysFromFiles(options: ExportOptions) : Promise<TemplateExport>
