@@ -82,7 +82,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function"><a href="globals.html#exporttranslationkeys" class="tsd-kind-icon">export<wbr>Translation<wbr>Keys</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#generatetranslationschema" class="tsd-kind-icon">generate<wbr>Translation<wbr>Schema</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#validateschema" class="tsd-kind-icon">validate<wbr>Schema</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#validatetranslations" class="tsd-kind-icon">validate<wbr>Translations</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,7 +96,7 @@
 					<div class="tsd-signature tsd-kind-icon">Export<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L26">index.d.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L26">index.d.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -193,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">Logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L3">index.d.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L3">index.d.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -295,7 +295,7 @@
 					<div class="tsd-signature tsd-kind-icon">Schema<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L57">index.d.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L57">index.d.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -392,7 +392,7 @@
 					<div class="tsd-signature tsd-kind-icon">Validate<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L88">index.d.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L88">index.d.ts:88</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -464,19 +464,18 @@
 					<a name="exporttranslationkeys" class="tsd-anchor"></a>
 					<h3>export<wbr>Translation<wbr>Keys</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">export<wbr>Translation<wbr>Keys<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="globals.html#exportoptions" class="tsd-signature-type">ExportOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">export<wbr>Translation<wbr>Keys<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="globals.html#exportoptions" class="tsd-signature-type">ExportOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L121">index.d.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L119">index.d.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Generates an array of all i18n tagged template literals in a file.
-									The array will be returned as json via callback output param.</p>
+									<p>Generates an array of all i18n tagged template literals in a file.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -484,11 +483,11 @@
 								<li>
 									<h5>options: <a href="globals.html#exportoptions" class="tsd-signature-type">ExportOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The translation options.</p>
+										<p>The export options.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -502,13 +501,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L113">index.d.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L112">index.d.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Generates a JSON schema based on i18n tagged template literals.
-									If no target schema is provided the json will be returned via callback output param.</p>
+									<p>Generates a JSON schema based on i18n tagged template literals.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -525,16 +523,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="validateschema" class="tsd-anchor"></a>
-					<h3>validate<wbr>Schema</h3>
+					<a name="validatetranslations" class="tsd-anchor"></a>
+					<h3>validate<wbr>Translations</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Schema<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="globals.html#validateoptions" class="tsd-signature-type">ValidateOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Translations<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="globals.html#validateoptions" class="tsd-signature-type">ValidateOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/abd1f0c/lib/index.d.ts#L128">index.d.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/4763ab9/lib/index.d.ts#L126">index.d.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -586,7 +584,7 @@
 						<a href="globals.html#generatetranslationschema" class="tsd-kind-icon">generate<wbr>Translation<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#validateschema" class="tsd-kind-icon">validate<wbr>Schema</a>
+						<a href="globals.html#validatetranslations" class="tsd-kind-icon">validate<wbr>Translations</a>
 					</li>
 				</ul>
 			</nav>

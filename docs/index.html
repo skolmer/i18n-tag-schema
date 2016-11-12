@@ -178,13 +178,13 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
 				</ul>
 				<p>Some IDEs can also provide auto completion for translation keys and groups</p>
 				<h2 id="preprocessors">Preprocessors</h2>
-				<p>This libaray has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure &#39;typescript&#39; npm package is installed if you want to parse typescript code.</p>
+				<p>This library has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure <code>typescript</code> npm package is installed if you want to parse typescript code.</p>
 				<pre><code>$ i18n-tag-schema ./src -e ./typescript<span class="hljs-selector-class">.ts</span> -<span class="hljs-selector-tag">p</span> ./preprocessors/typescript -f \.ts
 </code></pre><p>Custom preprocessors can be added as npm packages</p>
 				<pre><code>$ npm install <span class="hljs-keyword">my</span>-preprocessor <span class="hljs-comment">--save-dev</span>
 $ i18n-tag-schema ./src -e ./<span class="hljs-built_in">file</span>.myext -p <span class="hljs-keyword">my</span>-preprocessor -f \.myext
 </code></pre><p>A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
-				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/next/lib/preprocessors/typescript.js"><code>./lib/preprocessors/typescript.js</code></a></p>
+				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js"><code>./lib/preprocessors/typescript.js</code></a></p>
 				<h2 id="ide-integration">IDE Integration</h2>
 				<h3 id="webstorm-phpstorm">Webstorm / PhpStorm</h3>
 				<p>Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more details please see:  <a href="https://www.jetbrains.com/help/webstorm/2016.1/add-json-schema-mapping-dialog.html">Add JSON Schema Mapping Dialog</a></p>
@@ -276,7 +276,7 @@ validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hlj
 						<a href="globals.html#generatetranslationschema" class="tsd-kind-icon">generate<wbr>Translation<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#validateschema" class="tsd-kind-icon">validate<wbr>Schema</a>
+						<a href="globals.html#validatetranslations" class="tsd-kind-icon">validate<wbr>Translations</a>
 					</li>
 				</ul>
 			</nav>
