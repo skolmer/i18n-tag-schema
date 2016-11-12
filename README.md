@@ -189,7 +189,6 @@ exportTranslationKeys({ rootPath: './samples' }).then((result) => {
     */
 }).catch((err) => {
     console.error(err.message)
-    cb(); // finished task
 })
 ```
 
