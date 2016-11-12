@@ -41,7 +41,7 @@ generateTranslationSchema({rootPath: './src', schemaPath: './translation.schema.
 })
 ```
 
-[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#default)
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#generatetranslationschema)
 
 ### Via npm
 
@@ -215,7 +215,7 @@ validateTranslations({ rootPath: './translations', schemaPath: './translation.sc
 })
 ```
 
-[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#validateschema)
+[See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#validatetranslations)
 
 ## Tools
 
