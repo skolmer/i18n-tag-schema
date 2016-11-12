@@ -65,25 +65,34 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="i18n-tagged-template-literals-schema-generator-build-status-https-img-shields-io-travis-skolmer-i18n-tag-schema-master-svg-style-flat-https-travis-ci-org-skolmer-i18n-tag-schema-npm-version-https-img-shields-io-npm-v-i18n-tag-schema-svg-style-flat-https-www-npmjs-com-package-i18n-tag-schema-">i18n Tagged Template Literals - Schema Generator <a href="https://travis-ci.org/skolmer/i18n-tag-schema"><img src="https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat" alt="Build Status"></a> <a href="https://www.npmjs.com/package/i18n-tag-schema"><img src="https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat" alt="npm version"></a></h1>
+				<h1 id="i18n-tagged-template-literals-schema-generator">i18n Tagged Template Literals - Schema Generator</h1>
+				<p><a href="https://travis-ci.org/skolmer/i18n-tag-schema"><img src="https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat" alt="Build Status"></a> <a href="https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master"><img src="https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/i18n-tag-schema"><img src="https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat" alt="npm version"></a> <a href="https://david-dm.org/skolmer/i18n-tag-schema"><img src="https://david-dm.org/skolmer/i18n-tag-schema.svg" alt="Dependencies"></a> <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
+				<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a> <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/ghooks.svg" alt="MIT License"></a></p>
 				<p><a href="https://nodei.co/npm/i18n-tag-schema/"><img src="https://nodei.co/npm/i18n-tag-schema.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM"></a></p>
 				<p><a href="http://i18n-tag.kolmer.net/"><img src="images/vscode-18n-tag-schema-icon-big.jpg" alt="i18n Tagged Template Literals"></a></p>
 				<h2 id="overview">Overview</h2>
 				<p>This node module generates a <a href="http://json-schema.org/">JSON Schema</a> of all <a href="https://github.com/skolmer/es2015-i18n-tag">i18n tagged</a> template literals in a JavaScript project.
 					A JSON schema can add key validation and autocompletion to your JSON based translation files (See <a href="#ide-integration">IDE Integration</a>).
 					The tool will only detect template literals that are tagged with i18n (See <a href="http://i18n-tag.kolmer.net/">es2015-i18n-tag</a>).
-				It has support for <a href="https://github.com/skolmer/es2015-i18n-tag#appjs">Custom Translation Groups</a> and generated <a href="https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups">File Module Groups</a>. If you want to use generated File Module Groups you have to set <code>groups</code> to <code>true</code>.</p>
+				It has support for <a href="https://github.com/skolmer/es2015-i18n-tag#appjs">Custom Translation Groups</a> and generated <a href="https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups">File Module Groups</a>. <code>__translationGroup</code> constants in your code will be resolved relative to <a href="http://github.kolmer.net/i18n-tag-schema/globals.html#default"><code>path</code></a>.</p>
 				<p>The following repository provides examples for use with npm scripts or gulp: <a href="https://github.com/skolmer/i18n-tag-examples">https://github.com/skolmer/i18n-tag-examples</a></p>
-				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Feature requests are welcome!)</p>
+				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)</p>
 				<p>This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.</p>
 				<h2 id="installation">Installation</h2>
 				<pre><code class="lang-sh">$ npm install i18n-tag-schema --save-dev
 </code></pre>
+				<h2 id="examples">Examples</h2>
+				<ul>
+					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS">npm scripts</a></li>
+					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/Simple">gulp</a></li>
+				</ul>
 				<h2 id="usage">Usage</h2>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> i18nTagSchema <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { generateTranslationSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-    <span class="hljs-comment">// log(output)</span>
+generateTranslationSchema({<span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./src'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span>}).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(result)
+}).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
 })
 </code></pre>
 				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#default">See docs</a></p>
@@ -91,7 +100,7 @@ i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string
 				<h4 id="package-json">package.json</h4>
 				<pre><code class="lang-json">{
   <span class="hljs-attr">"scripts"</span>: {
-    <span class="hljs-attr">"generate-schema"</span>: <span class="hljs-string">"i18n-tag-schema ./src"</span>,
+    <span class="hljs-attr">"generate-schema"</span>: <span class="hljs-string">"i18n-tag-schema ./src --schema ./translation.schema.json"</span>,
     <span class="hljs-attr">"validate-german-translation"</span>: <span class="hljs-string">"i18n-tag-schema ./translations/translation.de.json --validate --schema ./translation.schema.json"</span>,
     <span class="hljs-attr">"validate-translations"</span>: <span class="hljs-string">"i18n-tag-schema ./translations --validate --schema ./translation.schema.json"</span>
   }
@@ -103,26 +112,36 @@ $ npm run validate-translations
 </code></pre>
 				<h3 id="via-gulp">Via Gulp</h3>
 				<pre><code class="lang-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>)
-<span class="hljs-keyword">var</span> i18nTagSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).default
-<span class="hljs-keyword">var</span> validateSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).validateSchema
+<span class="hljs-keyword">var</span> generateTranslationSchema = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).generateTranslationSchema
+<span class="hljs-keyword">var</span> validateTranslations = <span class="hljs-built_in">require</span>(<span class="hljs-string">'i18n-tag-schema'</span>).validateTranslations
+
 gulp.task(<span class="hljs-string">'generate-translation-schema'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
-  i18nTagSchema(<span class="hljs-string">'./src'</span>, <span class="hljs-string">'\\.jsx?$'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-      <span class="hljs-built_in">console</span>.log(output)
-      <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) cb(); <span class="hljs-comment">// finished task</span>
+  generateTranslationSchema({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./src'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(result)
+    cb(); <span class="hljs-comment">// finished task</span>
+  }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
+    cb(err.message); <span class="hljs-comment">// task failed</span>
   })
 })
 
 gulp.task(<span class="hljs-string">'validate-german-translation'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
-  validateSchema(<span class="hljs-string">'./translations/translation.de.json'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-      <span class="hljs-built_in">console</span>.log(output)
-      <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) cb(); <span class="hljs-comment">// finished task</span>
+  validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./translations/translation.de.json'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(result)
+    cb(); <span class="hljs-comment">// finished task</span>
+  }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
+    cb(err.message); <span class="hljs-comment">// task failed</span>
   })
 })
 
 gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
-  validateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-      <span class="hljs-built_in">console</span>.log(output)
-      <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) cb(); <span class="hljs-comment">// finished task</span>
+  validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./translations'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(result)
+    cb(); <span class="hljs-comment">// finished task</span>
+  }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
+    cb(err.message); <span class="hljs-comment">// task failed</span>
   })
 })
 </code></pre>
@@ -132,16 +151,18 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
 </code></pre>
 				<pre><code>Usage: i18n-<span class="hljs-keyword">tag</span>-schema <span class="hljs-symbol">&lt;path&gt;</span> [<span class="hljs-keyword">options</span>]
 
-Option<span class="hljs-variable">s:</span>
+  Option<span class="hljs-variable">s:</span>
 
-    -h, --<span class="hljs-keyword">help</span>            output usage information
-    -V, --<span class="hljs-keyword">version</span>         output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span>
-    -s, --schema <span class="hljs-symbol">&lt;path&gt;</span>   <span class="hljs-keyword">set</span> schema path. defaults <span class="hljs-keyword">to</span> ./translation.schema.json
-    -<span class="hljs-keyword">f</span>, --<span class="hljs-built_in">filter</span> <span class="hljs-symbol">&lt;regex&gt;</span>  <span class="hljs-keyword">a</span> regular expression <span class="hljs-keyword">to</span> <span class="hljs-built_in">filter</span> <span class="hljs-keyword">source</span> <span class="hljs-keyword">files</span>. defaults <span class="hljs-keyword">to</span> \.jsx?
-    -v, --validate        use <span class="hljs-keyword">to</span> validate translation <span class="hljs-keyword">file</span>(s). path <span class="hljs-built_in">has</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory. requires --schema <span class="hljs-symbol">&lt;path&gt;</span>
-    -<span class="hljs-keyword">e</span>, --export <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> FROM <span class="hljs-keyword">a</span> JavaScript <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory.
-    -t, --target <span class="hljs-symbol">&lt;path&gt;</span>   export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> TO <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --export <span class="hljs-symbol">&lt;path&gt;</span>.
-                          If --target <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
+    -h, --<span class="hljs-keyword">help</span>                 output usage information
+    -V, --<span class="hljs-keyword">version</span>              output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span>
+    -<span class="hljs-keyword">p</span>, --preprocessor <span class="hljs-symbol">&lt;name&gt;</span>  the name of <span class="hljs-keyword">a</span> preprocessor node module. <span class="hljs-keyword">for</span> typescript use <span class="hljs-string">'./preprocessors/typescript'</span>
+    -s, --schema <span class="hljs-symbol">&lt;path&gt;</span>        <span class="hljs-keyword">set</span> path of the schema <span class="hljs-keyword">to</span> create <span class="hljs-built_in">or</span> validate against.
+                               If --schema <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
+    -<span class="hljs-keyword">f</span>, --<span class="hljs-built_in">filter</span> <span class="hljs-symbol">&lt;regex&gt;</span>       <span class="hljs-keyword">a</span> regular expression <span class="hljs-keyword">to</span> <span class="hljs-built_in">filter</span> <span class="hljs-keyword">source</span> <span class="hljs-keyword">files</span>. defaults <span class="hljs-keyword">to</span> \.jsx?$
+    -v, --validate             use <span class="hljs-keyword">to</span> validate translation <span class="hljs-keyword">file</span>(s). path <span class="hljs-built_in">has</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory. requires --schema <span class="hljs-symbol">&lt;path&gt;</span>
+    -<span class="hljs-keyword">e</span>, --export <span class="hljs-symbol">&lt;path&gt;</span>        export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> FROM <span class="hljs-keyword">a</span> JavaScript <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory.
+    -t, --target <span class="hljs-symbol">&lt;path&gt;</span>        export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> TO <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --export <span class="hljs-symbol">&lt;path&gt;</span>.
+                               If --target <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
 </code></pre><h3 id="reference-schema-in-translation-json-file">Reference schema in translation.json file</h3>
 				<pre><code class="lang-json">{
     <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"./translation.schema.json"</span>,
@@ -156,6 +177,14 @@ Option<span class="hljs-variable">s:</span>
 					<li>if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
 				</ul>
 				<p>Some IDEs can also provide auto completion for translation keys and groups</p>
+				<h2 id="preprocessors">Preprocessors</h2>
+				<p>This libaray has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure &#39;typescript&#39; npm package is installed if you want to parse typescript code.</p>
+				<pre><code>$ i18n-tag-schema ./src -e ./typescript<span class="hljs-selector-class">.ts</span> -<span class="hljs-selector-tag">p</span> ./preprocessors/typescript -f \.ts
+</code></pre><p>Custom preprocessors can be added as npm packages</p>
+				<pre><code>$ npm install <span class="hljs-keyword">my</span>-preprocessor <span class="hljs-comment">--save-dev</span>
+$ i18n-tag-schema ./src -e ./<span class="hljs-built_in">file</span>.myext -p <span class="hljs-keyword">my</span>-preprocessor -f \.myext
+</code></pre><p>A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
+				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/next/lib/preprocessors/typescript.js"><code>./lib/preprocessors/typescript.js</code></a></p>
 				<h2 id="ide-integration">IDE Integration</h2>
 				<h3 id="webstorm-phpstorm">Webstorm / PhpStorm</h3>
 				<p>Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more details please see:  <a href="https://www.jetbrains.com/help/webstorm/2016.1/add-json-schema-mapping-dialog.html">Add JSON Schema Mapping Dialog</a></p>
@@ -163,48 +192,39 @@ Option<span class="hljs-variable">s:</span>
 				<p>For Visual Studio Code you can install the i18n-tag-schema extension from <a href="https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema">Visual Studio Code Marketplace</a></p>
 				<h2 id="additional-features">Additional Features</h2>
 				<h3 id="export-translation-keys">Export translation keys</h3>
+				<p><img src="https://raw.githubusercontent.com/skolmer/i18n-tag-schema/master/images/export.jpg" alt="export translation keys"></p>
 				<p>Read all i18n tagged template literals from a JavaScript file or directory</p>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { exportTranslationKeys } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-exportTranslationKeys(<span class="hljs-string">'./samples'</span>, <span class="hljs-string">'.'</span>,
-    (message, type) =&gt; {
-        <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
-        <span class="hljs-keyword">if</span>(cons) {
-            cons(message)
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-built_in">console</span>.log(message)
-        }        
-    },
-    (templates) =&gt; {
-        <span class="hljs-comment">/**
-        * templates: [
-        *     '\n        &lt;user name="${0}"&gt;${1}&lt;/user&gt;\n    ',
-        *     '\n    &lt;users&gt;\n    ${0}\n    &lt;/users&gt;\n'
-        * ]
-        */</span> 
-    }
-)
+exportTranslationKeys({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./samples'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(result)
+    <span class="hljs-comment">/**
+    * result: [
+    *     '\n        &lt;user name="${0}"&gt;${1}&lt;/user&gt;\n    ',
+    *     '\n    &lt;users&gt;\n    ${0}\n    &lt;/users&gt;\n'
+    * ]
+    */</span>
+}).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
+})
 </code></pre>
 				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#exporttranslationkeys">See docs</a></p>
 				<h3 id="validate-translation-file">Validate translation file</h3>
+				<p><img src="https://raw.githubusercontent.com/skolmer/i18n-tag-schema/master/images/validate.jpg" alt="validate translation cli"></p>
 				<p>The validation function checks</p>
 				<ul>
 					<li>if your translation files are missing some of your project&#39;s translation keys.</li>
 					<li>if a translation key or group is unknown.</li>
 					<li>if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
 				</ul>
-				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { validateSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { validateTranslations } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
-validateSchema(<span class="hljs-string">'./translations'</span>, <span class="hljs-string">'./translation.schema.json'</span>, (output, type) =&gt; {
-    <span class="hljs-keyword">const</span> cons = <span class="hljs-built_in">console</span>[type]
-    <span class="hljs-keyword">if</span>(cons) {
-        cons(message)
-    } <span class="hljs-keyword">else</span> {
-            <span class="hljs-built_in">console</span>.log(message)
-    } 
-    <span class="hljs-keyword">if</span>(type === <span class="hljs-string">'error'</span> || type === <span class="hljs-string">'success'</span>) {
-        <span class="hljs-comment">// isValid(type === 'success')</span>
-    }
+validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./translations'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
+    <span class="hljs-comment">// translations are valid</span>
+    <span class="hljs-built_in">console</span>.log(result)
+}).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+    <span class="hljs-comment">// translations are invalid</span>
+    <span class="hljs-built_in">console</span>.error(err.message)
 })
 </code></pre>
 				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#validateschema">See docs</a></p>
@@ -237,11 +257,23 @@ validateSchema(<span class="hljs-string">'./translations'</span>, <span class="h
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function">
-						<a href="globals.html#default" class="tsd-kind-icon">default</a>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#exportoptions" class="tsd-kind-icon">Export<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#logger" class="tsd-kind-icon">Logger</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#schemaoptions" class="tsd-kind-icon">Schema<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#validateoptions" class="tsd-kind-icon">Validate<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#exporttranslationkeys" class="tsd-kind-icon">export<wbr>Translation<wbr>Keys</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#generatetranslationschema" class="tsd-kind-icon">generate<wbr>Translation<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#validateschema" class="tsd-kind-icon">validate<wbr>Schema</a>
