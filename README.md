@@ -156,7 +156,7 @@ $ i18n-tag-schema ./src -e ./file.myext -p my-preprocessor -f \.myext
 ```
 
 A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
-An example can be found at [`./lib/preprocessors/typescript.js`](https://github.com/skolmer/i18n-tag-schema/blob/next/lib/preprocessors/typescript.js)
+An example can be found at [`./lib/preprocessors/typescript.js`](https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js)
 
 ## IDE Integration
 
