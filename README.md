@@ -69,7 +69,6 @@ var validateTranslations = require('i18n-tag-schema').validateTranslations
 
 gulp.task('generate-translation-schema', function (cb) {
   generateTranslationSchema({ rootPath: './src', schemaPath: './translation.schema.json' }).then((result) => {
-    console.log(result)
     cb(); // finished task
   }).catch((err) => {
     console.error(err.message)
