@@ -11,20 +11,13 @@
       "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
       "stopOnEntry": false,
       "args": [
-        "--runInBand"
+        "--runInBand",
+        "--colors"
       ],
       "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": [
-          "--nolazy"
-      ],
-      "env": {
-          "NODE_ENV": "development"
-      },
-      "externalConsole": false,
-      "sourceMaps": false,
-      "outDir": null
+      "sourceMaps": true,
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
