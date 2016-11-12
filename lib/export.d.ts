@@ -42,7 +42,7 @@ type ReadOptions = {
      * The current map of template patterns to merge into.
      */
     templatePatterns?: {
-      [template : string]: pattern: string
+      [template : string]: string
     },
     /**
      * A custom logger.
@@ -92,9 +92,9 @@ type ExportOptions = {
 type TemplateExport = {
   templates: Array<string | {}>,
   templatePatterns: {
-    [template : string]: pattern: string
+    [template : string]: string
   }
-}
+};
 
 /**
  * Generates an array of all i18n tagged template literals in javascript ES2015 source code.
