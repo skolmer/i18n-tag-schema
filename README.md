@@ -142,7 +142,7 @@ Some IDEs can also provide auto completion for translation keys and groups
 
 ## Preprocessors
 
-This libaray has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure 'typescript' npm package is installed if you want to parse typescript code.
+This library has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure `typescript` npm package is installed if you want to parse typescript code.
 
 ```
 $ i18n-tag-schema ./src -e ./typescript.ts -p ./preprocessors/typescript -f \.ts
