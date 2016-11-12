@@ -5,6 +5,7 @@ import silentLogger from './data/silentLogger'
 global.console = silentLogger
 
 describe('exportTranslationKeys', () => {
+
   it('should fail if rootPath param is missing', async () => {
     silentLogger.clear()
     const filePath = './data/grouped.js'
@@ -17,6 +18,16 @@ describe('exportTranslationKeys', () => {
       expect(err.message).toEqual('rootPath is not defined.')
       expect(silentLogger.get('error')).toContain('rootPath is not defined.')
     }
+  })
+
+  it('should handle empty directory', async () => {
+    silentLogger.clear()
+    const rootPath = path.resolve(__dirname, './data/empty')
+    const templates = await exportTranslationKeys({
+      rootPath,
+      logger: silentLogger
+    })
+    expect(templates).toEqual([])
   })
 
   it('should export all templates from a directory', async () => {
