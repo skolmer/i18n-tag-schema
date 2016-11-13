@@ -1,93 +1,93 @@
 {
-	"type": "object",
-	"properties": {
-		"$schema": {
-			"type": "string"
-		},
-		"\n        <user name=\"${0}\">${1}</user>\n    ": {
-			"type": "string",
-			"minLength": 1,
-			"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
-		},
-		"\n    <users>\n    ${0}\n    </users>\n": {
-			"type": "string",
-			"minLength": 1,
-			"pattern": "(?=.*?\\$\\{0\\})"
-		},
-		"custom group": {
-			"type": "object",
-			"properties": {
-				"Hello ${0}, you have ${1} in your bank account.": {
-					"type": "string",
-					"minLength": 1,
-					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
-				}
-			},
-			"required": [
-				"Hello ${0}, you have ${1} in your bank account."
-			]
-		},
-		"custom group 2": {
-			"type": "object",
-			"properties": {
-				"Hello ${0}, you have ${1} in your bank account.": {
-					"type": "string",
-					"minLength": 1,
-					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
-				}
-			},
-			"required": [
-				"Hello ${0}, you have ${1} in your bank account."
-			]
-		},
-		"custom inline group": {
-			"type": "object",
-			"properties": {
-				"Hallo!": {
-					"type": "string",
-					"minLength": 1
-				},
-				"Hello!": {
-					"type": "string",
-					"minLength": 1
-				},
-				"Welcome!": {
-					"type": "string",
-					"minLength": 1
-				}
-			},
-			"required": [
-				"Hallo!",
-				"Hello!",
-				"Welcome!"
-			]
-		},
-		"grouped.js": {
-			"type": "object",
-			"properties": {
-				"Hello ${0}, you have ${1} in your bank account.": {
-					"type": "string",
-					"minLength": 1,
-					"pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
-				},
-				"Hello!": {
-					"type": "string",
-					"minLength": 1
-				}
-			},
-			"required": [
-				"Hello ${0}, you have ${1} in your bank account.",
-				"Hello!"
-			]
-		}
-	},
-	"required": [
-		"\n        <user name=\"${0}\">${1}</user>\n    ",
-		"\n    <users>\n    ${0}\n    </users>\n",
-		"custom group",
-		"custom group 2",
-		"custom inline group",
-		"grouped.js"
-	],
-	"additionalProperties": false
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "\n        <user name=\"${0}\">${1}</user>\n    ": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+        },
+        "\n    <users>\n    ${0}\n    </users>\n": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "(?=.*?\\$\\{0\\})"
+        },
+        "custom group": {
+            "type": "object",
+            "properties": {
+                "Hello ${0}, you have ${1} in your bank account.": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+                }
+            },
+            "required": [
+                "Hello ${0}, you have ${1} in your bank account."
+            ]
+        },
+        "custom group 2": {
+            "type": "object",
+            "properties": {
+                "Hello ${0}, you have ${1} in your bank account.": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+                }
+            },
+            "required": [
+                "Hello ${0}, you have ${1} in your bank account."
+            ]
+        },
+        "custom inline group": {
+            "type": "object",
+            "properties": {
+                "Hallo!": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "Hello!": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "Welcome!": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "Hallo!",
+                "Hello!",
+                "Welcome!"
+            ]
+        },
+        "grouped.js": {
+            "type": "object",
+            "properties": {
+                "Hello ${0}, you have ${1} in your bank account.": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+                },
+                "Hello!": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "Hello ${0}, you have ${1} in your bank account.",
+                "Hello!"
+            ]
+        }
+    },
+    "required": [
+        "\n        <user name=\"${0}\">${1}</user>\n    ",
+        "\n    <users>\n    ${0}\n    </users>\n",
+        "custom group",
+        "custom group 2",
+        "custom inline group",
+        "grouped.js"
+    ],
+    "additionalProperties": false
 }

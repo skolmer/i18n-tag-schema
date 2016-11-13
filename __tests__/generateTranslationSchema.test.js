@@ -205,4 +205,48 @@ describe('i18n-tag-schema', () => {
     expect(JSON.parse(json)).toEqual({})
     fs.unlinkSync(schemaPath)
   })
+
+  it('should have tabs as default indention', async () => {
+    const filter = '\\.jsx?$'
+    const rootPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    await generateTranslationSchema({
+      rootPath,
+      schemaPath,
+      filter,
+      logger: { toConsole: true }
+    })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(json).toContain('\n\t"type": "object"')
+  })
+
+  it('should allow 2 spaces as tabs', async () => {
+    const filter = '\\.jsx?$'
+    const rootPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    await generateTranslationSchema({
+      rootPath,
+      schemaPath,
+      filter,
+      logger: { toConsole: true },
+      indention: 2
+    })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(json).toContain('\n  "type": "object"')
+  })
+
+  it('should allow 4 spaces as tabs', async () => {
+    const filter = '\\.jsx?$'
+    const rootPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schema.json')
+    await generateTranslationSchema({
+      rootPath,
+      schemaPath,
+      filter,
+      logger: { toConsole: true },
+      indention: 4
+    })
+    const json = fs.readFileSync(schemaPath, 'utf-8')
+    expect(json).toContain('\n    "type": "object"')
+  })
 })
