@@ -111,11 +111,11 @@ program
   .version('2.0.0')
   .usage('<path> [options]')
   .option('-p, --preprocessor <name>', 'the name of a preprocessor node module. for typescript use \'./preprocessors/typescript\'')
-  .option('-s, --schema <path>', 'set path of the schema to create or validate against.\n                      If --schema is not set, JSON will be printed to the output.')
+  .option('-s, --schema <path>', 'set path of the schema to create or validate against.\n                           If --schema is not set, JSON will be printed to the output.')
   .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?$')
-  .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory. requires --schema <path>')
+  .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory.\n                           requires --schema <path>')
   .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
-  .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
+  .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                           If --target is not set, JSON will be printed to the output.')
   .action(function (path) {
     if (!path) {
       logger.error('missing `<path>` argument!');
