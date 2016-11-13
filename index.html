@@ -117,7 +117,6 @@ $ npm run validate-translations
 
 gulp.task(<span class="hljs-string">'generate-translation-schema'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
   generateTranslationSchema({ <span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./src'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span> }).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(result)
     cb(); <span class="hljs-comment">// finished task</span>
   }).catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
     <span class="hljs-built_in">console</span>.error(err.message)
@@ -163,6 +162,7 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
     -<span class="hljs-keyword">e</span>, --export <span class="hljs-symbol">&lt;path&gt;</span>        export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> FROM <span class="hljs-keyword">a</span> JavaScript <span class="hljs-keyword">file</span> <span class="hljs-built_in">or</span> directory.
     -t, --target <span class="hljs-symbol">&lt;path&gt;</span>        export <span class="hljs-keyword">all</span> translation <span class="hljs-built_in">keys</span> TO <span class="hljs-keyword">a</span> JSON <span class="hljs-keyword">file</span>. requires --export <span class="hljs-symbol">&lt;path&gt;</span>.
                                If --target <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
+    -i, --indention <span class="hljs-symbol">&lt;number&gt;</span>   the <span class="hljs-keyword">number</span> of spaces <span class="hljs-keyword">to</span> <span class="hljs-keyword">be</span> used instead of <span class="hljs-keyword">tabs</span>. <span class="hljs-keyword">if</span> not <span class="hljs-keyword">set</span>, <span class="hljs-keyword">tabs</span> will <span class="hljs-keyword">be</span> used.
 </code></pre><h3 id="reference-schema-in-translation-json-file">Reference schema in translation.json file</h3>
 				<pre><code class="lang-json">{
     <span class="hljs-attr">"$schema"</span>: <span class="hljs-string">"./translation.schema.json"</span>,
