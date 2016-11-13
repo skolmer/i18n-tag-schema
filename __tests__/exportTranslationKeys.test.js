@@ -83,7 +83,7 @@ describe('exportTranslationKeys', () => {
         totalCount = total
       }
     })
-    expect(totalCount).toEqual(5)
+    expect(totalCount).toEqual(6)
   })
 
   it('should export grouped templates as array', async () => {

@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { generateTranslationSchema } from '../lib'
-import silentLogger from './data/silentLogger'
+import silentLogger from './data/silentLogger2'
 
 global.console = silentLogger
 
@@ -136,7 +136,7 @@ describe('i18n-tag-schema', () => {
         expect(name).toBeDefined()
         expect(current > last || current === total).toBeTruthy()
         last = current
-        expect(total).toEqual(5)
+        expect(total).toEqual(6)
       }
     })
   })
