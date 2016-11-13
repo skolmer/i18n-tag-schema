@@ -72,6 +72,7 @@ describe('exportTranslationKeys', () => {
   it('should report export progress', async () => {
     const rootPath = path.resolve(__dirname, './data')
     let last = -1
+    let totalCount
     await exportTranslationKeys({
       rootPath,
       logger: { toConsole: true },
@@ -79,9 +80,10 @@ describe('exportTranslationKeys', () => {
         expect(name).toBeDefined()
         expect(current > last || current === total).toBeTruthy()
         last = current
-        expect(total).toEqual(5)
+        totalCount = total
       }
     })
+    expect(totalCount).toEqual(5)
   })
 
   it('should export grouped templates as array', async () => {

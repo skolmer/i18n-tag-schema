@@ -29,6 +29,20 @@ describe('validateTranslations', () => {
     }
   })
 
+  it('should fail if schemaPath is invalid', async () => {
+    const rootPath = path.resolve(__dirname, './data')
+    const schemaPath = path.resolve(__dirname, './data/schema_unknown.json')
+    try {
+      await validateTranslations({
+        rootPath,
+        schemaPath,
+        logger: { toConsole: true },
+      })
+    } catch(err) {
+      expect(err.message).toEqual('schemaPath file does not exist.')
+    }
+  })
+
   it('should fail if rootPath is invalid', async () => {
     const schemaPath = path.resolve(__dirname, './data/schema.json')
     try {
@@ -47,6 +61,7 @@ describe('validateTranslations', () => {
     const schemaPath = path.resolve(__dirname, './data/schema.json')
     const rootPath = path.resolve(__dirname, './data')
     try {
+      let totalCount
       await validateTranslations({
         rootPath,
         schemaPath,
@@ -55,9 +70,10 @@ describe('validateTranslations', () => {
           expect(name).toBeDefined()
           expect(current > last || current === total).toBeTruthy()
           last = current
-          expect(total).toEqual(2)
+          totalCount = total
         }
       })
+      expect(totalCount).toEqual(2)
     } catch(err) {
       // ignore validation error
     }
