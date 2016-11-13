@@ -9,73 +9,102 @@ var pathLib = require('path');
 var fs = require('fs');
 var ProgressBar = require('progress');
 
-const isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
-const errorSymbol = isSimpleWindowsTerm ? chalk.bold('×') : '✖';
-const successSymbol = isSimpleWindowsTerm ? chalk.bold('√') : '✔';
-const progressComplete = isSimpleWindowsTerm ? chalk.green('█') : chalk.green.inverse(' ');
-const progressIncomplete = isSimpleWindowsTerm ? chalk.white('█') : chalk.white.inverse(' ');
+var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
+var errorSymbol = isSimpleWindowsTerm ? chalk.bold.red('×') : chalk.red('✖');
+var successSymbol = isSimpleWindowsTerm ? chalk.bold.green('√') : chalk.green('✔');
+var progressComplete = isSimpleWindowsTerm ? chalk.green('█') : chalk.green.inverse(' ');
+var progressIncomplete = isSimpleWindowsTerm ? chalk.white('█') : chalk.white.inverse(' ');
 
-let log = [];
+var log = [];
 
-const logger = {
-  clear: () => log = [],
-  info: (message) => log.push(chalk.inverse.bold.white(' INFO ') + ' ' + message),
-  warn: (message) => log.push(chalk.inverse.bold.yellow(' WARN ') + ' ' + message),
-  error: (message) => log.push(chalk.inverse.bold.red(' ERROR ') + ' ' + message),
-  flush: () => console.log(' '+chalk.reset('\n')) || log.forEach((message) => console.log(message))
+var padString = function(str) { return ' ' + str.toUpperCase() + ' '; };
+var errorFlag = function(str) { return chalk.inverse.bold.red(padString(str)); };
+var warnFlag = function(str) { return chalk.inverse.bold.yellow(padString(str)); };
+var infoFlag = function(str) { return chalk.inverse.bold.white(padString(str)); };
+var successFlag = function(str) { return chalk.inverse.bold.green(padString(str)); };
+
+var logger = {
+  clear: function() { log = []; },
+  info: function(message) {
+    if(message.indexOf('i18n json schema has been generated;') > -1) {
+      message = colorizeMessage(message);
+    }
+    return log.push(infoFlag('info') + ' ' + message);
+  },
+  warn: function(message) { return log.push(warnFlag('warn') + ' ' + message); },
+  error: function(message) { return log.push(errorFlag('err!') + ' ' + message); },
+  flush: function() {
+    console.log(chalk.reset('\n'));
+    for(var i = 0; i < log.length; i++) {
+      console.log(log[i]);
+    }
+  }
 }
 
-const progressBar = () => {
-  let progress
-  return (current, total, name) => {
+function progressBar() {
+  var progress;
+  return function(current, total, name) {
     if(total > 50) {
       if(!progress) {
-        console.log(' ')
-        progress = new ProgressBar(chalk.reset(':bar  :current/:total  :etas  :name '), { total: total, complete: progressComplete, incomplete: progressIncomplete, width: 30 });
+        console.log(' ');
+        progress = new ProgressBar(chalk.reset(':bar  :current/:total  :etas  :name '), {
+          total: total,
+          complete: progressComplete,
+          incomplete: progressIncomplete,
+          width: 30
+        });
       } else {
         progress.update(current / total, {
           name: name
-        })
+        });
       }
     }
   }
 }
 
-function formatResult(message) {
-  message = message.replace(/(\d+)\s*%\s*translated/g, (str, value) => {
+function colorizeMessage(message) {
+  message = message.replace(/(\d+)\s*%\s*translated/g, function(str, value) {
     var val = Number.parseInt(value);
     if (val < 50) {
-      return chalk.bgRed(chalk.white(str));
+      return errorFlag(str);
     } else if (val < 100) {
-      return chalk.bgYellow(chalk.black(str));
+      return warnFlag(str);
     } else {
-      return chalk.bgGreen(chalk.black(str));
+      return successFlag(str);
     }
   });
-  message = message.replace(/(\d+)\s*keys/g, (str) => {
-    return chalk.bgWhite(chalk.black(str));
+  message = message.replace(/(\d+)\s*keys/g, function(str) {
+    return infoFlag(str);
   });
-  message = message.replace(/(\d+)\s*added/g, (str) => {
-    return chalk.bgGreen(chalk.black(str));
+  message = message.replace(/(\d+)\s*added/g, function(str) {
+    return successFlag(str);
   });
-  message = message.replace(/(\d+)\s*removed/g, (str) => {
-    return chalk.bgRed(chalk.white(str));
+  message = message.replace(/(\d+)\s*removed/g, function(str) {
+    return errorFlag(str);
   });
-  message = message.replace(/(\d+)\s*missing/g, (str, value) => {
+  message = message.replace(/(\d+)\s*missing/g, function(str, value) {
     var val = Number.parseInt(value);
     if (val === 0) {
-      return chalk.bgGreen(chalk.black(str));
+      return successFlag(str);
     } else {
-      return chalk.bgRed(chalk.white(str));
+      return errorFlag(str);
     }
   });
-  message = message.replace(/(\d+)\s*invalid/g, (str) => {
-    return chalk.bgYellow(chalk.black(str));
-  });
-  message = message.replace(/\n/g, () => {
-    return '\n    ';
+  message = message.replace(/(\d+)\s*invalid/g, function(str) {
+    return warnFlag(str);
   });
   return message;
+}
+
+function logValidationResult(message) {
+  message = colorizeMessage(message);
+  var messages = message.split('\n');
+  messages.sort(function(a, b) {
+    return (a.indexOf('missing') === -1) ? 0 : 1;
+  });
+  for(var i = 0; i < messages.length; i++) {
+    console.log(' - ' + messages[i]);
+  }
 }
 
 program
@@ -89,33 +118,35 @@ program
   .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                      If --target is not set, JSON will be printed to the output.')
   .action(function (path) {
     if (!path) {
-      console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'missing `<path>` argument!');
+      logger.error('missing `<path>` argument!');
       process.exit(1);
     }
     logger.clear();
     if (program.validate) {
       if (!program.schema) {
-        console.log('  ' + chalk.bgRed(' ERROR ') + ' ' + 'option `--schema <path>` missing!');
+        logger.error('option `--schema <path>` missing!');
         process.exit(1);
       }
-      const result = validateTranslations({
+      validateTranslations({
         rootPath: path,
         schemaPath: program.schema,
         logger: logger,
         progress: progressBar()
-      }).then((result) => {
+      }).then(function(result) {
         logger.flush();
         console.log('');
-        console.log(' ' + chalk.green(successSymbol) + ' valid: ' + formatResult(result));
+        console.log(successFlag(successSymbol + ' valid') + '\n');
+        logValidationResult(result);
         process.exit(0);
-      }).catch((err) => {
+      }).catch(function(err) {
         logger.flush();
         console.log('');
-        console.log(' ' + chalk.red(errorSymbol) + ' invalid: ' + formatResult(err.message));
+        console.log(errorFlag(errorSymbol + ' invalid') + '\n');
+        logValidationResult(err.message);
         process.exit(1);
       });
     } else if (program.export) {
-      const filter = program.filter || '\\.jsx?$';
+      var filter = program.filter || '\\.jsx?$';
       if (program.export && (pathLib.extname(program.export) && !pathLib.extname(program.export).match(filter))) {
         logger.error(program.export + ' does not match filter \'' + filter + '\'.');
         logger.flush();
@@ -133,7 +164,7 @@ program
         preprocessor: program.preprocessor,
         logger: (program.target)?logger:undefined,
         progress: (program.target)?progressBar():undefined
-      }).then((result) => {
+      }).then(function(result) {
         logger.flush();
         if (program.target) {
             fs.writeFile(program.target, JSON.stringify(result, null, '\t'), 'utf-8', function (err) {
@@ -144,14 +175,14 @@ program
                 return;
               }
               console.log('');
-              console.log(' ' + chalk.green(successSymbol) + ' Exported translation keys to ' + program.target);
+              console.log(' ' + successSymbol + ' Exported translation keys to ' + program.target);
               process.exit(0);
             });
           } else {
             console.log(JSON.stringify(result, null, '\t'));
             process.exit(0);
           }
-      }).catch((err) => {
+      }).catch(function(err) {
         logger.error(err.message);
         logger.flush();
         process.exit(1);
@@ -164,17 +195,17 @@ program
         logger: (program.schema)?logger:undefined,
         schemaPath: program.schema || './translation.schema.json',
         progress: (program.schema)?progressBar():undefined
-      }).then((result) => {
+      }).then(function(result) {
         logger.flush();
         if (program.schema) {
             console.log('');
-            console.log(' ' + chalk.green(successSymbol) + ' Generated schema ' + program.schema);
+            console.log(successFlag(successSymbol + ' generated schema') + ' ' + program.schema);
             process.exit(0);
           } else {
             console.log(JSON.stringify(result, null, '\t'));
             process.exit(0);
           }
-      }).catch((err) => {
+      }).catch(function(err) {
         logger.error(err.message);
         logger.flush();
         process.exit(1);
