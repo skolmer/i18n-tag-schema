@@ -82,7 +82,11 @@ type SchemaOptions = {
     /**
      * A custom babylon configuration.
      */
-    babylonConfig?: {}
+    babylonConfig?: {},
+    /**
+     * The number of spaces to be used instead of tabs. if not set tabs will be used.
+     */
+    indention?: number
 };
 
 type ValidateOptions = {

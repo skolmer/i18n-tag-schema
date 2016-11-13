@@ -107,6 +107,11 @@ function logValidationResult(message) {
   }
 }
 
+function getTabChar(number) {
+  if(isNaN(number) || number < 0) return '\t';
+  return new Array(Number.parseInt(number)+1).join(' ');
+}
+
 program
   .version('2.0.0')
   .usage('<path> [options]')
@@ -116,6 +121,7 @@ program
   .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory.\n                           requires --schema <path>')
   .option('-e, --export <path>', 'export all translation keys FROM a JavaScript file or directory.')
   .option('-t, --target <path>', 'export all translation keys TO a JSON file. requires --export <path>.\n                           If --target is not set, JSON will be printed to the output.')
+  .option('-i, --indention <number>', 'the number of spaces to be used instead of tabs. if not set, tabs will be used.')
   .action(function (path) {
     if (!path) {
       logger.error('missing `<path>` argument!');
@@ -167,7 +173,7 @@ program
       }).then(function(result) {
         logger.flush();
         if (program.target) {
-            fs.writeFile(program.target, JSON.stringify(result, null, '\t'), 'utf-8', function (err) {
+            fs.writeFile(program.target, JSON.stringify(result, null, getTabChar(program.indention)), 'utf-8', function (err) {
               if (err) {
                 logger.error(err.message);
                 logger.flush();
@@ -179,7 +185,7 @@ program
               process.exit(0);
             });
           } else {
-            console.log(JSON.stringify(result, null, '\t'));
+            console.log(JSON.stringify(result, null, getTabChar(program.indention)));
             process.exit(0);
           }
       }).catch(function(err) {
@@ -194,7 +200,8 @@ program
         preprocessor: program.preprocessor,
         logger: (program.schema)?logger:undefined,
         schemaPath: program.schema || './translation.schema.json',
-        progress: (program.schema)?progressBar():undefined
+        progress: (program.schema)?progressBar():undefined,
+        indention: program.indention
       }).then(function(result) {
         logger.flush();
         if (program.schema) {
@@ -202,7 +209,7 @@ program
             console.log(successFlag(successSymbol + ' generated schema') + ' ' + program.schema);
             process.exit(0);
           } else {
-            console.log(JSON.stringify(result, null, '\t'));
+            console.log(JSON.stringify(result, null, getTabChar(program.indention)));
             process.exit(0);
           }
       }).catch(function(err) {

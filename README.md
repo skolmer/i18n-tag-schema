@@ -120,6 +120,7 @@ Usage: i18n-tag-schema <path> [options]
     -e, --export <path>        export all translation keys FROM a JavaScript file or directory.
     -t, --target <path>        export all translation keys TO a JSON file. requires --export <path>.
                                If --target is not set, JSON will be printed to the output.
+    -i, --indention <number>   the number of spaces to be used instead of tabs. if not set, tabs will be used.
 ```
 
 ### Reference schema in translation.json file
