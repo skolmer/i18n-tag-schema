@@ -7,33 +7,36 @@ var exportTranslationKeys = i18nTagSchemaModule.exportTranslationKeys;
 var chalk = require('chalk');
 var pathLib = require('path');
 var fs = require('fs');
-var ProgressBar = require('progress')
+var ProgressBar = require('progress');
 
 const isWin32 = process.platform === 'win32';
 const errorSymbol = isWin32 ? '×' : '✖';
 const successSymbol = isWin32 ? '√' : '✔';
-const progressComplete = isWin32 ? chalk.green('#') : chalk.green.inverse(' ');
-const progressIncomplete = isWin32 ? chalk.white(' ') : chalk.white.inverse(' ')
+const progressComplete = isWin32 ? chalk.green('█') : chalk.green.inverse(' ');
+const progressIncomplete = isWin32 ? chalk.white('█') : chalk.white.inverse(' ');
 
-let log = []
+let log = [];
 
 const logger = {
   clear: () => log = [],
-  info: (message) => log.push('  ' + chalk.bgWhite(chalk.black(' INFO ')) + ' ' + message),
-  warn: (message) => log.push('  ' + chalk.bgYellow(chalk.black(' WARN ')) + ' ' + message),
-  error: (message) => log.push('  ' + chalk.bgRed(chalk.white(' ERROR ')) + ' ' + message),
-  flush: () => console.log('') || log.forEach((message) => console.log(message))
+  info: (message) => log.push(chalk.inverse.bold.white(' INFO ') + ' ' + message),
+  warn: (message) => log.push(chalk.inverse.bold.yellow(' WARN ') + ' ' + message),
+  error: (message) => log.push(chalk.inverse.bold.red(' ERROR ') + ' ' + message),
+  flush: () => console.log(' '+chalk.reset('\n')) || log.forEach((message) => console.log(message))
 }
 
 const progressBar = () => {
   let progress
   return (current, total, name) => {
-    if(!progress) {
-      progress = new ProgressBar(':bar :percent :etas  :name', { total: total, complete: progressComplete, incomplete: progressIncomplete, width: 20 });
-    } else {
-      progress.update(current / total, {
-        name: name
-      })
+    if(total > 50) {
+      if(!progress) {
+        console.log(' ')
+        progress = new ProgressBar(chalk.reset(':bar  :current/:total  :etas  :name '), { total: total, complete: progressComplete, incomplete: progressIncomplete, width: 30 });
+      } else {
+        progress.update(current / total, {
+          name: name
+        })
+      }
     }
   }
 }
@@ -103,12 +106,12 @@ program
       }).then((result) => {
         logger.flush();
         console.log('');
-        console.log('  ' + chalk.green(successSymbol) + ' valid: ' + formatResult(result));
+        console.log(' ' + chalk.green(successSymbol) + ' valid: ' + formatResult(result));
         process.exit(0);
       }).catch((err) => {
         logger.flush();
         console.log('');
-        console.log('  ' + chalk.red(errorSymbol) + ' invalid: ' + formatResult(err.message));
+        console.log(' ' + chalk.red(errorSymbol) + ' invalid: ' + formatResult(err.message));
         process.exit(1);
       });
     } else if (program.export) {
@@ -140,7 +143,8 @@ program
                 process.exit(1);
                 return;
               }
-              console.log('  ' + chalk.green(successSymbol) + ' Exported translation keys to ' + program.target);
+              console.log('');
+              console.log(' ' + chalk.green(successSymbol) + ' Exported translation keys to ' + program.target);
               process.exit(0);
             });
           } else {
@@ -163,7 +167,8 @@ program
       }).then((result) => {
         logger.flush();
         if (program.schema) {
-            console.log('  ' + chalk.green(successSymbol) + ' Generated schema ' + program.schema);
+            console.log('');
+            console.log(' ' + chalk.green(successSymbol) + ' Generated schema ' + program.schema);
             process.exit(0);
           } else {
             console.log(JSON.stringify(result, null, '\t'));
