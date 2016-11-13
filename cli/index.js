@@ -9,11 +9,11 @@ var pathLib = require('path');
 var fs = require('fs');
 var ProgressBar = require('progress');
 
-const isWin32 = process.platform === 'win32';
-const errorSymbol = isWin32 ? '×' : '✖';
-const successSymbol = isWin32 ? '√' : '✔';
-const progressComplete = isWin32 ? chalk.green('█') : chalk.green.inverse(' ');
-const progressIncomplete = isWin32 ? chalk.white('█') : chalk.white.inverse(' ');
+const isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
+const errorSymbol = isSimpleWindowsTerm ? chalk.bold('×') : '✖';
+const successSymbol = isSimpleWindowsTerm ? chalk.bold('√') : '✔';
+const progressComplete = isSimpleWindowsTerm ? chalk.green('█') : chalk.green.inverse(' ');
+const progressIncomplete = isSimpleWindowsTerm ? chalk.white('█') : chalk.white.inverse(' ');
 
 let log = [];
 
