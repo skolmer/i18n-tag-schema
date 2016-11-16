@@ -11,7 +11,7 @@
 This node module generates a [JSON Schema](http://json-schema.org/) of all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in a JavaScript project.
 A JSON schema can add key validation and autocompletion to your JSON based translation files (See [IDE Integration](#ide-integration)).
 The tool will only detect template literals that are tagged with i18n (See [es2015-i18n-tag](http://i18n-tag.kolmer.net/)).
-It has support for [Custom Translation Groups](https://github.com/skolmer/es2015-i18n-tag#appjs) and generated [File Module Groups](https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups). `__translationGroup` constants in your code will be resolved relative to [`path`](http://github.kolmer.net/i18n-tag-schema/globals.html#default).
+It has support for [Custom Translation Groups](https://github.com/skolmer/es2015-i18n-tag#appjs) and generated [File Module Groups](https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups). `__translationGroup` constants in your code will be resolved relative to [`rootPath`](http://github.kolmer.net/i18n-tag-schema/globals.html#schemaoptions).
 
 The following repository provides examples for use with npm scripts or gulp: https://github.com/skolmer/i18n-tag-examples
 
