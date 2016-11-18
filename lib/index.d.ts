@@ -1,25 +1,25 @@
 // index.d.ts
 
 type Logger = {
-    /*
-      A custom info logging function.
-    */
+    /**
+     * A custom info logging function.
+     */
     info?: (message : string) => void,
-    /*
-      A custom trace logging function.
-    */
-    trace?: (message : string) => void,
-    /*
-      A custom warn logging function.
-    */
+    /**
+     * A custom trace logging function.
+     */
+    trace?: (message : string | Error) => void,
+    /**
+     * A custom warn logging function.
+     */
     warn?: (message : string) => void,
-    /*
-      A custom error logging function.
-    */
+    /**
+     * A custom error logging function.
+     */
     error?: (message : string) => void,
-    /*
-      Log to default console.
-    */
+    /**
+     * Log to default console. It true the default console logging functions will be used.
+     */
     toConsole?: boolean
 };
 
@@ -95,11 +95,11 @@ type ValidateOptions = {
      */
     rootPath: string ,
     /**
-     * The target path of the JSON schema.
+     * The path of the JSON schema to validate against.
      */
     schemaPath?: string,
     /**
-     * A regex to filter source files by name or extension. Defaults to `\.jsx?$`.
+     * A custom logger.
      */
     logger?: Logger,
     /**
