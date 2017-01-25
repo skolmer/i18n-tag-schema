@@ -9,13 +9,13 @@
 ## 🗂 Overview
 
 This node module generates a [JSON Schema](http://json-schema.org/) of all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in a JavaScript project.
-A JSON schema can add key validation and autocompletion to your JSON based translation files (See [IDE Integration](#ide-integration)).
+A JSON schema can add key validation and autocompletion to your JSON based translation files (See [IDE Integration](#-ide-integration)).
 The tool will only detect template literals that are tagged with i18n (See [es2015-i18n-tag](http://i18n-tag.kolmer.net/)).
 It has support for [Custom Translation Groups](https://github.com/skolmer/es2015-i18n-tag#appjs) and generated [File Module Groups](https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups). `__translationGroup` constants in your code will be resolved relative to [`rootPath`](http://github.kolmer.net/i18n-tag-schema/globals.html#schemaoptions).
 
 The following repository provides examples for use with npm scripts or gulp: https://github.com/skolmer/i18n-tag-examples
 
-i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)
+i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#-additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)
 
 This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.
 
