@@ -19,6 +19,43 @@ i18n-tag-schema can also be used to export translation keys into a simple json f
 
 This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.
 
+## Known Limitations
+
+* you cannot use variables for grouping. 
+```js
+/***** example 1 ******/
+import _i18n from 'es2015-i18n-tag'
+const i18n = _i18n('common')
+const example1 = i18n`test` // ⚠️ i18n-tag-schema will not detect the "common" group.
+
+/***** example 2 ******/
+import i18n from 'es2015-i18n-tag'
+const groupName = 'common'
+const example2 = i18n(groupName)`test` // ⚠️ will not be detected. variables as groupName params are currently not supported.
+const example2b = i18n('common')`test` // ✅ this group name will be detected by i18n-tag-schema.
+
+/***** example 3 *****/
+import { i18nGroup } from 'es2015-i18n-tag'
+const groupName = 'common'
+@i18nGroup(groupName) // ⚠️ will not be detected. variables as groupName params are currently not supported.
+class example3 {
+}
+@i18nGroup('common') // ✅ this group name will be detected by i18n-tag-schema.
+class example3b {
+}
+```
+* you have to use `i18n` as name for your `es2015-i18n-tag` import
+```js
+/***** example 1 ******/
+import t from 'es2015-i18n-tag'
+const example1 = t`test` // ⚠️ will not be detected. i18n as a tag name is currently required.
+
+/***** example 2 ******/
+import i18n from 'es2015-i18n-tag'
+const example2 = i18n`test` // ✅ this will be detected by i18n-tag-schema.
+```
+
+
 ## Installation
 
 ```sh
