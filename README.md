@@ -6,6 +6,32 @@
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
+## 📄 Table of Contents
+
+  * [🗂 Overview](#-overview)
+  * [⚠️ Known Limitations](#%EF%B8%8F-known-limitations)
+  * [📦 Installation](#-installation)
+  * [💻 Examples](#-examples)
+  * [📒 Usage](#-usage)
+    + [Via npm](#via-npm)
+      - [package.json](#packagejson)
+    + [Via Gulp](#via-gulp)
+    + [Via Command-line](#via-command-line)
+    + [Reference schema in translation.json file](#reference-schema-in-translationjson-file)
+  * [✔️ Validation Rules](#%EF%B8%8F-validation-rules)
+  * [⚙ Preprocessors](#-preprocessors)
+  * [⌨ IDE Integration](#-ide-integration)
+    + [Webstorm / PhpStorm](#webstorm--phpstorm)
+    + [Visual Studio Code](#visual-studio-code)
+  * [🎁 Additional Features](#-additional-features)
+    + [Export translation keys](#export-translation-keys)
+    + [Validate translation file](#validate-translation-file)
+  * [🛠 Tools](#-tools)
+    + [Run time translation and localization](#run-time-translation-and-localization)
+    + [Build time translation](#build-time-translation)
+    + [Schema based translations](#schema-based-translations)
+  * [📃 License](#-license)
+
 ## 🗂 Overview
 
 This node module generates a [JSON Schema](http://json-schema.org/) of all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in a JavaScript project.
