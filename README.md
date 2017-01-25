@@ -1,4 +1,4 @@
-# i18n Tagged Template Literals - Schema Generator
+# 🌍 i18n Tagged Template Literals - Schema Generator
 [![Build Status](https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat)](https://travis-ci.org/skolmer/i18n-tag-schema) [![Coverage Status](https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master)](https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master) [![npm version](https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat)](https://www.npmjs.com/package/i18n-tag-schema) [![Dependencies](https://david-dm.org/skolmer/i18n-tag-schema.svg)](https://david-dm.org/skolmer/i18n-tag-schema) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![MIT License](https://img.shields.io/npm/l/ghooks.svg)](http://opensource.org/licenses/MIT)
 
@@ -6,7 +6,7 @@
 
 [![i18n Tagged Template Literals](images/vscode-18n-tag-schema-icon-big.jpg)](http://i18n-tag.kolmer.net/)
 
-## Overview
+## 🗂 Overview
 
 This node module generates a [JSON Schema](http://json-schema.org/) of all [i18n tagged](https://github.com/skolmer/es2015-i18n-tag) template literals in a JavaScript project.
 A JSON schema can add key validation and autocompletion to your JSON based translation files (See [IDE Integration](#ide-integration)).
@@ -19,7 +19,7 @@ i18n-tag-schema can also be used to export translation keys into a simple json f
 
 This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.
 
-## Known Limitations
+## ⚠️ Known Limitations
 
 * you cannot use variables for grouping. 
 ```js
@@ -32,7 +32,7 @@ const example1 = i18n`test` // ⚠️ i18n-tag-schema will not detect the "commo
 import i18n from 'es2015-i18n-tag'
 const groupName = 'common'
 const example2 = i18n(groupName)`test` // ⚠️ will not be detected. variables as groupName params are currently not supported.
-const example2b = i18n('common')`test` // ✅ this group name will be detected by i18n-tag-schema.
+const example2b = i18n('common')`test` // ✔️ this group name will be detected by i18n-tag-schema.
 
 /***** example 3 *****/
 import { i18nGroup } from 'es2015-i18n-tag'
@@ -40,7 +40,7 @@ const groupName = 'common'
 @i18nGroup(groupName) // ⚠️ will not be detected. variables as groupName params are currently not supported.
 class example3 {
 }
-@i18nGroup('common') // ✅ this group name will be detected by i18n-tag-schema.
+@i18nGroup('common') // ✔️ this group name will be detected by i18n-tag-schema.
 class example3b {
 }
 ```
@@ -52,22 +52,22 @@ const example1 = t`test` // ⚠️ will not be detected. i18n as a tag name is c
 
 /***** example 2 ******/
 import i18n from 'es2015-i18n-tag'
-const example2 = i18n`test` // ✅ this will be detected by i18n-tag-schema.
+const example2 = i18n`test` // ✔️ this will be detected by i18n-tag-schema.
 ```
 
 
-## Installation
+## 📦 Installation
 
 ```sh
 $ npm install i18n-tag-schema --save-dev
 ```
 
-## Examples
+## 💻 Examples
 
 * [npm scripts](https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS)
 * [gulp](https://github.com/skolmer/i18n-tag-examples/tree/master/Simple)
 
-## Usage
+## 📒 Usage
 ```js
 import { generateTranslationSchema } from 'i18n-tag-schema'
 
@@ -168,7 +168,7 @@ Usage: i18n-tag-schema <path> [options]
 }
 ```
 
-## Validation Rules
+## ✔️ Validation Rules
 
 The generated Schema checks
 * if your translation file is missing some of your project's translation keys.
@@ -177,7 +177,7 @@ The generated Schema checks
 
 Some IDEs can also provide auto completion for translation keys and groups
 
-## Preprocessors
+## ⚙ Preprocessors
 
 This library has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure `typescript` npm package is installed if you want to parse typescript code.
 
@@ -195,7 +195,7 @@ $ i18n-tag-schema ./src -e ./file.myext -p my-preprocessor -f \.myext
 A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
 An example can be found at [`./lib/preprocessors/typescript.js`](https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js)
 
-## IDE Integration
+## ⌨ IDE Integration
 
 ### Webstorm / PhpStorm
 
@@ -205,7 +205,7 @@ Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more detail
 
 For Visual Studio Code you can install the i18n-tag-schema extension from [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema)
 
-## Additional Features
+## 🎁 Additional Features
 
 ### Export translation keys
 
@@ -254,7 +254,7 @@ validateTranslations({ rootPath: './translations', schemaPath: './translation.sc
 
 [See docs](http://github.kolmer.net/i18n-tag-schema/globals.html#validatetranslations)
 
-## Tools
+## 🛠 Tools
 
 ### Run time translation and localization
 * [es2015-i18n-tag](https://github.com/skolmer/es2015-i18n-tag): ES2015 template literal tag for i18n and l10n (translation and internationalization) using Intl [![npm version](https://img.shields.io/npm/v/es2015-i18n-tag.svg?style=flat)](https://www.npmjs.com/package/es2015-i18n-tag)
@@ -265,7 +265,7 @@ validateTranslations({ rootPath: './translations', schemaPath: './translation.sc
 ### Schema based translations
 * [vscode-18n-tag-schema](https://github.com/skolmer/vscode-i18n-tag-schema): Visual Studio Code Extension for JSON Schema based translation validation and tools [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version-short/skolmer.vscode-i18n-tag-schema.svg)](https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema)
 
-## License
+## 📃 License
 
 Copyright (c) 2016 Steffen Kolmer
 
