@@ -105,7 +105,7 @@ type ExportOptions = {
 };
 
 type TemplateExport = {
-  templates: Array<string | {}>,
+  templates: Array<string | TemplateGroup>,
   templatePatterns: {
     [template : string]: string
   }

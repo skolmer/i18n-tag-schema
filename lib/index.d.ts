@@ -135,7 +135,7 @@ export function generateTranslationSchema(options: SchemaOptions) : Promise<{}>
  *
  * @param options The export options.
  */
-export function exportTranslationKeys(options: ExportOptions) : Promise<Array<{} | string>>
+export function exportTranslationKeys(options: ExportOptions) : Promise<Array<string | TemplateGroup> | string>
 
 /**
  * Validates a translation file or folder and calculates translation coverage
