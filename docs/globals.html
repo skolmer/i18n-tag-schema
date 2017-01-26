@@ -74,6 +74,7 @@
 								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#exportoptions" class="tsd-kind-icon">Export<wbr>Options</a></li>
 								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#logger" class="tsd-kind-icon">Logger</a></li>
 								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#schemaoptions" class="tsd-kind-icon">Schema<wbr>Options</a></li>
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#templategroup" class="tsd-kind-icon">Template<wbr>Group</a></li>
 								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#validateoptions" class="tsd-kind-icon">Validate<wbr>Options</a></li>
 							</ul>
 						</section>
@@ -96,7 +97,7 @@
 					<div class="tsd-signature tsd-kind-icon">Export<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L26">index.d.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L37">index.d.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -137,7 +138,15 @@
 								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> preprocessor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> postprocessor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>A custom postprocessor like <code>./postprocessors/po</code>.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> preprocessor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
 										<p>A custom preprocessor like <code>./preprocessors/typescript</code>.</p>
@@ -193,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">Logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L3">index.d.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L3">index.d.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -320,7 +329,7 @@
 					<div class="tsd-signature tsd-kind-icon">Schema<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L57">index.d.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L72">index.d.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -361,7 +370,7 @@
 								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> preprocessor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> preprocessor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
 										<p>A custom preprocessor like <code>./preprocessors/typescript</code>.</p>
@@ -420,12 +429,33 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="templategroup" class="tsd-anchor"></a>
+					<h3>Template<wbr>Group</h3>
+					<div class="tsd-signature tsd-kind-icon">Template<wbr>Group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L26">index.d.ts:26</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>group<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>items<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
 					<a name="validateoptions" class="tsd-anchor"></a>
 					<h3>Validate<wbr>Options</h3>
 					<div class="tsd-signature tsd-kind-icon">Validate<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L92">index.d.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L107">index.d.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -503,7 +533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L123">index.d.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L138">index.d.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -534,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L116">index.d.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L131">index.d.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -565,7 +595,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/fb5bf00/lib/index.d.ts#L130">index.d.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/skolmer/i18n-tag-schema/blob/b866f9b/lib/index.d.ts#L145">index.d.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -606,6 +636,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#schemaoptions" class="tsd-kind-icon">Schema<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#templategroup" class="tsd-kind-icon">Template<wbr>Group</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#validateoptions" class="tsd-kind-icon">Validate<wbr>Options</a>

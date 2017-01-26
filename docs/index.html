@@ -65,28 +65,97 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="i18n-tagged-template-literals-schema-generator">i18n Tagged Template Literals - Schema Generator</h1>
+				<h1 id="-i18n-tagged-template-literals-schema-generator">🌍 i18n Tagged Template Literals - Schema Generator</h1>
 				<p><a href="https://travis-ci.org/skolmer/i18n-tag-schema"><img src="https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat" alt="Build Status"></a> <a href="https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master"><img src="https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/i18n-tag-schema"><img src="https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat" alt="npm version"></a> <a href="https://david-dm.org/skolmer/i18n-tag-schema"><img src="https://david-dm.org/skolmer/i18n-tag-schema.svg" alt="Dependencies"></a> <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
 				<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a> <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/ghooks.svg" alt="MIT License"></a></p>
 				<p><a href="https://nodei.co/npm/i18n-tag-schema/"><img src="https://nodei.co/npm/i18n-tag-schema.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM"></a></p>
 				<p><a href="http://i18n-tag.kolmer.net/"><img src="images/vscode-18n-tag-schema-icon-big.jpg" alt="i18n Tagged Template Literals"></a></p>
-				<h2 id="overview">Overview</h2>
+				<h2 id="-table-of-contents">📄 Table of Contents</h2>
+				<ul>
+					<li><a href="#-overview">🗂 Overview</a></li>
+					<li><a href="#%EF%B8%8F-known-limitations">⚠️ Known Limitations</a></li>
+					<li><a href="#-installation">📦 Installation</a></li>
+					<li><a href="#-examples">💻 Examples</a></li>
+					<li><a href="#-usage">📒 Usage</a><ul>
+							<li><a href="#via-npm">Via npm</a><ul>
+									<li><a href="#packagejson">package.json</a></li>
+								</ul>
+							</li>
+							<li><a href="#via-gulp">Via Gulp</a></li>
+							<li><a href="#via-command-line">Via Command-line</a></li>
+							<li><a href="#reference-schema-in-translationjson-file">Reference schema in translation.json file</a></li>
+						</ul>
+					</li>
+					<li><a href="#%EF%B8%8F-validation-rules">✔️ Validation Rules</a></li>
+					<li><a href="#-preprocessors">⚙ Preprocessors</a></li>
+					<li><a href="#-postprocessors">⚙ Postprocessors</a></li>
+					<li><a href="#-ide-integration">⌨ IDE Integration</a><ul>
+							<li><a href="#webstorm--phpstorm">Webstorm / PhpStorm</a></li>
+							<li><a href="#visual-studio-code">Visual Studio Code</a></li>
+						</ul>
+					</li>
+					<li><a href="#-additional-features">🎁 Additional Features</a><ul>
+							<li><a href="#export-translation-keys">Export translation keys</a></li>
+							<li><a href="#validate-translation-file">Validate translation file</a></li>
+						</ul>
+					</li>
+					<li><a href="#-tools">🛠 Tools</a><ul>
+							<li><a href="#run-time-translation-and-localization">Run time translation and localization</a></li>
+							<li><a href="#build-time-translation">Build time translation</a></li>
+							<li><a href="#schema-based-translations">Schema based translations</a></li>
+						</ul>
+					</li>
+					<li><a href="#-license">📃 License</a></li>
+				</ul>
+				<h2 id="-overview">🗂 Overview</h2>
 				<p>This node module generates a <a href="http://json-schema.org/">JSON Schema</a> of all <a href="https://github.com/skolmer/es2015-i18n-tag">i18n tagged</a> template literals in a JavaScript project.
-					A JSON schema can add key validation and autocompletion to your JSON based translation files (See <a href="#ide-integration">IDE Integration</a>).
+					A JSON schema can add key validation and autocompletion to your JSON based translation files (See <a href="#-ide-integration">IDE Integration</a>).
 					The tool will only detect template literals that are tagged with i18n (See <a href="http://i18n-tag.kolmer.net/">es2015-i18n-tag</a>).
 				It has support for <a href="https://github.com/skolmer/es2015-i18n-tag#appjs">Custom Translation Groups</a> and generated <a href="https://github.com/skolmer/es2015-i18n-tag#babel-generated-file-module-groups">File Module Groups</a>. <code>__translationGroup</code> constants in your code will be resolved relative to <a href="http://github.kolmer.net/i18n-tag-schema/globals.html#schemaoptions"><code>rootPath</code></a>.</p>
 				<p>The following repository provides examples for use with npm scripts or gulp: <a href="https://github.com/skolmer/i18n-tag-examples">https://github.com/skolmer/i18n-tag-examples</a></p>
-				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)</p>
+				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#-additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)</p>
 				<p>This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.</p>
-				<h2 id="installation">Installation</h2>
+				<h2 id="-known-limitations">⚠️ Known Limitations</h2>
+				<ul>
+					<li>you cannot use variables for grouping.
+						<code>``js
+/***** example 1 ******/
+import _i18n from &#39;es2015-i18n-tag&#39;
+const i18n = _i18n(&#39;common&#39;)
+const example1 = i18n</code>test` // ⚠️ i18n-tag-schema will not detect the &quot;common&quot; group.</li>
+				</ul>
+				<p>/<strong>*</strong> example 2 <strong>**</strong>/
+					import i18n from &#39;es2015-i18n-tag&#39;
+					const groupName = &#39;common&#39;
+					const example2 = i18n(groupName)<code>test</code> // ⚠️ will not be detected. variables as groupName params are currently not supported.
+				const example2b = i18n(&#39;common&#39;)<code>test</code> // ✔️ this group name will be detected by i18n-tag-schema.</p>
+				<p>/<strong>*</strong> example 3 <strong>*</strong>/
+					import { i18nGroup } from &#39;es2015-i18n-tag&#39;
+					const groupName = &#39;common&#39;
+					@i18nGroup(groupName) // ⚠️ will not be detected. variables as groupName params are currently not supported.
+					class example3 {
+					}
+					@i18nGroup(&#39;common&#39;) // ✔️ this group name will be detected by i18n-tag-schema.
+					class example3b {
+				}</p>
+				<pre><code>* you have to use `<span class="javascript">i18n</span>` as name <span class="hljs-keyword">for</span> your `<span class="javascript">es2015-i18n-tag</span>` import
+`<span class="javascript"></span>``<span class="javascript">js
+<span class="hljs-comment">/***** example 1 ******/</span>
+<span class="hljs-keyword">import</span> t <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
+<span class="hljs-keyword">const</span> example1 = t</span>`test`<span class="javascript"> <span class="hljs-comment">// ⚠️ will not be detected. i18n as a tag name is currently required.</span>
+
+<span class="hljs-comment">/***** example 2 ******/</span>
+<span class="hljs-keyword">import</span> i18n <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
+<span class="hljs-keyword">const</span> example2 = i18n</span>`test`<span class="javascript"> <span class="hljs-comment">// ✔️ this will be detected by i18n-tag-schema.</span></span>
+</code></pre><h2 id="-installation">📦 Installation</h2>
 				<pre><code class="lang-sh">$ npm install i18n-tag-schema --save-dev
 </code></pre>
-				<h2 id="examples">Examples</h2>
+				<h2 id="-examples">💻 Examples</h2>
 				<ul>
 					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS">npm scripts</a></li>
 					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/Simple">gulp</a></li>
 				</ul>
-				<h2 id="usage">Usage</h2>
+				<h2 id="-usage">📒 Usage</h2>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { generateTranslationSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
 generateTranslationSchema({<span class="hljs-attr">rootPath</span>: <span class="hljs-string">'./src'</span>, <span class="hljs-attr">schemaPath</span>: <span class="hljs-string">'./translation.schema.json'</span>}).then(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> {
@@ -155,6 +224,7 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
     -h, --<span class="hljs-keyword">help</span>                 output usage information
     -V, --<span class="hljs-keyword">version</span>              output the <span class="hljs-keyword">version</span> <span class="hljs-keyword">number</span>
     -<span class="hljs-keyword">p</span>, --preprocessor <span class="hljs-symbol">&lt;name&gt;</span>  the name of <span class="hljs-keyword">a</span> preprocessor node module. <span class="hljs-keyword">for</span> typescript use <span class="hljs-string">'./preprocessors/typescript'</span>
+    -<span class="hljs-keyword">o</span>, --postprocessor <span class="hljs-symbol">&lt;name&gt;</span> the name of <span class="hljs-keyword">a</span> postprocessor node module. <span class="hljs-keyword">for</span> PO export <span class="hljs-keyword">file</span> format use <span class="hljs-string">'./postprocessors/po'</span>
     -s, --schema <span class="hljs-symbol">&lt;path&gt;</span>        <span class="hljs-keyword">set</span> path of the schema <span class="hljs-keyword">to</span> create <span class="hljs-built_in">or</span> validate against.
                                If --schema <span class="hljs-keyword">is</span> not <span class="hljs-keyword">set</span>, JSON will <span class="hljs-keyword">be</span> printed <span class="hljs-keyword">to</span> the output.
     -<span class="hljs-keyword">f</span>, --<span class="hljs-built_in">filter</span> <span class="hljs-symbol">&lt;regex&gt;</span>       <span class="hljs-keyword">a</span> regular expression <span class="hljs-keyword">to</span> <span class="hljs-built_in">filter</span> <span class="hljs-keyword">source</span> <span class="hljs-keyword">files</span>. defaults <span class="hljs-keyword">to</span> \.jsx?$
@@ -169,7 +239,7 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
     <span class="hljs-attr">"key"</span>: <span class="hljs-string">"value"</span>
 }
 </code></pre>
-				<h2 id="validation-rules">Validation Rules</h2>
+				<h2 id="-validation-rules">✔️ Validation Rules</h2>
 				<p>The generated Schema checks</p>
 				<ul>
 					<li>if your translation file is missing some of your project&#39;s translation keys.</li>
@@ -177,7 +247,7 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
 					<li>if a translation value contains all parameters defined in the translation key (e.g. ${0}, ${1}).</li>
 				</ul>
 				<p>Some IDEs can also provide auto completion for translation keys and groups</p>
-				<h2 id="preprocessors">Preprocessors</h2>
+				<h2 id="-preprocessors">⚙ Preprocessors</h2>
 				<p>This library has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure <code>typescript</code> npm package is installed if you want to parse typescript code.</p>
 				<pre><code>$ i18n-tag-schema ./src -e ./typescript<span class="hljs-selector-class">.ts</span> -<span class="hljs-selector-tag">p</span> ./preprocessors/typescript -f \.ts
 </code></pre><p>Custom preprocessors can be added as npm packages</p>
@@ -185,12 +255,20 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
 $ i18n-tag-schema ./src -e ./<span class="hljs-built_in">file</span>.myext -p <span class="hljs-keyword">my</span>-preprocessor -f \.myext
 </code></pre><p>A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
 				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js"><code>./lib/preprocessors/typescript.js</code></a></p>
-				<h2 id="ide-integration">IDE Integration</h2>
+				<h2 id="-postprocessors">⚙ Postprocessors</h2>
+				<p>This library has support for custom postprocessors that can be used to transform the export file format. It ships with a PO file format postprocessor out of the box.</p>
+				<pre><code>$ i18n-<span class="hljs-keyword">tag</span>-schema ./src -<span class="hljs-keyword">e</span> . -<span class="hljs-keyword">o</span> ./postprocessors/<span class="hljs-keyword">po</span> -t ./translation.<span class="hljs-keyword">po</span>
+</code></pre><p>Custom postprocessors can be added as npm packages</p>
+				<pre><code>$ npm install <span class="hljs-keyword">my</span>-postprocessor <span class="hljs-comment">--save-dev</span>
+$ i18n-tag-schema ./src -e . -o <span class="hljs-keyword">my</span>-postprocessor -t ./translation.myext
+</code></pre><p>A postprocessor is a function that receives an array of translation keys and groups as an argument and returns the processed output.
+				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/master/lib/postprocessors/po.js"><code>./lib/postprocessors/po.js</code></a></p>
+				<h2 id="-ide-integration">⌨ IDE Integration</h2>
 				<h3 id="webstorm-phpstorm">Webstorm / PhpStorm</h3>
 				<p>Webstorm and PhpStorm support JSON Schemas since version 2016.1. For more details please see:  <a href="https://www.jetbrains.com/help/webstorm/2016.1/add-json-schema-mapping-dialog.html">Add JSON Schema Mapping Dialog</a></p>
 				<h3 id="visual-studio-code">Visual Studio Code</h3>
 				<p>For Visual Studio Code you can install the i18n-tag-schema extension from <a href="https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema">Visual Studio Code Marketplace</a></p>
-				<h2 id="additional-features">Additional Features</h2>
+				<h2 id="-additional-features">🎁 Additional Features</h2>
 				<h3 id="export-translation-keys">Export translation keys</h3>
 				<p><img src="https://raw.githubusercontent.com/skolmer/i18n-tag-schema/master/images/export.jpg" alt="export translation keys"></p>
 				<p>Read all i18n tagged template literals from a JavaScript file or directory</p>
@@ -228,7 +306,7 @@ validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hlj
 })
 </code></pre>
 				<p><a href="http://github.kolmer.net/i18n-tag-schema/globals.html#validatetranslations">See docs</a></p>
-				<h2 id="tools">Tools</h2>
+				<h2 id="-tools">🛠 Tools</h2>
 				<h3 id="run-time-translation-and-localization">Run time translation and localization</h3>
 				<ul>
 					<li><a href="https://github.com/skolmer/es2015-i18n-tag">es2015-i18n-tag</a>: ES2015 template literal tag for i18n and l10n (translation and internationalization) using Intl <a href="https://www.npmjs.com/package/es2015-i18n-tag"><img src="https://img.shields.io/npm/v/es2015-i18n-tag.svg?style=flat" alt="npm version"></a></li>
@@ -241,7 +319,7 @@ validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hlj
 				<ul>
 					<li><a href="https://github.com/skolmer/vscode-i18n-tag-schema">vscode-18n-tag-schema</a>: Visual Studio Code Extension for JSON Schema based translation validation and tools <a href="https://marketplace.visualstudio.com/items?itemName=skolmer.vscode-i18n-tag-schema"><img src="https://vsmarketplacebadge.apphb.com/version-short/skolmer.vscode-i18n-tag-schema.svg" alt="Marketplace Version"></a></li>
 				</ul>
-				<h2 id="license">License</h2>
+				<h2 id="-license">📃 License</h2>
 				<p>Copyright (c) 2016 Steffen Kolmer</p>
 				<p>This software is licensed under the MIT license.  See the <code>LICENSE</code> file
 				accompanying this software for terms of use.</p>
@@ -265,6 +343,9 @@ validateTranslations({ <span class="hljs-attr">rootPath</span>: <span class="hlj
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#schemaoptions" class="tsd-kind-icon">Schema<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#templategroup" class="tsd-kind-icon">Template<wbr>Group</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#validateoptions" class="tsd-kind-icon">Validate<wbr>Options</a>
