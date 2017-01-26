@@ -1,3 +1,5 @@
+import i18n, { i18nGroup } from 'es2015-i18n-tag'
+
 console.log(i18n`
     <users>
     ${hello.map((item) => i18n`
