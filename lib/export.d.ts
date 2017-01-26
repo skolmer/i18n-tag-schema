@@ -104,8 +104,14 @@ type ExportOptions = {
     babylonConfig?: {}
 };
 
-type TemplateExport = {
+type TranslationKeyExport = {
+  /**
+   * A list of translation keys and groups
+   */
   templates: Array<string | TemplateGroup>,
+  /**
+   * The translation patterns for validation purpose.
+   */
   templatePatterns: {
     [template : string]: string
   }
@@ -116,11 +122,11 @@ type TemplateExport = {
  *
  * @param options The read options.
  */
-export function readTemplatesFromFileContent(options: ReadOptions) : TemplateExport
+export function readTemplatesFromFileContent(options: ReadOptions) : TranslationKeyExport
 
 /**
  * Generates an array of all i18n tagged template literals in a file.
  *
  * @param options The export options.
  */
-export function exportTranslationKeysFromFiles(options: ExportOptions) : Promise<TemplateExport>
+export function exportTranslationKeysFromFiles(options: ExportOptions) : Promise<TranslationKeyExport>

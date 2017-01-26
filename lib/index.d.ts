@@ -24,13 +24,13 @@ type Logger = {
 };
 
 type TemplateGroup = {
-    /*
+    /**
      * Translation group
-    */
+     */
     group: string,
-    /*
+    /**
      * Translation keys
-    */
+     */
     items: Array<string>
 };
 
