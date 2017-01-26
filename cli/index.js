@@ -159,11 +159,6 @@ program
         logger.flush();
         process.exit(1);
       }
-      if (program.target && pathLib.extname(program.target) !== '.json') {
-        logger.error(program.target + ' is not a json file.');
-        logger.flush();
-        process.exit(1);
-      }
       exportTranslationKeys({
         rootPath: path,
         filePath: program.export,
