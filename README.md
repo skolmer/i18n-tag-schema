@@ -228,14 +228,14 @@ An example can be found at [`./lib/preprocessors/typescript.js`](https://github.
 This library has support for custom postprocessors that can be used to transform the export file format. It ships with a PO file format postprocessor out of the box.
 
 ```
-$ i18n-tag-schema ./src -e . -o ./postprocessors/po
+$ i18n-tag-schema ./src -e . -o ./postprocessors/po -t ./translation.po
 ```
 
 Custom postprocessors can be added as npm packages
 
 ```
 $ npm install my-postprocessor --save-dev
-$ i18n-tag-schema ./src -e . -o my-postprocessor
+$ i18n-tag-schema ./src -e . -o my-postprocessor -t ./translation.myext
 ```
 
 A postprocessor is a function that receives an array of translation keys and groups as an argument and returns the processed output.
