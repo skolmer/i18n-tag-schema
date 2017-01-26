@@ -48,7 +48,7 @@ This module does include a JSON validator that helps you keep track of missing o
 
 ## ⚠️ Known Limitations
 
-* you cannot use variables for grouping.
+You cannot use variables for grouping.
 ```js
 /***** example 1 ******/
 import _i18n from 'es2015-i18n-tag'
@@ -71,17 +71,6 @@ class example3 {
 class example3b {
 }
 ```
-* you have to use `i18n` as name for your `es2015-i18n-tag` import
-```js
-/***** example 1 ******/
-import t from 'es2015-i18n-tag'
-const example1 = t`test` // ⚠️ will not be detected. i18n as a tag name is currently required.
-
-/***** example 2 ******/
-import i18n from 'es2015-i18n-tag'
-const example2 = i18n`test` // ✔️ this will be detected by i18n-tag-schema.
-```
-
 
 ## 📦 Installation
 
