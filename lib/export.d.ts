@@ -21,6 +21,17 @@ type Logger = {
     toConsole?: boolean
 };
 
+type TemplateGroup = {
+    /*
+     * Translation group
+    */
+    group: string,
+    /*
+     * Translation keys
+    */
+    items: Array<string>
+};
+
 type ReadOptions = {
     /**
      * The root directory of your source files.
@@ -51,7 +62,7 @@ type ReadOptions = {
     /**
      * A custom preprocessor like `./preprocessors/typescript`.
      */
-    preprocessor?: string,
+    preprocessor?: string | ((code: string) => string),
     /**
      * A custom babylon configuration.
      */
@@ -82,7 +93,11 @@ type ExportOptions = {
     /**
      * A custom preprocessor like `./preprocessors/typescript`.
      */
-    preprocessor?: string,
+    preprocessor?: string | ((code: string) => string),
+    /**
+     * A custom postprocessor like `./postprocessors/po`.
+     */
+    postprocessor?: string | ((templates: Array<string | TemplateGroup>) => string),
     /**
      * A custom babylon configuration.
      */
@@ -97,7 +112,7 @@ type TemplateExport = {
 };
 
 /**
- * Generates an array of all i18n tagged template literals in javascript ES2015 source code.
+ * Generates an array of all i18n tagged template literals in your ES2015 source code.
  *
  * @param options The read options.
  */

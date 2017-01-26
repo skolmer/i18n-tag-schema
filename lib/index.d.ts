@@ -23,6 +23,17 @@ type Logger = {
     toConsole?: boolean
 };
 
+type TemplateGroup = {
+    /*
+     * Translation group
+    */
+    group: string,
+    /*
+     * Translation keys
+    */
+    items: Array<string>
+};
+
 type ExportOptions = {
     /**
      * The root directory of your source files.
@@ -44,14 +55,14 @@ type ExportOptions = {
      * A progress callback.
      */
     progress?: (current: number, total: number, name: string) => void,
-    /**
+     /**
      * A custom preprocessor like `./preprocessors/typescript`.
      */
-    preprocessor?: string,
+    preprocessor?: string | ((code: string) => string),
     /**
      * A custom postprocessor like `./postprocessors/po`.
      */
-    postprocessor?: string,
+    postprocessor?: string | ((templates: Array<string | TemplateGroup>) => string),
     /**
      * A custom babylon configuration.
      */
@@ -82,11 +93,7 @@ type SchemaOptions = {
     /**
      * A custom preprocessor like `./preprocessors/typescript`.
      */
-    preprocessor?: string,
-    /**
-     * A custom postprocessor like `./postprocessors/po`.
-     */
-    postprocessor?: string,
+    preprocessor?: string | ((code: string) => string),
     /**
      * A custom babylon configuration.
      */
