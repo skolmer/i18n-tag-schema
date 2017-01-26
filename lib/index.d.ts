@@ -49,6 +49,10 @@ type ExportOptions = {
      */
     preprocessor?: string,
     /**
+     * A custom postprocessor like `./postprocessors/po`.
+     */
+    postprocessor?: string,
+    /**
      * A custom babylon configuration.
      */
     babylonConfig?: {}
@@ -79,6 +83,10 @@ type SchemaOptions = {
      * A custom preprocessor like `./preprocessors/typescript`.
      */
     preprocessor?: string,
+    /**
+     * A custom postprocessor like `./postprocessors/po`.
+     */
+    postprocessor?: string,
     /**
      * A custom babylon configuration.
      */

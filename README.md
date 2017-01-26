@@ -20,6 +20,7 @@
     + [Reference schema in translation.json file](#reference-schema-in-translationjson-file)
   * [✔️ Validation Rules](#%EF%B8%8F-validation-rules)
   * [⚙ Preprocessors](#-preprocessors)
+  * [⚙ Postprocessors](#-postprocessors)
   * [⌨ IDE Integration](#-ide-integration)
     + [Webstorm / PhpStorm](#webstorm--phpstorm)
     + [Visual Studio Code](#visual-studio-code)
@@ -47,7 +48,7 @@ This module does include a JSON validator that helps you keep track of missing o
 
 ## ⚠️ Known Limitations
 
-* you cannot use variables for grouping. 
+* you cannot use variables for grouping.
 ```js
 /***** example 1 ******/
 import _i18n from 'es2015-i18n-tag'
@@ -176,6 +177,7 @@ Usage: i18n-tag-schema <path> [options]
     -h, --help                 output usage information
     -V, --version              output the version number
     -p, --preprocessor <name>  the name of a preprocessor node module. for typescript use './preprocessors/typescript'
+    -o, --postprocessor <name> the name of a postprocessor node module. for PO export file format use './postprocessors/po'
     -s, --schema <path>        set path of the schema to create or validate against.
                                If --schema is not set, JSON will be printed to the output.
     -f, --filter <regex>       a regular expression to filter source files. defaults to \.jsx?$
@@ -220,6 +222,24 @@ $ i18n-tag-schema ./src -e ./file.myext -p my-preprocessor -f \.myext
 
 A preprocessor is a function that receives file content as an argument and returns the processed source code in ES2015 syntax.
 An example can be found at [`./lib/preprocessors/typescript.js`](https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js)
+
+## ⚙ Postprocessors
+
+This library has support for custom postprocessors that can be used to transform the export file format. It ships with a PO file format postprocessor out of the box.
+
+```
+$ i18n-tag-schema ./src -e . -o ./postprocessors/po
+```
+
+Custom postprocessors can be added as npm packages
+
+```
+$ npm install my-postprocessor --save-dev
+$ i18n-tag-schema ./src -e . -o my-postprocessor
+```
+
+A postprocessor is a function that receives an array of translation keys and groups as an argument and returns the processed output.
+An example can be found at [`./lib/postprocessors/po.js`](https://github.com/skolmer/i18n-tag-schema/blob/master/lib/postprocessors/po.js)
 
 ## ⌨ IDE Integration
 

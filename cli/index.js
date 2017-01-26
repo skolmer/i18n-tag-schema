@@ -116,6 +116,7 @@ program
   .version('2.0.0')
   .usage('<path> [options]')
   .option('-p, --preprocessor <name>', 'the name of a preprocessor node module. for typescript use \'./preprocessors/typescript\'')
+  .option('-o, --postprocessor <name>', 'the name of a postprocessor node module. for PO export file format use \'./postprocessors/po\'')
   .option('-s, --schema <path>', 'set path of the schema to create or validate against.\n                           If --schema is not set, JSON will be printed to the output.')
   .option('-f, --filter <regex>', 'a regular expression to filter source files. defaults to \\.jsx?$')
   .option('-v, --validate', 'use to validate translation file(s). path has to be a JSON file or directory.\n                           requires --schema <path>')
@@ -168,12 +169,13 @@ program
         filePath: program.export,
         filter: program.filter,
         preprocessor: program.preprocessor,
+        postprocessor: program.postprocessor,
         logger: (program.target)?logger:undefined,
         progress: (program.target)?progressBar():undefined
       }).then(function(result) {
         logger.flush();
         if (program.target) {
-            fs.writeFile(program.target, JSON.stringify(result, null, getTabChar(program.indention)), 'utf-8', function (err) {
+            fs.writeFile(program.target, (program.postprocessor)?result:JSON.stringify(result, null, getTabChar(program.indention)), 'utf-8', function (err) {
               if (err) {
                 logger.error(err.message);
                 logger.flush();
@@ -185,7 +187,7 @@ program
               process.exit(0);
             });
           } else {
-            console.log(JSON.stringify(result, null, getTabChar(program.indention)));
+            console.log((program.postprocessor)?result:JSON.stringify(result, null, getTabChar(program.indention)));
             process.exit(0);
           }
       }).catch(function(err) {

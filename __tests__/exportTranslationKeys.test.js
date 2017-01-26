@@ -169,4 +169,47 @@ describe('exportTranslationKeys', () => {
     expect(templates).toEqual(['Process exiting with code \'${0}\'.'])
   })
 
+  it('should export PO', async () => {
+    const rootPath = path.resolve(__dirname, './data')
+    const filePath = path.resolve(__dirname, './data/grouped.js')
+    const templates = await exportTranslationKeys({
+      rootPath,
+      filePath,
+      postprocessor: './postprocessors/po',
+      logger: { toConsole: true }
+    })
+    expect(templates).toEqual(
+`msgid "\\n        <user name=\\"\${0}\\">\${1}</user>\\n    "
+msgstr ""
+
+msgid "\\n    <users>\\n    \${0}\\n    </users>\\n"
+msgstr ""
+
+msgctxt "custom group"
+msgid "Hello \${0}, you have \${1} in your bank account."
+msgstr ""
+
+msgctxt "custom group 2"
+msgid "Hello \${0}, you have \${1} in your bank account."
+msgstr ""
+
+msgctxt "custom inline group"
+msgid "Hello!"
+msgstr ""
+
+msgctxt "custom inline group"
+msgid "Welcome!"
+msgstr ""
+
+msgctxt "grouped.js"
+msgid "Hello \${0}, you have \${1} in your bank account."
+msgstr ""
+
+msgctxt "grouped.js"
+msgid "Hello!"
+msgstr ""
+`
+    )
+  })
+
 })
