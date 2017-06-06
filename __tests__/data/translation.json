@@ -2,6 +2,7 @@
     "$schema": "./schema.json",
     "\n        <user name=\"${0}\">${1}</user>\n    ": "<user name=\"${01}\">${1}</user>",
     "\n    <users>\n    ${0}\n    </users>\n": "",
+    "${0} ${1}": "${0} ${1}",
     "unknown": "unknown",
     "custom group": {
         "Hello ${0}, you have ${1} in your bank account.": "hello${0}, you have ${1} §{0}"

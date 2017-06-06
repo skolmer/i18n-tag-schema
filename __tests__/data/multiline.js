@@ -8,5 +8,7 @@ console.log(i18n`
     </users>
 `)
 
+const format = (val, item) => i18n`${val / 100}:n(0) ${(item.currency || '').toUpperCase()}`
+
 console.log(i18n('custom inline group') `Hello!`)
 console.log(i18n('custom inline group') `Hallo!`)

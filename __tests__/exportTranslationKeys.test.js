@@ -39,6 +39,7 @@ describe('exportTranslationKeys', () => {
     expect(templates).toEqual([
       '\n        <user name="${0}">${1}</user>\n    ',
       '\n    <users>\n    ${0}\n    </users>\n',
+      '${0} ${1}',
       {
         'group': 'custom group',
         'items': [
@@ -136,6 +137,7 @@ describe('exportTranslationKeys', () => {
     expect(templates).toEqual([
       '\n        <user name="${0}">${1}</user>\n    ',
       '\n    <users>\n    ${0}\n    </users>\n',
+      '${0} ${1}',
       {
         'group': 'custom inline group',
         'items': ['Hallo!', 'Hello!']

@@ -21,6 +21,11 @@ const expected = {
       'minLength': 1,
       'pattern': '(?=.*?\\$\\{0\\})'
     },
+    '${0} ${1}': {
+      'type': 'string',
+      'minLength': 1,
+      'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
+    },
     'custom group': {
       'type': 'object',
       'properties': {
@@ -91,6 +96,7 @@ const expected = {
   'required': [
     '\n        <user name="${0}">${1}</user>\n    ',
     '\n    <users>\n    ${0}\n    </users>\n',
+    '${0} ${1}',
     'custom group',
     'custom group 2',
     'custom inline group',
