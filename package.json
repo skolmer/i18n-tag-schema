@@ -68,7 +68,7 @@
     "rimraf": "^2.6.1",
     "semantic-release": "^6.3.6",
     "shx": "^0.2.2",
-    "typedoc": "^0.7.1",
+    "typedoc": "^0.8.0",
     "typescript": "^2.3.4",
     "validate-commit-msg": "^2.12.1"
   },
