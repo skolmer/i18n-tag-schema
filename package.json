@@ -64,7 +64,7 @@
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.3.0",
     "husky": "^0.13.4",
-    "jest": "^20.0.4",
+    "jest": "^21.0.0",
     "rimraf": "^2.6.1",
     "semantic-release": "^6.3.6",
     "shx": "^0.2.2",
