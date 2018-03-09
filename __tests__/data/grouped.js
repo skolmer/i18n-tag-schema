@@ -4,6 +4,7 @@ import i18nc, { i18nGroup as e } from 'es2015-i18n-tag'
 export class Test {
     log() {
         console.log(this.i18n`Hello ${name}, you have ${amount}:c in your bank account.`)
+        console.log(this.i18n`Hello ${name}, Hello ${name}.`)
         console.log(i18nc('custom inline group') `Hello!`)
         console.log(this.i18n('custom inline group') `Welcome!`)
 

@@ -43,6 +43,7 @@ describe('exportTranslationKeys', () => {
       {
         'group': 'custom group',
         'items': [
+          'Hello ${0}, Hello ${0}.',
           'Hello ${0}, you have ${1} in your bank account.'
         ]
       },
@@ -101,6 +102,7 @@ describe('exportTranslationKeys', () => {
       {
         'group': 'custom group',
         'items': [
+          'Hello ${0}, Hello ${0}.',
           'Hello ${0}, you have ${1} in your bank account.'
         ]
       },
@@ -185,6 +187,10 @@ describe('exportTranslationKeys', () => {
 msgstr ""
 
 msgid "\\n    <users>\\n    \${0}\\n    </users>\\n"
+msgstr ""
+
+msgctxt "custom group"
+msgid "Hello \${0}, Hello \${0}."
 msgstr ""
 
 msgctxt "custom group"
