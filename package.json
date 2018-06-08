@@ -67,7 +67,7 @@
     "jest": "^20.0.4",
     "rimraf": "^2.6.1",
     "semantic-release": "^6.3.6",
-    "shx": "^0.2.2",
+    "shx": "^0.3.0",
     "typedoc": "^0.7.1",
     "typescript": "^2.3.4",
     "validate-commit-msg": "^2.12.1"
