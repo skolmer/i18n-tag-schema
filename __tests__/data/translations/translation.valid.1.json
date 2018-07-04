@@ -5,7 +5,7 @@
     "${0} ${1}": "${0} ${1}",
     "custom group": {
         "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have ${1} in your bank account.",
-        "Hello ${0}, Hello ${0}.": "Hello ${0}, Hello ${0}."
+        "Hello ${0}, Hello ${1}.": "Hello ${0}, Hello ${1}."
     },
     "custom group 2": {
         "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have in your bank account."

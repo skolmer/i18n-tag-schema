@@ -29,9 +29,9 @@ const expected = {
     'custom group': {
       'type': 'object',
       'properties': {
-        'Hello ${0}, Hello ${0}.': {
+        'Hello ${0}, Hello ${1}.': {
           'minLength': 1,
-          'pattern': '(?=.*?\\$\\{0\\})',
+          'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})',
           'type': 'string'
         },
         'Hello ${0}, you have ${1} in your bank account.': {
@@ -41,7 +41,7 @@ const expected = {
         }
       },
       'required': [
-        'Hello ${0}, Hello ${0}.',
+        'Hello ${0}, Hello ${1}.',
         'Hello ${0}, you have ${1} in your bank account.'
       ]
     },

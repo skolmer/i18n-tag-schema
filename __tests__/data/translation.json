@@ -6,7 +6,7 @@
     "unknown": "unknown",
     "custom group": {
         "Hello ${0}, you have ${1} in your bank account.": "hello${0}, you have ${1} §{0}",
-        "Hello ${0}, Hello ${0}.": "Hello ${0}, Hello ${0}."
+        "Hello ${0}, Hello ${1}.": "Hello ${0}, Hello ${1}."
     },
     "grouped.js": {
         "Hello ${0}, you have ${1} in your bank account.": "sad"
