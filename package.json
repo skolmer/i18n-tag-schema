@@ -94,6 +94,10 @@
   "bin": {
     "i18n-tag-schema": "./cli/index.js"
   },
+  "files": [
+    "dist",
+    "cli"
+  ],
   "jest": {
     "verbose": false,
     "collectCoverage": true,

@@ -54,6 +54,7 @@ jsconfig.json
 yarn.lock
 typings.json
 .coveralls.yml
+.eslintrc
 
 ehthumbs.db
 Icon?
