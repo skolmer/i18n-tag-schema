@@ -4,6 +4,24 @@ import silentLogger from './data/silentLogger'
 
 global.console = silentLogger
 
+expect.extend({
+  toIncreaseProgress(received, last, total) {
+    const pass = received > last || received === total
+    if (pass) {
+      return {
+        message: () =>
+          `expected ${received} to be greater ${last} or equal ${total}`,
+        pass: true,
+      }
+    } else {
+      return {
+        message: () => `expected ${received} to be greater ${last} or equal ${total}`,
+        pass: false,
+      }
+    }
+  },
+})
+
 describe('validateTranslations', () => {
   it('should fail if rootPath param is missing', async () => {
     const schemaPath = path.resolve(__dirname, './data/schema.json')
@@ -68,7 +86,7 @@ describe('validateTranslations', () => {
         logger: { toConsole: true },
         progress: (current, total, name) => {
           expect(name).toBeDefined()
-          expect(current > last || current === total).toBeTruthy()
+          expect(current).toIncreaseProgress(last, total)
           last = current
           totalCount = total
         }

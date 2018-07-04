@@ -37,7 +37,7 @@
     "email": "steffen@kolmer.net"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">= 8.10"
   },
   "dependencies": {
     "ajv": "^6.5.2",
@@ -75,7 +75,7 @@
   "scripts": {
     "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "npm run test:local && npm run report-coverage",
-    "test:local": "npm run lint && jest --verbose",
+    "test:local": "npm run lint && jest",
     "report-coverage": "shx cat ./coverage/lcov.info | coveralls",
     "clean": "rimraf dist/lib/**/*",
     "build": "babel lib -d dist/lib --source-maps --copy-files",
@@ -95,6 +95,7 @@
     "i18n-tag-schema": "./cli/index.js"
   },
   "jest": {
+    "verbose": false,
     "collectCoverage": true,
     "collectCoverageFrom": [
       "lib/*"
