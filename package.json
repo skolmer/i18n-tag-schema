@@ -37,7 +37,7 @@
     "email": "steffen@kolmer.net"
   },
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 8.10.0"
   },
   "dependencies": {
     "ajv": "^6.5.2",
