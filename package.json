@@ -73,7 +73,7 @@
     "travis-deploy-once": "^5.0.1"
   },
   "scripts": {
-    "prepublish": "npm run lint && npm run clean && npm run build",
+    "prepare": "npm run lint && npm run clean && npm run build",
     "test": "npm run test:local && npm run report-coverage",
     "test:local": "npm run lint && jest",
     "report-coverage": "shx cat ./coverage/lcov.info | coveralls",
