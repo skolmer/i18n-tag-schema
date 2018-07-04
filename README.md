@@ -12,6 +12,7 @@
   * [⚠️ Known Limitations](#%EF%B8%8F-known-limitations)
   * [📦 Installation](#-installation)
   * [💻 Examples](#-examples)
+  * [🎩 Key detection for i18n.translate()](#-key-detection-for-i18ntranslate)
   * [📒 Usage](#-usage)
     + [Via npm](#via-npm)
       - [package.json](#packagejson)
@@ -45,6 +46,7 @@ The following repository provides examples for use with npm scripts or gulp: htt
 i18n-tag-schema can also be used to export translation keys into a simple json format (See [Additional Features](#-additional-features)). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)
 
 This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.
+
 
 ## ⚠️ Known Limitations
 
@@ -82,6 +84,17 @@ $ npm install i18n-tag-schema --save-dev
 
 * [npm scripts](https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS)
 * [gulp](https://github.com/skolmer/i18n-tag-examples/tree/master/Simple)
+
+
+## 🎩 Key detection for i18n.translate()
+
+If you are using `i18n.translate()` to translate variables you can add comments telling i18n-tag-schema the possible values of your variables.
+The comment should be a `string` or `string[]` in valid JSON syntax.
+
+```js
+i18n.translate(myVariable1 /* "possible value ${0}" */, 'expression value')
+i18n.translate(myVariable2 /* ["possible value 1", "another value"] */)
+```
 
 ## 📒 Usage
 ```js

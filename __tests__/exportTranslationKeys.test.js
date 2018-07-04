@@ -58,6 +58,14 @@ describe('exportTranslationKeys', () => {
       '\n        <user name="${0}">${1}</user>\n    ',
       '\n    <users>\n    ${0}\n    </users>\n',
       '${0} ${1}',
+      'Hello ${0}, you have ${1} in your bank account.',
+      'Total: ${0}',
+      {
+        'group': 'components/Clock.js',
+        'items': [
+          'Time',
+        ],
+      },
       {
         'group': 'custom group',
         'items': [
@@ -85,6 +93,16 @@ describe('exportTranslationKeys', () => {
           'Hello ${0}, you have ${1} in your bank account.',
           'Hello!'
         ]
+      },
+      'test ${0}',
+      {
+        'group': 'translate/translate.js',
+        'items': [
+          'Time: ${0}',
+          'Welcome',
+          'myvar1',
+          'myvar2 ${0} ${1}',
+        ]
       }
     ])
   })
@@ -103,7 +121,7 @@ describe('exportTranslationKeys', () => {
         totalCount = total
       }
     })
-    expect(totalCount).toEqual(7)
+    expect(totalCount).toEqual(8)
   })
 
   it('should export grouped templates as array', async () => {

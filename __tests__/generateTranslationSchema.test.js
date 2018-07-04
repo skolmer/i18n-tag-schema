@@ -26,6 +26,28 @@ const expected = {
       'minLength': 1,
       'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})'
     },
+    'Hello ${0}, you have ${1} in your bank account.': {
+      'minLength': 1,
+      'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})',
+      'type': 'string',
+    },
+    'Total: ${0}': {
+      'minLength': 1,
+      'pattern': '(?=.*?\\$\\{0\\})',
+      'type': 'string',
+    },
+    'components/Clock.js': {
+      'properties': {
+        'Time': {
+          'minLength': 1,
+          'type': 'string',
+        },
+      },
+      'required': [
+        'Time',
+      ],
+      'type': 'object',
+    },
     'custom group': {
       'type': 'object',
       'properties': {
@@ -97,16 +119,55 @@ const expected = {
         'Hello ${0}, you have ${1} in your bank account.',
         'Hello!'
       ]
+    },
+    'test ${0}':  {
+      'minLength': 1,
+      'pattern': '(?=.*?\\$\\{0\\})',
+      'type': 'string',
+    },
+    'translate/translate.js': {
+      'properties': {
+        'Time: ${0}': {
+          'minLength': 1,
+          'pattern': '(?=.*?\\$\\{0\\})',
+          'type': 'string',
+        },
+        'Welcome': {
+          'minLength': 1,
+          'type': 'string',
+        },
+        'myvar1': {
+          'minLength': 1,
+          'type': 'string',
+        },
+        'myvar2 ${0} ${1}': {
+          'minLength': 1,
+          'pattern': '(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})',
+          'type': 'string',
+        },
+      },
+      'required': [
+        'Time: ${0}',
+        'Welcome',
+        'myvar1',
+        'myvar2 ${0} ${1}',
+      ],
+      'type': 'object',
     }
   },
   'required': [
     '\n        <user name="${0}">${1}</user>\n    ',
     '\n    <users>\n    ${0}\n    </users>\n',
     '${0} ${1}',
+    'Hello ${0}, you have ${1} in your bank account.',
+    'Total: ${0}',
+    'components/Clock.js',
     'custom group',
     'custom group 2',
     'custom inline group',
-    'grouped.js'
+    'grouped.js',
+    'test ${0}',
+    'translate/translate.js',
   ],
   'additionalProperties': false
 }
@@ -148,7 +209,7 @@ describe('i18n-tag-schema', () => {
         expect(name).toBeDefined()
         expect(current > last || current === total).toBeTruthy()
         last = current
-        expect(total).toEqual(7)
+        expect(total).toEqual(8)
       }
     })
   })

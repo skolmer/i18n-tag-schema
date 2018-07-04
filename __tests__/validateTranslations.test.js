@@ -107,7 +107,7 @@ describe('validateTranslations', () => {
         logger: { toConsole: true }
       })
     } catch(err) {
-      expect(err.message).toContain('translation.json has 4 missing translations and 1 invalid key; 64% translated.')
+      expect(err.message).toContain('translation.json has 4 missing translations and 1 invalid key; 79% translated.')
       expect(err.message).toContain('translation.valid.json is valid and 100% translated!')
     }
   })
@@ -122,7 +122,7 @@ describe('validateTranslations', () => {
         logger: { toConsole: true }
       })
     } catch(err) {
-      expect(err.message).toEqual('translation.json has 4 missing translations and 1 invalid key; 64% translated.')
+      expect(err.message).toEqual('translation.json has 4 missing translations and 1 invalid key; 79% translated.')
     }
   })
 

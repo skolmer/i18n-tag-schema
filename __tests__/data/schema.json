@@ -19,6 +19,28 @@
             "minLength": 1,
             "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
         },
+        "Hello ${0}, you have ${1} in your bank account.": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+        },
+        "Total: ${0}": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "(?=.*?\\$\\{0\\})"
+        },
+        "components/Clock.js": {
+            "type": "object",
+            "properties": {
+                "Time": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "Time"
+            ]
+        },
         "custom group": {
             "type": "object",
             "properties": {
@@ -90,16 +112,55 @@
                 "Hello ${0}, you have ${1} in your bank account.",
                 "Hello!"
             ]
+        },
+        "test ${0}": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "(?=.*?\\$\\{0\\})"
+        },
+        "translate/translate.js": {
+            "type": "object",
+            "properties": {
+                "Time: ${0}": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "(?=.*?\\$\\{0\\})"
+                },
+                "Welcome": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "myvar1": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "myvar2 ${0} ${1}": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "(?=.*?\\$\\{0\\})(?=.*?\\$\\{1\\})"
+                }
+            },
+            "required": [
+                "Time: ${0}",
+                "Welcome",
+                "myvar1",
+                "myvar2 ${0} ${1}"
+            ]
         }
     },
     "required": [
         "\n        <user name=\"${0}\">${1}</user>\n    ",
         "\n    <users>\n    ${0}\n    </users>\n",
         "${0} ${1}",
+        "Hello ${0}, you have ${1} in your bank account.",
+        "Total: ${0}",
+        "components/Clock.js",
         "custom group",
         "custom group 2",
         "custom inline group",
-        "grouped.js"
+        "grouped.js",
+        "test ${0}",
+        "translate/translate.js"
     ],
     "additionalProperties": false
 }

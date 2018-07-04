@@ -18,5 +18,17 @@
     "grouped.js": {
         "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have ${1} in your bank account.",
         "Hello!": "Hello!"
+    },
+    "components/Clock.js": {
+        "Time": "Time"
+    },
+    "Hello ${0}, you have ${1} in your bank account.": "Hello ${0}, you have ${1} in your bank account.",
+    "test ${0}": "test ${0}",
+    "Total: ${0}": "Total: ${0}",
+    "translate/translate.js": {
+        "Time: ${0}": "Time: ${0}",
+        "Welcome": "Welcome",
+        "myvar1": "test",
+        "myvar2 ${0} ${1}": "test ${0} ${1}"
     }
 }
