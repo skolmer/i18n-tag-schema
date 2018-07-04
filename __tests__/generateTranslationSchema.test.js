@@ -148,7 +148,7 @@ describe('i18n-tag-schema', () => {
         expect(name).toBeDefined()
         expect(current > last || current === total).toBeTruthy()
         last = current
-        expect(total).toEqual(6)
+        expect(total).toEqual(7)
       }
     })
   })

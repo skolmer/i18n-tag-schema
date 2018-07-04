@@ -71,6 +71,7 @@ describe('exportTranslationKeys', () => {
     ])
   })
 
+
   it('should report export progress', async () => {
     const rootPath = path.resolve(__dirname, './data')
     let last = -1
@@ -85,7 +86,7 @@ describe('exportTranslationKeys', () => {
         totalCount = total
       }
     })
-    expect(totalCount).toEqual(6)
+    expect(totalCount).toEqual(7)
   })
 
   it('should export grouped templates as array', async () => {
