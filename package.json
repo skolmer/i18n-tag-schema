@@ -69,7 +69,8 @@
     "shx": "^0.3.1",
     "typedoc": "^0.11.1",
     "typescript": "^2.9.2",
-    "validate-commit-msg": "^2.14.0"
+    "validate-commit-msg": "^2.14.0",
+    "travis-deploy-once": "^5.0.1"
   },
   "scripts": {
     "prepublish": "npm run lint && npm run clean && npm run build",
@@ -83,9 +84,10 @@
     "docs": "typedoc --out ./docs/ ./lib/index.d.ts --module commonjs --readme ./README.md --target ES6 --includeDeclarations --hideGenerator --name i18n-tag-schema --mode file --media ./images",
     "commit": "git cz",
     "commit-all": "git add . && npm run commit",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "precommit": "npm run test:local",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "typings": "./dist/lib/index.d.ts",
   "main": "./dist/lib",
@@ -123,5 +125,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "version": "0.0.0-development"
 }
