@@ -76,6 +76,7 @@
 					<li><a href="#%EF%B8%8F-known-limitations">⚠️ Known Limitations</a></li>
 					<li><a href="#-installation">📦 Installation</a></li>
 					<li><a href="#-examples">💻 Examples</a></li>
+					<li><a href="#-key-detection-for-i18n-translate-">🎩 Key detection for i18n.translate()</a></li>
 					<li><a href="#-usage">📒 Usage</a><ul>
 							<li><a href="#via-npm">Via npm</a><ul>
 									<li><a href="#packagejson">package.json</a></li>
@@ -116,38 +117,29 @@
 				<p>i18n-tag-schema can also be used to export translation keys into a simple json format (See <a href="#-additional-features">Additional Features</a>). This can be useful if you want to import your translation keys into a 3rd party tool. (Other export formats might be added later. Pull requests are welcome!)</p>
 				<p>This module does include a JSON validator that helps you keep track of missing or invalid keys in your translation files and shows you the current translation coverage of your project. A translation file is considered valid if it covers 100% of the translation keys defined in the JSON schema. This feature can be integrated into an automated build pipeline to check the translation coverage of a build. It can also be used to write unit tests that fail if your modules are not fully translated.</p>
 				<h2 id="-known-limitations">⚠️ Known Limitations</h2>
-				<ul>
-					<li>you cannot use variables for grouping.
-						<code>``js
-/***** example 1 ******/
-import _i18n from &#39;es2015-i18n-tag&#39;
-const i18n = _i18n(&#39;common&#39;)
-const example1 = i18n</code>test` // ⚠️ i18n-tag-schema will not detect the &quot;common&quot; group.</li>
-				</ul>
-				<p>/<strong>*</strong> example 2 <strong>**</strong>/
-					import i18n from &#39;es2015-i18n-tag&#39;
-					const groupName = &#39;common&#39;
-					const example2 = i18n(groupName)<code>test</code> // ⚠️ will not be detected. variables as groupName params are currently not supported.
-				const example2b = i18n(&#39;common&#39;)<code>test</code> // ✔️ this group name will be detected by i18n-tag-schema.</p>
-				<p>/<strong>*</strong> example 3 <strong>*</strong>/
-					import { i18nGroup } from &#39;es2015-i18n-tag&#39;
-					const groupName = &#39;common&#39;
-					@i18nGroup(groupName) // ⚠️ will not be detected. variables as groupName params are currently not supported.
-					class example3 {
-					}
-					@i18nGroup(&#39;common&#39;) // ✔️ this group name will be detected by i18n-tag-schema.
-					class example3b {
-				}</p>
-				<pre><code>* you have to use `<span class="javascript">i18n</span>` as name <span class="hljs-keyword">for</span> your `<span class="javascript">es2015-i18n-tag</span>` import
-`<span class="javascript"></span>``<span class="javascript">js
-<span class="hljs-comment">/***** example 1 ******/</span>
-<span class="hljs-keyword">import</span> t <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
-<span class="hljs-keyword">const</span> example1 = t</span>`test`<span class="javascript"> <span class="hljs-comment">// ⚠️ will not be detected. i18n as a tag name is currently required.</span>
+				<p>You cannot use variables for grouping.</p>
+				<pre><code class="lang-js"><span class="hljs-comment">/***** example 1 ******/</span>
+<span class="hljs-keyword">import</span> _i18n <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
+<span class="hljs-keyword">const</span> i18n = _i18n(<span class="hljs-string">'common'</span>)
+<span class="hljs-keyword">const</span> example1 = i18n<span class="hljs-string">`test`</span> <span class="hljs-comment">// ⚠️ i18n-tag-schema will not detect the "common" group.</span>
 
 <span class="hljs-comment">/***** example 2 ******/</span>
 <span class="hljs-keyword">import</span> i18n <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
-<span class="hljs-keyword">const</span> example2 = i18n</span>`test`<span class="javascript"> <span class="hljs-comment">// ✔️ this will be detected by i18n-tag-schema.</span></span>
-</code></pre><h2 id="-installation">📦 Installation</h2>
+<span class="hljs-keyword">const</span> groupName = <span class="hljs-string">'common'</span>
+<span class="hljs-keyword">const</span> example2 = i18n(groupName)<span class="hljs-string">`test`</span> <span class="hljs-comment">// ⚠️ will not be detected. variables as groupName params are currently not supported.</span>
+<span class="hljs-keyword">const</span> example2b = i18n(<span class="hljs-string">'common'</span>)<span class="hljs-string">`test`</span> <span class="hljs-comment">// ✔️ this group name will be detected by i18n-tag-schema.</span>
+
+<span class="hljs-comment">/***** example 3 *****/</span>
+<span class="hljs-keyword">import</span> { i18nGroup } <span class="hljs-keyword">from</span> <span class="hljs-string">'es2015-i18n-tag'</span>
+<span class="hljs-keyword">const</span> groupName = <span class="hljs-string">'common'</span>
+@i18nGroup(groupName) <span class="hljs-comment">// ⚠️ will not be detected. variables as groupName params are currently not supported.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">example3</span> </span>{
+}
+@i18nGroup(<span class="hljs-string">'common'</span>) <span class="hljs-comment">// ✔️ this group name will be detected by i18n-tag-schema.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">example3b</span> </span>{
+}
+</code></pre>
+				<h2 id="-installation">📦 Installation</h2>
 				<pre><code class="lang-sh">$ npm install i18n-tag-schema --save-dev
 </code></pre>
 				<h2 id="-examples">💻 Examples</h2>
@@ -155,6 +147,12 @@ const example1 = i18n</code>test` // ⚠️ i18n-tag-schema will not detect the 
 					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/ReactJS">npm scripts</a></li>
 					<li><a href="https://github.com/skolmer/i18n-tag-examples/tree/master/Simple">gulp</a></li>
 				</ul>
+				<h2 id="-key-detection-for-i18n-translate-">🎩 Key detection for i18n.translate()</h2>
+				<p>If you are using <code>i18n.translate()</code> to translate variables you can add comments telling i18n-tag-schema the possible values of your variables.
+				The comment should be a <code>string</code> or <code>string[]</code> in valid JSON syntax.</p>
+				<pre><code class="lang-js">i18n.translate(myVariable1 <span class="hljs-comment">/* "possible value ${0}" */</span>, <span class="hljs-string">'expression value'</span>)
+i18n.translate(myVariable2 <span class="hljs-comment">/* ["possible value 1", "another value"] */</span>)
+</code></pre>
 				<h2 id="-usage">📒 Usage</h2>
 				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { generateTranslationSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'i18n-tag-schema'</span>
 
@@ -249,7 +247,7 @@ gulp.task(<span class="hljs-string">'validate-translations'</span>, <span class=
 				<p>Some IDEs can also provide auto completion for translation keys and groups</p>
 				<h2 id="-preprocessors">⚙ Preprocessors</h2>
 				<p>This library has support for custom preprocessors. It ships with a typescript preprocessor out of the box. Please make sure <code>typescript</code> npm package is installed if you want to parse typescript code.</p>
-				<pre><code>$ i18n-tag-schema ./src -e ./typescript<span class="hljs-selector-class">.ts</span> -<span class="hljs-selector-tag">p</span> ./preprocessors/typescript -f \.ts
+				<pre><code>$ i18n-tag-schema <span class="hljs-string">./src</span> -e <span class="hljs-string">./typescript.ts</span> -p <span class="hljs-string">./preprocessors/typescript</span> -f \<span class="hljs-string">.ts</span>
 </code></pre><p>Custom preprocessors can be added as npm packages</p>
 				<pre><code>$ npm install <span class="hljs-keyword">my</span>-preprocessor <span class="hljs-comment">--save-dev</span>
 $ i18n-tag-schema ./src -e ./<span class="hljs-built_in">file</span>.myext -p <span class="hljs-keyword">my</span>-preprocessor -f \.myext
@@ -257,10 +255,10 @@ $ i18n-tag-schema ./src -e ./<span class="hljs-built_in">file</span>.myext -p <s
 				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/master/lib/preprocessors/typescript.js"><code>./lib/preprocessors/typescript.js</code></a></p>
 				<h2 id="-postprocessors">⚙ Postprocessors</h2>
 				<p>This library has support for custom postprocessors that can be used to transform the export file format. It ships with a PO file format postprocessor out of the box.</p>
-				<pre><code>$ i18n-<span class="hljs-keyword">tag</span>-schema ./src -<span class="hljs-keyword">e</span> . -<span class="hljs-keyword">o</span> ./postprocessors/<span class="hljs-keyword">po</span> -t ./translation.<span class="hljs-keyword">po</span>
+				<pre><code>$ i18n-tag-schema <span class="hljs-string">./src</span> -e . -o <span class="hljs-string">./postprocessors/po</span> -t <span class="hljs-string">./translation.po</span>
 </code></pre><p>Custom postprocessors can be added as npm packages</p>
-				<pre><code>$ npm install <span class="hljs-keyword">my</span>-postprocessor <span class="hljs-comment">--save-dev</span>
-$ i18n-tag-schema ./src -e . -o <span class="hljs-keyword">my</span>-postprocessor -t ./translation.myext
+				<pre><code><span class="hljs-meta">$</span><span class="bash"> npm install my-postprocessor --save-dev</span>
+<span class="hljs-meta">$</span><span class="bash"> i18n-tag-schema ./src -e . -o my-postprocessor -t ./translation.myext</span>
 </code></pre><p>A postprocessor is a function that receives an array of translation keys and groups as an argument and returns the processed output.
 				An example can be found at <a href="https://github.com/skolmer/i18n-tag-schema/blob/master/lib/postprocessors/po.js"><code>./lib/postprocessors/po.js</code></a></p>
 				<h2 id="-ide-integration">⌨ IDE Integration</h2>

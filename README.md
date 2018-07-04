@@ -12,7 +12,7 @@
   * [⚠️ Known Limitations](#%EF%B8%8F-known-limitations)
   * [📦 Installation](#-installation)
   * [💻 Examples](#-examples)
-  * [🎩 Key detection for i18n.translate()](#-key-detection-for-i18ntranslate)
+  * [🎩 Key detection for i18n.translate()](#-key-detection-for-i18n-translate-)
   * [📒 Usage](#-usage)
     + [Via npm](#via-npm)
       - [package.json](#packagejson)
