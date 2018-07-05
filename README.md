@@ -12,7 +12,7 @@
   * [⚠️ Known Limitations](#%EF%B8%8F-known-limitations)
   * [📦 Installation](#-installation)
   * [💻 Examples](#-examples)
-  * [🎩 Key detection for i18n.translate()](#-key-detection-for-i18n-translate-)
+  * [🎩 Key detection for i18n.translate()](#-key-detection-for-i18ntranslate)
   * [📒 Usage](#-usage)
     + [Via npm](#via-npm)
       - [package.json](#packagejson)
@@ -95,6 +95,7 @@ The comment should be a `string` or `string[]` in valid JSON syntax.
 i18n.translate(myVariable1 /* "possible value ${0}" */, 'expression value')
 i18n.translate(myVariable2 /* ["possible value 1", "another value"] */)
 ```
+See [i18n.translate()](https://github.com/skolmer/es2015-i18n-tag#translating-without-template-literals)
 
 ## 📒 Usage
 ```js
