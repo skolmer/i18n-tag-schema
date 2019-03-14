@@ -1,0 +1,25 @@
+{
+  "projectName": "i18n-tag-schema",
+  "projectOwner": "skolmer",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mmorton",
+      "name": "Michael Morton",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/217921?v=4",
+      "profile": "http://icanhascode.com",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
