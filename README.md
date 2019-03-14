@@ -1,4 +1,5 @@
 # 🌍 i18n Tagged Template Literals - Schema Generator
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![Build Status](https://img.shields.io/travis/skolmer/i18n-tag-schema/master.svg?style=flat)](https://travis-ci.org/skolmer/i18n-tag-schema) [![Coverage Status](https://coveralls.io/repos/github/skolmer/i18n-tag-schema/badge.svg?branch=master)](https://coveralls.io/github/skolmer/i18n-tag-schema?branch=master) [![npm version](https://img.shields.io/npm/v/i18n-tag-schema.svg?style=flat)](https://www.npmjs.com/package/i18n-tag-schema) [![Dependencies](https://david-dm.org/skolmer/i18n-tag-schema.svg)](https://david-dm.org/skolmer/i18n-tag-schema) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![MIT License](https://img.shields.io/npm/l/ghooks.svg)](http://opensource.org/licenses/MIT)
 
@@ -320,3 +321,15 @@ Copyright (c) 2016 Steffen Kolmer
 
 This software is licensed under the MIT license.  See the `LICENSE` file
 accompanying this software for terms of use.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/217921?v=4" width="100px;" alt="Michael Morton"/><br /><sub><b>Michael Morton</b></sub>](http://icanhascode.com)<br />[🚇](#infra-mmorton "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/skolmer/i18n-tag-schema/commits?author=mmorton "Tests") [💻](https://github.com/skolmer/i18n-tag-schema/commits?author=mmorton "Code") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
