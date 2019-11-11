@@ -45,7 +45,7 @@
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
     "chalk": "^2.4.1",
-    "commander": "^2.16.0",
+    "commander": "^4.0.1",
     "escape-string-regexp": "^1.0.5",
     "lodash": "^4.17.10",
     "mz": "^2.7.0",
