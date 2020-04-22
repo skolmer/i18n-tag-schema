@@ -58,7 +58,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.13",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.0.1",
     "eslint-plugin-import": "^2.13.0",
